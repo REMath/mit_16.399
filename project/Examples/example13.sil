@@ -1,0 +1,7 @@
+% example13.sil %
+y := ?;
+if (y = 0) then
+  r := 0
+else
+  r := 0
+fi;;

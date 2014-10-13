@@ -1,0 +1,267 @@
+Script started on Tue Jul 29 11:30:48 2003
+% ls
+a.mli           c.ml            e.ml            p.ml
+b.ml            c.mli           makefile        scriptfile.ml
+b.mli           d.ml            makefile.depend typescript
+% make
+rm: No match.
+make: [clean] Error 1 (ignored)
+*** execution of the original program p.ml:
+ocaml p.ml
+4
+*** generic separate compilation of the modules:
+ocamlc -c a.mli
+ocamlc -c b.mli
+ocamlc -c b.ml
+ocamlc -c c.mli
+ocamlc -c c.ml
+ocamlc -c d.ml
+ocamlc -c e.ml
+ocamlc a.mli b.cmo b.mli c.cmo c.mli d.cmo e.cmo
+*** execution of the compiled code:
+./a.out
+4
+*** customed separate compilation of the modules:
+ocamlc -c a.mli
+ocamlc -c b.mli
+ocamlc -c b.ml
+ocamlc -c c.mli
+ocamlc -c c.ml
+ocamlc -c d.ml
+ocamlc -c e.ml
+ocamlc b.cmo c.cmo d.cmo e.cmo
+*** execution of the compiled code:
+./a.out
+4
+*** creation of a script file:
+*** ocaml in script mode:
+ocaml scriptfile.ml
+4
+*** compilation of the scriptfile:
+ocamlc scriptfile.ml
+*** execution of the compiled code:
+./a.out
+4
+*** original program p.ml:
+
+
+module type A_signature =
+  sig 
+    type entier
+    val i : unit -> entier
+    val p : entier -> unit
+  end;;
+
+module B_implementation =
+struct
+  type entier = int
+  let c = ref 1
+  let i () = c := !c + !c ; !c
+  let p v = print_int v; print_newline ()
+end;;
+module B = (B_implementation:A_signature);;
+
+module type C_signature =
+  functor (A: A_signature) ->
+	 sig
+		val i : unit -> A.entier
+		val p : A.entier -> unit
+	 end;;
+
+module type C_signature =
+  functor (A: A_signature) ->
+	 sig
+		val i : unit -> A.entier
+		val p : A.entier -> unit
+	 end;;
+
+module C_implementation =
+  functor (A: A_signature) ->
+  struct
+	 type ent = A.entier
+	 let f i = ()
+	 let i () = f (A.i ()); A.i ()
+	 let p = A.p
+  end;;
+module C = (C_implementation:C_signature)
+
+module D = C(B);;
+
+D.p (D.i ());;
+
+
+*** modules:
+
+** a.mli
+
+module type A_signature =
+  sig 
+    type entier
+    val i : unit -> entier
+    val p : entier -> unit
+  end;;
+
+** b.mli
+
+open A;;
+module B : A_signature;;
+
+** b.ml
+
+open A;;
+module B_implementation =
+struct
+  type entier = int
+  let c = ref 1
+  let i () = c := !c + !c ; !c
+  let p v = print_int v; print_newline ()
+end;;
+module B = (B_implementation:A_signature);;
+
+** c.mli
+
+open A;;
+module type C_signature =
+  functor (A: A_signature) ->
+	 sig
+		val i : unit -> A.entier
+		val p : A.entier -> unit
+	 end;;
+module C : C_signature;;
+
+** c.ml
+
+open A;;
+module type C_signature =
+  functor (A: A_signature) ->
+	 sig
+		val i : unit -> A.entier
+		val p : A.entier -> unit
+	 end;;
+module C_implementation =
+  functor (A: A_signature) ->
+  struct
+	 type ent = A.entier
+	 let f i = ()
+	 let i () = f (A.i ()); A.i ()
+	 let p = A.p
+  end;;
+module C = (C_implementation:C_signature)
+
+** d.ml
+
+open B;;
+open C;;
+module D = C(B);;
+
+** e.ml
+
+open D;;
+D.p (D.i ());;
+
+
+*** script file:
+
+
+module A = struct
+module type A_signature =
+  sig 
+    type entier
+    val i : unit -> entier
+    val p : entier -> unit
+  end;;
+end;;
+module B : sig
+open A;;
+module B : A_signature;;
+end = struct
+open A;;
+module B_implementation =
+struct
+  type entier = int
+  let c = ref 1
+  let i () = c := !c + !c ; !c
+  let p v = print_int v; print_newline ()
+end;;
+module B = (B_implementation:A_signature);;
+end;;
+module C : sig
+open A;;
+module type C_signature =
+  functor (A: A_signature) ->
+	 sig
+		val i : unit -> A.entier
+		val p : A.entier -> unit
+	 end;;
+module C : C_signature;;
+end = struct
+open A;;
+module type C_signature =
+  functor (A: A_signature) ->
+	 sig
+		val i : unit -> A.entier
+		val p : A.entier -> unit
+	 end;;
+module C_implementation =
+  functor (A: A_signature) ->
+  struct
+	 type ent = A.entier
+	 let f i = ()
+	 let i () = f (A.i ()); A.i ()
+	 let p = A.p
+  end;;
+module C = (C_implementation:C_signature)
+end;;
+module D = struct
+open B;;
+open C;;
+module D = C(B);;
+end;;
+open D;;
+D.p (D.i ());;
+
+*** interactive mode, type:
+  ocaml
+and then:
+  #use "scriptfile.ml";;
+  #quit;;
+to use "ocaml" interactively with "scriptfile.ml"
+% ocaml
+        Objective Caml version 3.06
+
+# #use "scriptfile.ml";;
+module A :
+  sig
+    module type A_signature =
+      sig type entier val i : unit -> entier val p : entier -> unit end
+  end
+module B : sig module B : A.A_signature end
+module C :
+  sig
+    module type C_signature =
+      functor (A : A.A_signature) ->
+        sig val i : unit -> A.entier val p : A.entier -> unit end
+    module C : C_signature
+  end
+module D :
+  sig
+    module D : sig val i : unit -> B.B.entier val p : B.B.entier -> unit end
+  end
+4
+- : unit = ()
+# D.p (D.i ());;
+16
+- : unit = ()
+# D.p (D.i ());;
+64
+- : unit = ()
+# D.p (D.i ());;
+256
+- : unit = ()
+# D.p (D.i ());;
+1024
+- : unit = ()
+# #quit;;
+% make clean
+% ^D
+Script done on Tue Jul 29 11:33:35 2003

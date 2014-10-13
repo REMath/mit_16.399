@@ -1,0 +1,8 @@
+% example70sex.sil %
+x := x0; y := y0;
+k := 0;
+while x <> y do
+  k := k  + 1;
+  x := x - 1;
+  y := y + 1
+od;;

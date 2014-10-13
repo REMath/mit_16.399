@@ -1,0 +1,15 @@
+% example44.sil %
+X:=0;Y:=?;R:=?;B:=?;
+while ((Y<-1) | (Y>1))  do
+  Y:=?
+od;
+while (B<>R) do
+  while ((R<-1) | (R>1))  do
+    R:=?
+  od;
+  if (X=Y) then
+    Y:=X+R
+  else
+    X:=Y+R
+  fi 
+od;;

@@ -1,0 +1,2 @@
+% example21.sil %
+if (x = 123456789123456789) then skip else skip fi;;

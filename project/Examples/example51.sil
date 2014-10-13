@@ -1,0 +1,10 @@
+% example51.sil %
+x:=10;
+while (x>0) do
+  x:=x-2;
+  if x < 0 then
+    x:=0
+  else
+    skip
+  fi
+od;;

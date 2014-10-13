@@ -1,0 +1,5 @@
+% example01.sil %
+x := 1;
+while (x < 100) do
+  x := x + 1
+od;;

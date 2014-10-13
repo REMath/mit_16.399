@@ -1,0 +1,13 @@
+% example35.sil %
+x:=1;
+if (x=1) then
+  y:=2
+else
+  y:=3
+fi;
+z:=4;
+if (z=5) then
+  t:=6
+else
+  t:=7
+fi;;

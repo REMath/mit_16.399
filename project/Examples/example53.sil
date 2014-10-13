@@ -1,0 +1,8 @@
+% example53.sil %
+while Nat < 0 do skip od;
+while Pos <= 0 do skip od;
+while (i - j >= 1) do
+  while (i<>i0) | (j<>j0) | (Pos<>Pos0) | (Nat<>Nat0) do skip od;
+  i := i - Nat;
+  j := j - Pos
+od;;

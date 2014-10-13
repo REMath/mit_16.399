@@ -1,0 +1,14 @@
+% example71qua.sil %
+while (n <> n0) do skip od;
+i := n;
+k := 0;
+while (i >= 0) do
+  k := k + 1;
+  j := 0;
+  l := 0;
+  while (j <= i - 1) do
+    l := l + 1;
+    j := j + 1
+  od;
+  i := i - 1
+od;;

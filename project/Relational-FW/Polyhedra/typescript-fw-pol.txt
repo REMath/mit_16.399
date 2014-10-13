@@ -1,0 +1,2493 @@
+
+/bin/rm -f *.cmi *.cmo *~ a.out lexer.ml parser.mli parser.ml 
+Polyhedral analysis
+ocamlyacc parser.mly
+ocamllex lexer.mll
+62 states, 3001 transitions, table size 12376 bytes
+ocamlc -custom -I /usr/local/lib -I /usr/local/lib/ocaml \
+  -cclib "-L/usr/local/lib -L/usr/local/lib/ocaml -lpolkag_caml \
+  -lpolkag -lgmp -lcamlidl" \
+  polka.cma symbol_Table.mli symbol_Table.ml variables.mli variables.ml abstract_Syntax.ml concrete_To_Abstract_Syntax.mli concrete_To_Abstract_Syntax.ml labels.mli labels.ml parser.mli parser.ml lexer.ml program_To_Abstract_Syntax.mli program_To_Abstract_Syntax.ml pretty_Print.mli pretty_Print.ml values.mli values.ml linear_Syntax.mli linear_Syntax.ml abstract_To_Linear_Syntax.mli abstract_To_Linear_Syntax.ml lpretty_Print.mli lpretty_Print.ml aenv.mli aenv.ml abexp.mli abexp.ml fixpoint.mli fixpoint.ml acom.mli acom.ml main.ml
+
+** Input file:
+% example00.sil %
+skip;;
+** Program:
+
+0: 
+  skip
+1: 
+** Linearized program:
+0: 
+  skip
+1: 
+** Precondition:
+{ T }
+** Postcondition:
+{ T }
+
+** Input file:
+% example01.sil %
+x := 1;
+while (x < 100) do
+  x := x + 1
+od;;
+** Program:
+
+0: 
+  x := 1;
+1: 
+  while (x < 100) do
+    2: 
+      x := (x + 1)
+    3: 
+  od {((100 < x) | (x = 100))}
+4: 
+** Linearized program:
+0: 
+  x := 0.x + 1;
+1: 
+  while -1.x + 99 >= 0 do
+    2: 
+      x := 1.x + 1
+    3: 
+  od {(1.x + -101 >= 0 | -1.x + 100 = 0)}
+4: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x=100,1>=0}
+
+** Input file:
+% example02.sil %
+x := -1073741823 -1;
+y := x - 1;;
+** Program:
+
+0: 
+  x := (-1073741823 - 1);
+1: 
+  y := (x - 1)
+2: 
+** Linearized program:
+0: 
+  x := 0.x + 0.y + -1073741824;
+1: 
+  y := 1.x + 0.y + -1
+2: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{y+1073741823=0,x+1073741823=0,1>=0}
+
+** Input file:
+% example03.sil %
+x := 0;
+y := 1;;
+** Program:
+
+0: 
+  x := 0;
+1: 
+  y := 1
+2: 
+** Linearized program:
+0: 
+  x := 0.x + 0.y + 0;
+1: 
+  y := 0.x + 0.y + 1
+2: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{y=1,x=0,1>=0}
+
+** Input file:
+% example04.sil %
+if true then x := 1 else x := 0 fi;;
+** Program:
+
+0: 
+  if true then
+    1: 
+      x := 1
+    2: 
+  else {false}
+    3: 
+      x := 0
+    4: 
+  fi
+5: 
+** Linearized program:
+0: 
+  if true then
+    1: 
+      x := 0.x + 1
+    2: 
+  else {false}
+    3: 
+      x := 0.x + 0
+    4: 
+  fi
+5: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x=1,1>=0}
+
+** Input file:
+% example05.sil %
+if false then x := 1 else x := 0 fi;;
+** Program:
+
+0: 
+  if false then
+    1: 
+      x := 1
+    2: 
+  else {true}
+    3: 
+      x := 0
+    4: 
+  fi
+5: 
+** Linearized program:
+0: 
+  if false then
+    1: 
+      x := 0.x + 1
+    2: 
+  else {true}
+    3: 
+      x := 0.x + 0
+    4: 
+  fi
+5: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x=0,1>=0}
+
+** Input file:
+% example06.sil %
+x := -1073741824;;
+** Program:
+
+0: 
+  x := -1073741824
+1: 
+** Linearized program:
+0: 
+  x := ?
+1: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{1>=0}
+
+** Input file:
+% example07.sil %
+x := 1;
+while (x <= 10) do
+  x := x + 1
+od;;
+** Program:
+
+0: 
+  x := 1;
+1: 
+  while ((x < 10) | (x = 10)) do
+    2: 
+      x := (x + 1)
+    3: 
+  od {(10 < x)}
+4: 
+** Linearized program:
+0: 
+  x := 0.x + 1;
+1: 
+  while (-1.x + 9 >= 0 | -1.x + 10 = 0) do
+    2: 
+      x := 1.x + 1
+    3: 
+  od {1.x + -11 >= 0}
+4: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x=11,1>=0}
+
+** Input file:
+% example08.sil %
+x := 1073741823;;
+** Program:
+
+0: 
+  x := 1073741823
+1: 
+** Linearized program:
+0: 
+  x := 0.x + 1073741823
+1: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x=1073741823,1>=0}
+
+** Input file:
+% example09.sil %
+x := -536870912 * 2;
+y := 536870912 * 2;
+z := (-1073741823 - 1) * 1;
+t := (-1073741823 - 1) * 1073741823;;
+** Program:
+
+0: 
+  x := (-536870912 * 2);
+1: 
+  y := (536870912 * 2);
+2: 
+  z := ((-1073741823 - 1) * 1);
+3: 
+  t := ((-1073741823 - 1) * 1073741823)
+4: 
+** Linearized program:
+0: 
+  x := 0.x + 0.y + 0.z + 0.t + -1073741824;
+1: 
+  y := ?;
+2: 
+  z := 0.x + 0.y + 0.z + 0.t + -1073741824;
+3: 
+  t := ?
+4: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{z+1073741823=0,x+1073741823=0,1>=0}
+
+** Input file:
+% example10.sil %
+x := ?;
+if (x < (-1073741823 - 1)) then x := 1 else x := 0 fi;;
+** Program:
+
+0: 
+  x := ?;
+1: 
+  if (x < (-1073741823 - 1)) then
+    2: 
+      x := 1
+    3: 
+  else {(((-1073741823 - 1) < x) | (x = (-1073741823 - 1)))}
+    4: 
+      x := 0
+    5: 
+  fi
+6: 
+** Linearized program:
+0: 
+  x := ?;
+1: 
+  if ?? then
+    2: 
+      x := 0.x + 1
+    3: 
+  else {(1.x + 1073741823 >= 0 | -1.x + -1073741824 = 0)}
+    4: 
+      x := 0.x + 0
+    5: 
+  fi
+6: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x<=1,x>=0}
+
+** Input file:
+% example11.sil %
+x := 1;
+while (1073741824 > 0) do
+	x := x + 1
+od;;
+** Program:
+
+0: 
+  x := 1;
+1: 
+  while (0 < 1073741824) do
+    2: 
+      x := (x + 1)
+    3: 
+  od {((1073741824 < 0) | (1073741824 = 0))}
+4: 
+** Linearized program:
+0: 
+  x := 0.x + 1;
+1: 
+  while ?? do
+    2: 
+      x := 1.x + 1
+    3: 
+  od {??}
+4: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{1>=0,x>=1}
+
+** Input file:
+% example12.sil %
+if (x < (-1073741823 - 2)) then x := 1 else x := 0 fi;
+y := ?; if (y > 0) then z := y else z := -z fi;;
+** Program:
+
+0: 
+  if (x < (-1073741823 - 2)) then
+    1: 
+      x := 1
+    2: 
+  else {(((-1073741823 - 2) < x) | (x = (-1073741823 - 2)))}
+    3: 
+      x := 0
+    4: 
+  fi;
+5: 
+  y := ?;
+6: 
+  if (0 < y) then
+    7: 
+      z := y
+    8: 
+  else {((y < 0) | (y = 0))}
+    9: 
+      z := -z
+    10: 
+  fi
+11: 
+** Linearized program:
+0: 
+  if ?? then
+    1: 
+      x := 0.x + 0.y + 0.z + 1
+    2: 
+  else {??}
+    3: 
+      x := 0.x + 0.y + 0.z + 0
+    4: 
+  fi;
+5: 
+  y := ?;
+6: 
+  if 0.x + 1.y + 0.z + -1 >= 0 then
+    7: 
+      z := 0.x + 1.y + 0.z + 0
+    8: 
+  else {(0.x + -1.y + 0.z + -1 >= 0 | 0.x + -1.y + 0.z + 0 = 0)}
+    9: 
+      z := 0.x + 0.y + -1.z + 0
+    10: 
+  fi
+11: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x>=0,x<=1}
+
+** Input file:
+% example13.sil %
+y := ?;
+if (y = 0) then
+  r := 0
+else
+  r := 0
+fi;;
+** Program:
+
+0: 
+  y := ?;
+1: 
+  if (y = 0) then
+    2: 
+      r := 0
+    3: 
+  else {((y < 0) | (0 < y))}
+    4: 
+      r := 0
+    5: 
+  fi
+6: 
+** Linearized program:
+0: 
+  y := ?;
+1: 
+  if -1.y + 0.r + 0 = 0 then
+    2: 
+      r := 0.y + 0.r + 0
+    3: 
+  else {(-1.y + 0.r + -1 >= 0 | 1.y + 0.r + -1 >= 0)}
+    4: 
+      r := 0.y + 0.r + 0
+    5: 
+  fi
+6: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{r=0,1>=0}
+
+** Input file:
+% example14.sil %
+y := ?;
+if (y = 0) then
+  r := y
+else
+  r := 0
+fi;;
+** Program:
+
+0: 
+  y := ?;
+1: 
+  if (y = 0) then
+    2: 
+      r := y
+    3: 
+  else {((y < 0) | (0 < y))}
+    4: 
+      r := 0
+    5: 
+  fi
+6: 
+** Linearized program:
+0: 
+  y := ?;
+1: 
+  if -1.y + 0.r + 0 = 0 then
+    2: 
+      r := 1.y + 0.r + 0
+    3: 
+  else {(-1.y + 0.r + -1 >= 0 | 1.y + 0.r + -1 >= 0)}
+    4: 
+      r := 0.y + 0.r + 0
+    5: 
+  fi
+6: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{r=0,1>=0}
+
+** Input file:
+% example15.sil %
+x := 0;
+y := ?;
+z := ?;
+if ((x = y) & (y = z)) then
+  r := z
+else
+  r := 0
+fi;;
+** Program:
+
+0: 
+  x := 0;
+1: 
+  y := ?;
+2: 
+  z := ?;
+3: 
+  if ((x = y) & (y = z)) then
+    4: 
+      r := z
+    5: 
+  else {(((x < y) | (y < x)) | ((y < z) | (z < y)))}
+    6: 
+      r := 0
+    7: 
+  fi
+8: 
+** Linearized program:
+0: 
+  x := 0.x + 0.y + 0.z + 0.r + 0;
+1: 
+  y := ?;
+2: 
+  z := ?;
+3: 
+  if (-1.x + 1.y + 0.z + 0.r + 0 = 0 & 0.x + -1.y + 1.z + 0.r + 0 = 0) then
+    4: 
+      r := 0.x + 0.y + 1.z + 0.r + 0
+    5: 
+  else {(-1.x + 1.y + 0.z + 0.r + -1 >= 0 | 1.x + -1.y + 0.z + 0.r + -1 >= 0 | 0.x + -1.y + 1.z + 0.r + -1 >= 0 | 0.x + 1.y + -1.z + 0.r + -1 >= 0)}
+    6: 
+      r := 0.x + 0.y + 0.z + 0.r + 0
+    7: 
+  fi
+8: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{r=0,x=0,1>=0}
+
+** Input file:
+% example16.sil %
+x := 0;
+y := ?;
+z := ?;
+if ((x = y) & (y = z)) then
+  skip
+else
+  r := 1/0
+fi;;
+** Program:
+
+0: 
+  x := 0;
+1: 
+  y := ?;
+2: 
+  z := ?;
+3: 
+  if ((x = y) & (y = z)) then
+    4: 
+      skip
+    5: 
+  else {(((x < y) | (y < x)) | ((y < z) | (z < y)))}
+    6: 
+      r := (1 / 0)
+    7: 
+  fi
+8: 
+** Linearized program:
+0: 
+  x := 0.x + 0.y + 0.z + 0.r + 0;
+1: 
+  y := ?;
+2: 
+  z := ?;
+3: 
+  if (-1.x + 1.y + 0.z + 0.r + 0 = 0 & 0.x + -1.y + 1.z + 0.r + 0 = 0) then
+    4: 
+      skip
+    5: 
+  else {(-1.x + 1.y + 0.z + 0.r + -1 >= 0 | 1.x + -1.y + 0.z + 0.r + -1 >= 0 | 0.x + -1.y + 1.z + 0.r + -1 >= 0 | 0.x + 1.y + -1.z + 0.r + -1 >= 0)}
+    6: 
+      r := ?
+    7: 
+  fi
+8: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x=0,1>=0}
+
+** Input file:
+% example17.sil %
+x := 0;
+y := ?;
+if (x = y) then
+  skip
+else
+  r := 1/0
+fi;;
+** Program:
+
+0: 
+  x := 0;
+1: 
+  y := ?;
+2: 
+  if (x = y) then
+    3: 
+      skip
+    4: 
+  else {((x < y) | (y < x))}
+    5: 
+      r := (1 / 0)
+    6: 
+  fi
+7: 
+** Linearized program:
+0: 
+  x := 0.x + 0.y + 0.r + 0;
+1: 
+  y := ?;
+2: 
+  if -1.x + 1.y + 0.r + 0 = 0 then
+    3: 
+      skip
+    4: 
+  else {(-1.x + 1.y + 0.r + -1 >= 0 | 1.x + -1.y + 0.r + -1 >= 0)}
+    5: 
+      r := ?
+    6: 
+  fi
+7: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x=0,1>=0}
+
+** Input file:
+% example18.sil %
+x := ?;
+y := 1 / x;;
+** Program:
+
+0: 
+  x := ?;
+1: 
+  y := (1 / x)
+2: 
+** Linearized program:
+0: 
+  x := ?;
+1: 
+  y := ?
+2: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{1>=0}
+
+** Input file:
+% example19.sil %
+x := ?;
+if (x < 0) then
+  x := - x
+else if (x = 0) then
+  x := 1
+else
+  skip 
+fi fi;;
+** Program:
+
+0: 
+  x := ?;
+1: 
+  if (x < 0) then
+    2: 
+      x := -x
+    3: 
+  else {((0 < x) | (x = 0))}
+    4: 
+      if (x = 0) then
+        5: 
+          x := 1
+        6: 
+      else {((x < 0) | (0 < x))}
+        7: 
+          skip
+        8: 
+      fi
+    9: 
+  fi
+10: 
+** Linearized program:
+0: 
+  x := ?;
+1: 
+  if -1.x + -1 >= 0 then
+    2: 
+      x := -1.x + 0
+    3: 
+  else {(1.x + -1 >= 0 | -1.x + 0 = 0)}
+    4: 
+      if -1.x + 0 = 0 then
+        5: 
+          x := 0.x + 1
+        6: 
+      else {(-1.x + -1 >= 0 | 1.x + -1 >= 0)}
+        7: 
+          skip
+        8: 
+      fi
+    9: 
+  fi
+10: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{1>=0,x>=1}
+
+** Input file:
+% example20.sil %
+a1 :=  10 + 10;
+b1 :=  (-10) + 10;
+c1 := 10 + (-10);
+d1 := (-10) + (-10);
+e1 :=  1073741823 + 1073741823;
+f1 :=  (-1073741823) + 1073741823;
+g1 := 1073741823 + (-1073741823);
+h1 := (-1073741823) + (-1073741823);
+a2 :=  10 - 10;
+b2 :=  (-10) - 10;
+c2 := 10 - (-10);
+d2 := (-10) - (-10);
+e2 :=  1073741823 - 1073741823;
+f2 :=  (-1073741823) - 1073741823;
+g2 := 1073741823 - (-1073741823);
+h2 := (-1073741823) - (-1073741823);
+a3 :=  10 * 10;
+b3 :=  (-10) * 10;
+c3 := 10 * (-10);
+d3 := (-10) * (-10);
+e3 :=  1073741823 * 1073741823;
+f3 :=  (-1073741823) * 1073741823;
+g3 := 1073741823 * (-1073741823);
+h3 := (-1073741823) * (-1073741823);
+a4 :=  10 / 10;
+b4 :=  (-10) / 10;
+c4 := 10 / (-10);
+d4 := (-10) / (-10);
+e4 :=  1073741823 / 1073741823;
+f4 :=  (-1073741823) / 1073741823;
+g4 := 1073741823 / (-1073741823);
+h4 := (-1073741823) / (-1073741823);
+a5 :=  10 mod 10;
+b5 :=  (-10) mod 10;
+c5 := 10 mod (-10);
+d5 := (-10) mod (-10);
+e5 :=  1073741823 mod 1073741823;
+f5 :=  (-1073741823) mod 1073741823;
+g5 := 1073741823 mod (-1073741823);
+h5 := (-1073741823) mod (-1073741823);;
+
+** Program:
+
+0: 
+  a1 := (10 + 10);
+1: 
+  b1 := (-10 + 10);
+2: 
+  c1 := (10 + -10);
+3: 
+  d1 := (-10 + -10);
+4: 
+  e1 := (1073741823 + 1073741823);
+5: 
+  f1 := (-1073741823 + 1073741823);
+6: 
+  g1 := (1073741823 + -1073741823);
+7: 
+  h1 := (-1073741823 + -1073741823);
+8: 
+  a2 := (10 - 10);
+9: 
+  b2 := (-10 - 10);
+10: 
+  c2 := (10 - -10);
+11: 
+  d2 := (-10 - -10);
+12: 
+  e2 := (1073741823 - 1073741823);
+13: 
+  f2 := (-1073741823 - 1073741823);
+14: 
+  g2 := (1073741823 - -1073741823);
+15: 
+  h2 := (-1073741823 - -1073741823);
+16: 
+  a3 := (10 * 10);
+17: 
+  b3 := (-10 * 10);
+18: 
+  c3 := (10 * -10);
+19: 
+  d3 := (-10 * -10);
+20: 
+  e3 := (1073741823 * 1073741823);
+21: 
+  f3 := (-1073741823 * 1073741823);
+22: 
+  g3 := (1073741823 * -1073741823);
+23: 
+  h3 := (-1073741823 * -1073741823);
+24: 
+  a4 := (10 / 10);
+25: 
+  b4 := (-10 / 10);
+26: 
+  c4 := (10 / -10);
+27: 
+  d4 := (-10 / -10);
+28: 
+  e4 := (1073741823 / 1073741823);
+29: 
+  f4 := (-1073741823 / 1073741823);
+30: 
+  g4 := (1073741823 / -1073741823);
+31: 
+  h4 := (-1073741823 / -1073741823);
+32: 
+  a5 := (10 mod 10);
+33: 
+  b5 := (-10 mod 10);
+34: 
+  c5 := (10 mod -10);
+35: 
+  d5 := (-10 mod -10);
+36: 
+  e5 := (1073741823 mod 1073741823);
+37: 
+  f5 := (-1073741823 mod 1073741823);
+38: 
+  g5 := (1073741823 mod -1073741823);
+39: 
+  h5 := (-1073741823 mod -1073741823)
+40: 
+** Linearized program:
+0: 
+  a1 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + 20;
+1: 
+  b1 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + 0;
+2: 
+  c1 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + 0;
+3: 
+  d1 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + -20;
+4: 
+  e1 := ?;
+5: 
+  f1 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + 0;
+6: 
+  g1 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + 0;
+7: 
+  h1 := ?;
+8: 
+  a2 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + 0;
+9: 
+  b2 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + -20;
+10: 
+  c2 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + 20;
+11: 
+  d2 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + 0;
+12: 
+  e2 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + 0;
+13: 
+  f2 := ?;
+14: 
+  g2 := ?;
+15: 
+  h2 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + 0;
+16: 
+  a3 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + 100;
+17: 
+  b3 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + -100;
+18: 
+  c3 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + -100;
+19: 
+  d3 := 0.a1 + 0.b1 + 0.c1 + 0.d1 + 0.e1 + 0.f1 + 0.g1 + 0.h1 + 0.a2 + 0.b2 + 0.c2 + 0.d2 + 0.e2 + 0.f2 + 0.g2 + 0.h2 + 0.a3 + 0.b3 + 0.c3 + 0.d3 + 0.e3 + 0.f3 + 0.g3 + 0.h3 + 0.a4 + 0.b4 + 0.c4 + 0.d4 + 0.e4 + 0.f4 + 0.g4 + 0.h4 + 0.a5 + 0.b5 + 0.c5 + 0.d5 + 0.e5 + 0.f5 + 0.g5 + 0.h5 + 100;
+20: 
+  e3 := ?;
+21: 
+  f3 := ?;
+22: 
+  g3 := ?;
+23: 
+  h3 := ?;
+24: 
+  a4 := ?;
+25: 
+  b4 := ?;
+26: 
+  c4 := ?;
+27: 
+  d4 := ?;
+28: 
+  e4 := ?;
+29: 
+  f4 := ?;
+30: 
+  g4 := ?;
+31: 
+  h4 := ?;
+32: 
+  a5 := ?;
+33: 
+  b5 := ?;
+34: 
+  c5 := ?;
+35: 
+  d5 := ?;
+36: 
+  e5 := ?;
+37: 
+  f5 := ?;
+38: 
+  g5 := ?;
+39: 
+  h5 := ?
+40: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{h2=0,a1=20,b1=0,c1=0,d1+20=0,a3=100,f1=0,g1=0,b3+100=0,a2=0,b2+20=0,c2=20,
+ d2=0,e2=0,c3+100=0,d3=100,1>=0}
+
+** Input file:
+% example21.sil %
+if (x = 123456789123456789) then skip else skip fi;;
+** Program:
+
+0: 
+  if (x = 123456789123456789) then
+    1: 
+      skip
+    2: 
+  else {((x < 123456789123456789) | (123456789123456789 < x))}
+    3: 
+      skip
+    4: 
+  fi
+5: 
+** Linearized program:
+0: 
+  if ?? then
+    1: 
+      skip
+    2: 
+  else {??}
+    3: 
+      skip
+    4: 
+  fi
+5: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{1>=0}
+
+** Input file:
+% example22.sil %
+x := 0; y := 0;
+while (x < 100) do
+   x := x + 1; y := y + 1
+od;;
+** Program:
+
+0: 
+  x := 0;
+1: 
+  y := 0;
+2: 
+  while (x < 100) do
+    3: 
+      x := (x + 1);
+    4: 
+      y := (y + 1)
+    5: 
+  od {((100 < x) | (x = 100))}
+6: 
+** Linearized program:
+0: 
+  x := 0.x + 0.y + 0;
+1: 
+  y := 0.x + 0.y + 0;
+2: 
+  while -1.x + 0.y + 99 >= 0 do
+    3: 
+      x := 1.x + 0.y + 1;
+    4: 
+      y := 0.x + 1.y + 1
+    5: 
+  od {(1.x + 0.y + -101 >= 0 | -1.x + 0.y + 100 = 0)}
+6: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{y=100,x=100,1>=0}
+
+** Input file:
+% example23.sil %
+x := 0;
+if (x < x) then x := 1 else x := 0 fi;;
+** Program:
+
+0: 
+  x := 0;
+1: 
+  if (x < x) then
+    2: 
+      x := 1
+    3: 
+  else {((x < x) | (x = x))}
+    4: 
+      x := 0
+    5: 
+  fi
+6: 
+** Linearized program:
+0: 
+  x := 0.x + 0;
+1: 
+  if 0.x + -1 >= 0 then
+    2: 
+      x := 0.x + 1
+    3: 
+  else {(0.x + -1 >= 0 | 0.x + 0 = 0)}
+    4: 
+      x := 0.x + 0
+    5: 
+  fi
+6: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x=0,1>=0}
+
+** Input file:
+% example24.sil %
+x := 1 / 0;
+y := 1 mod 0;;
+** Program:
+
+0: 
+  x := (1 / 0);
+1: 
+  y := (1 mod 0)
+2: 
+** Linearized program:
+0: 
+  x := ?;
+1: 
+  y := ?
+2: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{1>=0}
+
+** Input file:
+% example25.sil %
+x := 0;
+y := ?;
+if (x + y) = 0 then
+  z := x + y
+else
+  z := 0
+fi;;** Program:
+
+0: 
+  x := 0;
+1: 
+  y := ?;
+2: 
+  if ((x + y) = 0) then
+    3: 
+      z := (x + y)
+    4: 
+  else {(((x + y) < 0) | (0 < (x + y)))}
+    5: 
+      z := 0
+    6: 
+  fi
+7: 
+** Linearized program:
+0: 
+  x := 0.x + 0.y + 0.z + 0;
+1: 
+  y := ?;
+2: 
+  if -1.x + -1.y + 0.z + 0 = 0 then
+    3: 
+      z := 1.x + 1.y + 0.z + 0
+    4: 
+  else {(-1.x + -1.y + 0.z + -1 >= 0 | 1.x + 1.y + 0.z + -1 >= 0)}
+    5: 
+      z := 0.x + 0.y + 0.z + 0
+    6: 
+  fi
+7: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{z=0,x=0,1>=0}
+
+** Input file:
+% example26.sil %
+i := n;
+while (i > 0) do
+  i := i + 1
+od;;** Program:
+
+0: 
+  i := n;
+1: 
+  while (0 < i) do
+    2: 
+      i := (i + 1)
+    3: 
+  od {((i < 0) | (i = 0))}
+4: 
+** Linearized program:
+0: 
+  i := 1.n + 0.i + 0;
+1: 
+  while 0.n + 1.i + -1 >= 0 do
+    2: 
+      i := 0.n + 1.i + 1
+    3: 
+  od {(0.n + -1.i + -1 >= 0 | 0.n + -1.i + 0 = 0)}
+4: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{n<=i,1>=0,i<=0}
+
+** Input file:
+% example27.sil %
+n := ?;
+i := n;
+while (i > 0) do
+  i := i + 1
+od;;** Program:
+
+0: 
+  n := ?;
+1: 
+  i := n;
+2: 
+  while (0 < i) do
+    3: 
+      i := (i + 1)
+    4: 
+  od {((i < 0) | (i = 0))}
+5: 
+** Linearized program:
+0: 
+  n := ?;
+1: 
+  i := 1.n + 0.i + 0;
+2: 
+  while 0.n + 1.i + -1 >= 0 do
+    3: 
+      i := 0.n + 1.i + 1
+    4: 
+  od {(0.n + -1.i + -1 >= 0 | 0.n + -1.i + 0 = 0)}
+5: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{n<=i,1>=0,i<=0}
+
+** Input file:
+% example28.sil %
+i := n;
+while (i <> 1) do
+ j := 0;
+ while(j <> i) do
+   j := j + 1
+ od;
+ i := i - 1
+od;;** Program:
+
+0: 
+  i := n;
+1: 
+  while ((i < 1) | (1 < i)) do
+    2: 
+      j := 0;
+    3: 
+      while ((j < i) | (i < j)) do
+        4: 
+          j := (j + 1)
+        5: 
+      od {(j = i)};
+    6: 
+      i := (i - 1)
+    7: 
+  od {(i = 1)}
+8: 
+** Linearized program:
+0: 
+  i := 1.n + 0.i + 0.j + 0;
+1: 
+  while (0.n + -1.i + 0.j + 0 >= 0 | 0.n + 1.i + 0.j + -2 >= 0) do
+    2: 
+      j := 0.n + 0.i + 0.j + 0;
+    3: 
+      while (0.n + 1.i + -1.j + -1 >= 0 | 0.n + -1.i + 1.j + -1 >= 0) do
+        4: 
+          j := 0.n + 0.i + 1.j + 1
+        5: 
+      od {0.n + 1.i + -1.j + 0 = 0};
+    6: 
+      i := 0.n + 1.i + 0.j + -1
+    7: 
+  od {0.n + -1.i + 0.j + 1 = 0}
+8: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{i=1,1>=0,n>=1}
+
+** Input file:
+% example29.sil %
+n := ?; i := n;
+while (i <> 1) do
+ j := 0;
+ while(j <> i) do
+   j := j + 1
+ od;
+ i := i - 1
+od;;** Program:
+
+0: 
+  n := ?;
+1: 
+  i := n;
+2: 
+  while ((i < 1) | (1 < i)) do
+    3: 
+      j := 0;
+    4: 
+      while ((j < i) | (i < j)) do
+        5: 
+          j := (j + 1)
+        6: 
+      od {(j = i)};
+    7: 
+      i := (i - 1)
+    8: 
+  od {(i = 1)}
+9: 
+** Linearized program:
+0: 
+  n := ?;
+1: 
+  i := 1.n + 0.i + 0.j + 0;
+2: 
+  while (0.n + -1.i + 0.j + 0 >= 0 | 0.n + 1.i + 0.j + -2 >= 0) do
+    3: 
+      j := 0.n + 0.i + 0.j + 0;
+    4: 
+      while (0.n + 1.i + -1.j + -1 >= 0 | 0.n + -1.i + 1.j + -1 >= 0) do
+        5: 
+          j := 0.n + 0.i + 1.j + 1
+        6: 
+      od {0.n + 1.i + -1.j + 0 = 0};
+    7: 
+      i := 0.n + 1.i + 0.j + -1
+    8: 
+  od {0.n + -1.i + 0.j + 1 = 0}
+9: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{i=1,1>=0,n>=1}
+
+** Input file:
+% example30.sil %
+i := n;
+while (i <> 1) do
+ j := 0;
+ while(j <> i) do
+   j := j + 1
+ od;
+ i := i - 1
+od;;
+** Program:
+
+0: 
+  i := n;
+1: 
+  while ((i < 1) | (1 < i)) do
+    2: 
+      j := 0;
+    3: 
+      while ((j < i) | (i < j)) do
+        4: 
+          j := (j + 1)
+        5: 
+      od {(j = i)};
+    6: 
+      i := (i - 1)
+    7: 
+  od {(i = 1)}
+8: 
+** Linearized program:
+0: 
+  i := 1.n + 0.i + 0.j + 0;
+1: 
+  while (0.n + -1.i + 0.j + 0 >= 0 | 0.n + 1.i + 0.j + -2 >= 0) do
+    2: 
+      j := 0.n + 0.i + 0.j + 0;
+    3: 
+      while (0.n + 1.i + -1.j + -1 >= 0 | 0.n + -1.i + 1.j + -1 >= 0) do
+        4: 
+          j := 0.n + 0.i + 1.j + 1
+        5: 
+      od {0.n + 1.i + -1.j + 0 = 0};
+    6: 
+      i := 0.n + 1.i + 0.j + -1
+    7: 
+  od {0.n + -1.i + 0.j + 1 = 0}
+8: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{i=1,1>=0,n>=1}
+
+** Input file:
+% example31.sil %
+n := ?;
+i := n;
+while (i <> 1) do
+ j := 0;
+ while(j <> i) do
+   j := j + 1
+ od;
+ i := i - 1
+od;;
+** Program:
+
+0: 
+  n := ?;
+1: 
+  i := n;
+2: 
+  while ((i < 1) | (1 < i)) do
+    3: 
+      j := 0;
+    4: 
+      while ((j < i) | (i < j)) do
+        5: 
+          j := (j + 1)
+        6: 
+      od {(j = i)};
+    7: 
+      i := (i - 1)
+    8: 
+  od {(i = 1)}
+9: 
+** Linearized program:
+0: 
+  n := ?;
+1: 
+  i := 1.n + 0.i + 0.j + 0;
+2: 
+  while (0.n + -1.i + 0.j + 0 >= 0 | 0.n + 1.i + 0.j + -2 >= 0) do
+    3: 
+      j := 0.n + 0.i + 0.j + 0;
+    4: 
+      while (0.n + 1.i + -1.j + -1 >= 0 | 0.n + -1.i + 1.j + -1 >= 0) do
+        5: 
+          j := 0.n + 0.i + 1.j + 1
+        6: 
+      od {0.n + 1.i + -1.j + 0 = 0};
+    7: 
+      i := 0.n + 1.i + 0.j + -1
+    8: 
+  od {0.n + -1.i + 0.j + 1 = 0}
+9: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{i=1,1>=0,n>=1}
+
+** Input file:
+% example32.sil %
+x := n;
+while (x > 0) do
+  x := x - 1
+od;;
+** Program:
+
+0: 
+  x := n;
+1: 
+  while (0 < x) do
+    2: 
+      x := (x - 1)
+    3: 
+  od {((x < 0) | (x = 0))}
+4: 
+** Linearized program:
+0: 
+  x := 1.n + 0.x + 0;
+1: 
+  while 0.n + 1.x + -1 >= 0 do
+    2: 
+      x := 0.n + 1.x + -1
+    3: 
+  od {(0.n + -1.x + -1 >= 0 | 0.n + -1.x + 0 = 0)}
+4: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{n>=x,1>=0,x<=0}
+
+** Input file:
+% example33.sil %
+X := 10; Y := 100;
+while (X <> 0) do
+  X := X - 1;
+  Y := Y + 10
+od;;
+** Program:
+
+0: 
+  X := 10;
+1: 
+  Y := 100;
+2: 
+  while ((X < 0) | (0 < X)) do
+    3: 
+      X := (X - 1);
+    4: 
+      Y := (Y + 10)
+    5: 
+  od {(X = 0)}
+6: 
+** Linearized program:
+0: 
+  X := 0.X + 0.Y + 10;
+1: 
+  Y := 0.X + 0.Y + 100;
+2: 
+  while (-1.X + 0.Y + -1 >= 0 | 1.X + 0.Y + -1 >= 0) do
+    3: 
+      X := 1.X + 0.Y + -1;
+    4: 
+      Y := 0.X + 1.Y + 10
+    5: 
+  od {-1.X + 0.Y + 0 = 0}
+6: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{Y=200,X=0,1>=0}
+
+** Input file:
+% example34.sil %
+x:=?;
+y:=?;
+if (x=1) & (y=2) then
+  skip
+else
+  x:=1;
+  y:=2
+fi;;
+** Program:
+
+0: 
+  x := ?;
+1: 
+  y := ?;
+2: 
+  if ((x = 1) & (y = 2)) then
+    3: 
+      skip
+    4: 
+  else {(((x < 1) | (1 < x)) | ((y < 2) | (2 < y)))}
+    5: 
+      x := 1;
+    6: 
+      y := 2
+    7: 
+  fi
+8: 
+** Linearized program:
+0: 
+  x := ?;
+1: 
+  y := ?;
+2: 
+  if (-1.x + 0.y + 1 = 0 & 0.x + -1.y + 2 = 0) then
+    3: 
+      skip
+    4: 
+  else {(-1.x + 0.y + 0 >= 0 | 1.x + 0.y + -2 >= 0 | 0.x + -1.y + 1 >= 0 | 0.x + 1.y + -3 >= 0)}
+    5: 
+      x := 0.x + 0.y + 1;
+    6: 
+      y := 0.x + 0.y + 2
+    7: 
+  fi
+8: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{y=2,x=1,1>=0}
+
+** Input file:
+% example35.sil %
+x:=1;
+if (x=1) then
+  y:=2
+else
+  y:=3
+fi;
+z:=4;
+if (z=5) then
+  t:=6
+else
+  t:=7
+fi;;
+** Program:
+
+0: 
+  x := 1;
+1: 
+  if (x = 1) then
+    2: 
+      y := 2
+    3: 
+  else {((x < 1) | (1 < x))}
+    4: 
+      y := 3
+    5: 
+  fi;
+6: 
+  z := 4;
+7: 
+  if (z = 5) then
+    8: 
+      t := 6
+    9: 
+  else {((z < 5) | (5 < z))}
+    10: 
+      t := 7
+    11: 
+  fi
+12: 
+** Linearized program:
+0: 
+  x := 0.x + 0.y + 0.z + 0.t + 1;
+1: 
+  if -1.x + 0.y + 0.z + 0.t + 1 = 0 then
+    2: 
+      y := 0.x + 0.y + 0.z + 0.t + 2
+    3: 
+  else {(-1.x + 0.y + 0.z + 0.t + 0 >= 0 | 1.x + 0.y + 0.z + 0.t + -2 >= 0)}
+    4: 
+      y := 0.x + 0.y + 0.z + 0.t + 3
+    5: 
+  fi;
+6: 
+  z := 0.x + 0.y + 0.z + 0.t + 4;
+7: 
+  if 0.x + 0.y + -1.z + 0.t + 5 = 0 then
+    8: 
+      t := 0.x + 0.y + 0.z + 0.t + 6
+    9: 
+  else {(0.x + 0.y + -1.z + 0.t + 4 >= 0 | 0.x + 0.y + 1.z + 0.t + -6 >= 0)}
+    10: 
+      t := 0.x + 0.y + 0.z + 0.t + 7
+    11: 
+  fi
+12: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{t=7,x=1,y=2,z=4,1>=0}
+
+** Input file:
+% example36.sil %
+x:=?;
+y:=?;
+if (x = y) then
+  x := 0;
+  y := 200
+else
+  x := 20;
+  y := 0
+fi;;
+** Program:
+
+0: 
+  x := ?;
+1: 
+  y := ?;
+2: 
+  if (x = y) then
+    3: 
+      x := 0;
+    4: 
+      y := 200
+    5: 
+  else {((x < y) | (y < x))}
+    6: 
+      x := 20;
+    7: 
+      y := 0
+    8: 
+  fi
+9: 
+** Linearized program:
+0: 
+  x := ?;
+1: 
+  y := ?;
+2: 
+  if -1.x + 1.y + 0 = 0 then
+    3: 
+      x := 0.x + 0.y + 0;
+    4: 
+      y := 0.x + 0.y + 200
+    5: 
+  else {(-1.x + 1.y + -1 >= 0 | 1.x + -1.y + -1 >= 0)}
+    6: 
+      x := 0.x + 0.y + 20;
+    7: 
+      y := 0.x + 0.y + 0
+    8: 
+  fi
+9: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{10x+y=200,y<=200,y>=0}
+
+** Input file:
+% example37.sil %
+x:=10;
+y:=100;
+while (x <> 0) do
+  x := x - 1;
+  y := y + 10
+od;;
+** Program:
+
+0: 
+  x := 10;
+1: 
+  y := 100;
+2: 
+  while ((x < 0) | (0 < x)) do
+    3: 
+      x := (x - 1);
+    4: 
+      y := (y + 10)
+    5: 
+  od {(x = 0)}
+6: 
+** Linearized program:
+0: 
+  x := 0.x + 0.y + 10;
+1: 
+  y := 0.x + 0.y + 100;
+2: 
+  while (-1.x + 0.y + -1 >= 0 | 1.x + 0.y + -1 >= 0) do
+    3: 
+      x := 1.x + 0.y + -1;
+    4: 
+      y := 0.x + 1.y + 10
+    5: 
+  od {-1.x + 0.y + 0 = 0}
+6: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{y=200,x=0,1>=0}
+
+** Input file:
+% example38.sil %
+x := ?; y := ? ; z := ?;
+y := 2 * x + 3 * z + 5;
+z := 2 * x + 3 * y + 9;
+x := ?;;
+** Program:
+
+0: 
+  x := ?;
+1: 
+  y := ?;
+2: 
+  z := ?;
+3: 
+  y := (((2 * x) + (3 * z)) + 5);
+4: 
+  z := (((2 * x) + (3 * y)) + 9);
+5: 
+  x := ?
+6: 
+** Linearized program:
+0: 
+  x := ?;
+1: 
+  y := ?;
+2: 
+  z := ?;
+3: 
+  y := 2.x + 0.y + 3.z + 5;
+4: 
+  z := 2.x + 3.y + 0.z + 9;
+5: 
+  x := ?
+6: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{1>=0}
+
+** Input file:
+% example39.sil %
+x := ?; y := ? ; z := ?;
+y := 2 * x + 3 * z + 5;
+z := 2 * x + 3 * y + 9;
+x := y - z;;
+** Program:
+
+0: 
+  x := ?;
+1: 
+  y := ?;
+2: 
+  z := ?;
+3: 
+  y := (((2 * x) + (3 * z)) + 5);
+4: 
+  z := (((2 * x) + (3 * y)) + 9);
+5: 
+  x := (y - z)
+6: 
+** Linearized program:
+0: 
+  x := ?;
+1: 
+  y := ?;
+2: 
+  z := ?;
+3: 
+  y := 2.x + 0.y + 3.z + 5;
+4: 
+  z := 2.x + 3.y + 0.z + 9;
+5: 
+  x := 0.x + 1.y + -1.z + 0
+6: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x+z=y,1>=0}
+
+** Input file:
+% example40.sil %
+I:=2;J:=0;B:=?;
+while B<>0 do
+  if B<>1 then
+     I:=I+1
+  else
+     I:=I+2;
+     J:=J+1
+  fi
+od;;** Program:
+
+0: 
+  I := 2;
+1: 
+  J := 0;
+2: 
+  B := ?;
+3: 
+  while ((B < 0) | (0 < B)) do
+    4: 
+      if ((B < 1) | (1 < B)) then
+        5: 
+          I := (I + 1)
+        6: 
+      else {(B = 1)}
+        7: 
+          I := (I + 2);
+        8: 
+          J := (J + 1)
+        9: 
+      fi
+    10: 
+  od {(B = 0)}
+11: 
+** Linearized program:
+0: 
+  I := 0.I + 0.J + 0.B + 2;
+1: 
+  J := 0.I + 0.J + 0.B + 0;
+2: 
+  B := ?;
+3: 
+  while (0.I + 0.J + -1.B + -1 >= 0 | 0.I + 0.J + 1.B + -1 >= 0) do
+    4: 
+      if (0.I + 0.J + -1.B + 0 >= 0 | 0.I + 0.J + 1.B + -2 >= 0) then
+        5: 
+          I := 1.I + 0.J + 0.B + 1
+        6: 
+      else {0.I + 0.J + -1.B + 1 = 0}
+        7: 
+          I := 1.I + 0.J + 0.B + 2;
+        8: 
+          J := 0.I + 1.J + 0.B + 1
+        9: 
+      fi
+    10: 
+  od {0.I + 0.J + -1.B + 0 = 0}
+11: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{B=0,1>=0,J>=0,I>=2J+2}
+
+** Input file:
+% example41.sil %
+X:=?;
+Y:=X;
+while (X >= 0) & (Y >= 0) do
+  Y:=Y+1
+od;;
+** Program:
+
+0: 
+  X := ?;
+1: 
+  Y := X;
+2: 
+  while (((0 < X) | (X = 0)) & ((0 < Y) | (Y = 0))) do
+    3: 
+      Y := (Y + 1)
+    4: 
+  od {((X < 0) | (Y < 0))}
+5: 
+** Linearized program:
+0: 
+  X := ?;
+1: 
+  Y := 1.X + 0.Y + 0;
+2: 
+  while ((1.X + 0.Y + -1 >= 0 | -1.X + 0.Y + 0 = 0) & (0.X + 1.Y + -1 >= 0 | 0.X + -1.Y + 0 = 0)) do
+    3: 
+      Y := 0.X + 1.Y + 1
+    4: 
+  od {(-1.X + 0.Y + -1 >= 0 | 0.X + -1.Y + -1 >= 0)}
+5: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{1>=0,X<=Y,X+1<=0}
+
+** Input file:
+% example42.sil %
+B:=?;
+X:=2;
+I:=0;
+while (I<10) do
+  if B <> 0 then
+    X := X+2
+  else
+    X:=X-3
+  fi;
+  I:=I+1
+od;;
+** Program:
+
+0: 
+  B := ?;
+1: 
+  X := 2;
+2: 
+  I := 0;
+3: 
+  while (I < 10) do
+    4: 
+      if ((B < 0) | (0 < B)) then
+        5: 
+          X := (X + 2)
+        6: 
+      else {(B = 0)}
+        7: 
+          X := (X - 3)
+        8: 
+      fi;
+    9: 
+      I := (I + 1)
+    10: 
+  od {((10 < I) | (I = 10))}
+11: 
+** Linearized program:
+0: 
+  B := ?;
+1: 
+  X := 0.B + 0.X + 0.I + 2;
+2: 
+  I := 0.B + 0.X + 0.I + 0;
+3: 
+  while 0.B + 0.X + -1.I + 9 >= 0 do
+    4: 
+      if (-1.B + 0.X + 0.I + -1 >= 0 | 1.B + 0.X + 0.I + -1 >= 0) then
+        5: 
+          X := 0.B + 1.X + 0.I + 2
+        6: 
+      else {-1.B + 0.X + 0.I + 0 = 0}
+        7: 
+          X := 0.B + 1.X + 0.I + -3
+        8: 
+      fi;
+    9: 
+      I := 0.B + 0.X + 1.I + 1
+    10: 
+  od {(0.B + 0.X + 1.I + -11 >= 0 | 0.B + 0.X + -1.I + 10 = 0)}
+11: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{I=10,X<=22,X+28>=0}
+
+** Input file:
+% example43.sil %
+Y:=?;
+while ((Y<-1) | (Y>1))  do
+  Y:=?
+od;;
+** Program:
+
+0: 
+  Y := ?;
+1: 
+  while ((Y < -1) | (1 < Y)) do
+    2: 
+      Y := ?
+    3: 
+  od {(((-1 < Y) | (Y = -1)) & ((Y < 1) | (Y = 1)))}
+4: 
+** Linearized program:
+0: 
+  Y := ?;
+1: 
+  while (-1.Y + -2 >= 0 | 1.Y + -2 >= 0) do
+    2: 
+      Y := ?
+    3: 
+  od {((1.Y + 0 >= 0 | -1.Y + -1 = 0) & (-1.Y + 0 >= 0 | -1.Y + 1 = 0))}
+4: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{Y<=1,Y+1>=0}
+
+** Input file:
+% example44.sil %
+X:=0;Y:=?;R:=?;B:=?;
+while ((Y<-1) | (Y>1))  do
+  Y:=?
+od;
+while (B<>R) do
+  while ((R<-1) | (R>1))  do
+    R:=?
+  od;
+  if (X=Y) then
+    Y:=X+R
+  else
+    X:=Y+R
+  fi 
+od;;
+** Program:
+
+0: 
+  X := 0;
+1: 
+  Y := ?;
+2: 
+  R := ?;
+3: 
+  B := ?;
+4: 
+  while ((Y < -1) | (1 < Y)) do
+    5: 
+      Y := ?
+    6: 
+  od {(((-1 < Y) | (Y = -1)) & ((Y < 1) | (Y = 1)))};
+7: 
+  while ((B < R) | (R < B)) do
+    8: 
+      while ((R < -1) | (1 < R)) do
+        9: 
+          R := ?
+        10: 
+      od {(((-1 < R) | (R = -1)) & ((R < 1) | (R = 1)))};
+    11: 
+      if (X = Y) then
+        12: 
+          Y := (X + R)
+        13: 
+      else {((X < Y) | (Y < X))}
+        14: 
+          X := (Y + R)
+        15: 
+      fi
+    16: 
+  od {(B = R)}
+17: 
+** Linearized program:
+0: 
+  X := 0.X + 0.Y + 0.R + 0.B + 0;
+1: 
+  Y := ?;
+2: 
+  R := ?;
+3: 
+  B := ?;
+4: 
+  while (0.X + -1.Y + 0.R + 0.B + -2 >= 0 | 0.X + 1.Y + 0.R + 0.B + -2 >= 0) do
+    5: 
+      Y := ?
+    6: 
+  od {((0.X + 1.Y + 0.R + 0.B + 0 >= 0 | 0.X + -1.Y + 0.R + 0.B + -1 = 0) & (0.X + -1.Y + 0.R + 0.B + 0 >= 0 | 0.X + -1.Y + 0.R + 0.B + 1 = 0))};
+7: 
+  while (0.X + 0.Y + 1.R + -1.B + -1 >= 0 | 0.X + 0.Y + -1.R + 1.B + -1 >= 0) do
+    8: 
+      while (0.X + 0.Y + -1.R + 0.B + -2 >= 0 | 0.X + 0.Y + 1.R + 0.B + -2 >= 0) do
+        9: 
+          R := ?
+        10: 
+      od {((0.X + 0.Y + 1.R + 0.B + 0 >= 0 | 0.X + 0.Y + -1.R + 0.B + -1 = 0) & (0.X + 0.Y + -1.R + 0.B + 0 >= 0 | 0.X + 0.Y + -1.R + 0.B + 1 = 0))};
+    11: 
+      if -1.X + 1.Y + 0.R + 0.B + 0 = 0 then
+        12: 
+          Y := 1.X + 0.Y + 1.R + 0.B + 0
+        13: 
+      else {(-1.X + 1.Y + 0.R + 0.B + -1 >= 0 | 1.X + -1.Y + 0.R + 0.B + -1 >= 0)}
+        14: 
+          X := 0.X + 1.Y + 1.R + 0.B + 0
+        15: 
+      fi
+    16: 
+  od {0.X + 0.Y + 1.R + -1.B + 0 = 0}
+17: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{R=B,X<=Y+1,X+1>=Y}
+
+** Input file:
+% example45.sil %
+X := X + Y;
+while (X + Y <> 0)  do
+  skip
+od;;
+** Program:
+
+0: 
+  X := (X + Y);
+1: 
+  while (((X + Y) < 0) | (0 < (X + Y))) do
+    2: 
+      skip
+    3: 
+  od {((X + Y) = 0)}
+4: 
+** Linearized program:
+0: 
+  X := 1.X + 1.Y + 0;
+1: 
+  while (-1.X + -1.Y + -1 >= 0 | 1.X + 1.Y + -1 >= 0) do
+    2: 
+      skip
+    3: 
+  od {-1.X + -1.Y + 0 = 0}
+4: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{X+Y=0,1>=0}
+
+** Input file:
+% example46.sil %
+X := Y;
+while (X + Y + Z <> 0)  do
+  skip
+od;;
+** Program:
+
+0: 
+  X := Y;
+1: 
+  while ((((X + Y) + Z) < 0) | (0 < ((X + Y) + Z))) do
+    2: 
+      skip
+    3: 
+  od {(((X + Y) + Z) = 0)}
+4: 
+** Linearized program:
+0: 
+  X := 1.Y + 0.X + 0.Z + 0;
+1: 
+  while (-1.Y + -1.X + -1.Z + -1 >= 0 | 1.Y + 1.X + 1.Z + -1 >= 0) do
+    2: 
+      skip
+    3: 
+  od {-1.Y + -1.X + -1.Z + 0 = 0}
+4: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{2Y+Z=0,Y=X,1>=0}
+
+** Input file:
+% example47.sil %
+X := Y;
+while (X + Y + Z > 0)  do
+  skip
+od;;
+** Program:
+
+0: 
+  X := Y;
+1: 
+  while (0 < ((X + Y) + Z)) do
+    2: 
+      skip
+    3: 
+  od {((((X + Y) + Z) < 0) | (((X + Y) + Z) = 0))}
+4: 
+** Linearized program:
+0: 
+  X := 1.Y + 0.X + 0.Z + 0;
+1: 
+  while 1.Y + 1.X + 1.Z + -1 >= 0 do
+    2: 
+      skip
+    3: 
+  od {(-1.Y + -1.X + -1.Z + -1 >= 0 | -1.Y + -1.X + -1.Z + 0 = 0)}
+4: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{Y=X,1>=0,2Y+Z<=0}
+
+** Input file:
+% example48.sil %
+X := X + Y + 3;
+while (X + Y <> 5)  do
+  skip
+od;;
+** Program:
+
+0: 
+  X := ((X + Y) + 3);
+1: 
+  while (((X + Y) < 5) | (5 < (X + Y))) do
+    2: 
+      skip
+    3: 
+  od {((X + Y) = 5)}
+4: 
+** Linearized program:
+0: 
+  X := 1.X + 1.Y + 3;
+1: 
+  while (-1.X + -1.Y + 4 >= 0 | 1.X + 1.Y + -6 >= 0) do
+    2: 
+      skip
+    3: 
+  od {-1.X + -1.Y + 5 = 0}
+4: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{X+Y=5,1>=0}
+
+** Input file:
+% example49.sil %
+x := y;
+z := 2 * x + 1;
+while y <> 0 do
+  skip
+od;;
+** Program:
+
+0: 
+  x := y;
+1: 
+  z := ((2 * x) + 1);
+2: 
+  while ((y < 0) | (0 < y)) do
+    3: 
+      skip
+    4: 
+  od {(y = 0)}
+5: 
+** Linearized program:
+0: 
+  x := 1.y + 0.x + 0.z + 0;
+1: 
+  z := 0.y + 2.x + 0.z + 1;
+2: 
+  while (-1.y + 0.x + 0.z + -1 >= 0 | 1.y + 0.x + 0.z + -1 >= 0) do
+    3: 
+      skip
+    4: 
+  od {-1.y + 0.x + 0.z + 0 = 0}
+5: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{z=1,x=0,y=0,1>=0}
+
+** Input file:
+% example50.sil %
+x := x + y;
+z := 2 * x + z - 1;
+while y > 0 do
+  skip
+od;;
+** Program:
+
+0: 
+  x := (x + y);
+1: 
+  z := (((2 * x) + z) - 1);
+2: 
+  while (0 < y) do
+    3: 
+      skip
+    4: 
+  od {((y < 0) | (y = 0))}
+5: 
+** Linearized program:
+0: 
+  x := 1.x + 1.y + 0.z + 0;
+1: 
+  z := 2.x + 0.y + 1.z + -1;
+2: 
+  while 0.x + 1.y + 0.z + -1 >= 0 do
+    3: 
+      skip
+    4: 
+  od {(0.x + -1.y + 0.z + -1 >= 0 | 0.x + -1.y + 0.z + 0 = 0)}
+5: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{1>=0,y<=0}
+
+** Input file:
+% example51.sil %
+x:=10;
+while (x>0) do
+  x:=x-2;
+  if x < 0 then
+    x:=0
+  else
+    skip
+  fi
+od;;
+** Program:
+
+0: 
+  x := 10;
+1: 
+  while (0 < x) do
+    2: 
+      x := (x - 2);
+    3: 
+      if (x < 0) then
+        4: 
+          x := 0
+        5: 
+      else {((0 < x) | (x = 0))}
+        6: 
+          skip
+        7: 
+      fi
+    8: 
+  od {((x < 0) | (x = 0))}
+9: 
+** Linearized program:
+0: 
+  x := 0.x + 10;
+1: 
+  while 1.x + -1 >= 0 do
+    2: 
+      x := 1.x + -2;
+    3: 
+      if -1.x + -1 >= 0 then
+        4: 
+          x := 0.x + 0
+        5: 
+      else {(1.x + -1 >= 0 | -1.x + 0 = 0)}
+        6: 
+          skip
+        7: 
+      fi
+    8: 
+  od {(-1.x + -1 >= 0 | -1.x + 0 = 0)}
+9: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x=0,1>=0}
+
+** Input file:
+% example52.sil %
+% { x = x0 /\ y = y0} %
+m := 0;
+while (x <> y) do
+  m := m + 1;
+  x := x - 1
+od;;
+% { x = y = y0 <= x0 /\ m = x0 - y0} %
+** Program:
+
+0: 
+  m := 0;
+1: 
+  while ((x < y) | (y < x)) do
+    2: 
+      m := (m + 1);
+    3: 
+      x := (x - 1)
+    4: 
+  od {(x = y)}
+5: 
+** Linearized program:
+0: 
+  m := 0.m + 0.x + 0.y + 0;
+1: 
+  while (0.m + -1.x + 1.y + -1 >= 0 | 0.m + 1.x + -1.y + -1 >= 0) do
+    2: 
+      m := 1.m + 0.x + 0.y + 1;
+    3: 
+      x := 0.m + 1.x + 0.y + -1
+    4: 
+  od {0.m + -1.x + 1.y + 0 = 0}
+5: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{x=y,1>=0,m>=0}
+
+** Input file:
+% example53.sil %
+while Nat < 0 do skip od;
+while Pos <= 0 do skip od;
+while (i - j >= 1) do
+  while (i<>i0) | (j<>j0) | (Pos<>Pos0) | (Nat<>Nat0) do skip od;
+  i := i - Nat;
+  j := j - Pos
+od;;** Program:
+
+0: 
+  while (Nat < 0) do
+    1: 
+      skip
+    2: 
+  od {((0 < Nat) | (Nat = 0))};
+3: 
+  while ((Pos < 0) | (Pos = 0)) do
+    4: 
+      skip
+    5: 
+  od {(0 < Pos)};
+6: 
+  while ((1 < (i - j)) | ((i - j) = 1)) do
+    7: 
+      while (((((i < i0) | (i0 < i)) | ((j < j0) | (j0 < j))) | ((Pos < Pos0) | (Pos0 < Pos))) | ((Nat < Nat0) | (Nat0 < Nat))) do
+        8: 
+          skip
+        9: 
+      od {((((i = i0) & (j = j0)) & (Pos = Pos0)) & (Nat = Nat0))};
+    10: 
+      i := (i - Nat);
+    11: 
+      j := (j - Pos)
+    12: 
+  od {((i - j) < 1)}
+13: 
+** Linearized program:
+0: 
+  while -1.Nat + 0.Pos + 0.i + 0.j + 0.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + -1 >= 0 do
+    1: 
+      skip
+    2: 
+  od {(1.Nat + 0.Pos + 0.i + 0.j + 0.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + -1 >= 0 | -1.Nat + 0.Pos + 0.i + 0.j + 0.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + 0 = 0)};
+3: 
+  while (0.Nat + -1.Pos + 0.i + 0.j + 0.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + -1 >= 0 | 0.Nat + -1.Pos + 0.i + 0.j + 0.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + 0 = 0) do
+    4: 
+      skip
+    5: 
+  od {0.Nat + 1.Pos + 0.i + 0.j + 0.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + -1 >= 0};
+6: 
+  while (0.Nat + 0.Pos + 1.i + -1.j + 0.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + -2 >= 0 | 0.Nat + 0.Pos + -1.i + 1.j + 0.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + 1 = 0) do
+    7: 
+      while (0.Nat + 0.Pos + -1.i + 0.j + 1.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + -1 >= 0 | 0.Nat + 0.Pos + 1.i + 0.j + -1.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + -1 >= 0 | 0.Nat + 0.Pos + 0.i + -1.j + 0.i0 + 1.j0 + 0.Pos0 + 0.Nat0 + -1 >= 0 | 0.Nat + 0.Pos + 0.i + 1.j + 0.i0 + -1.j0 + 0.Pos0 + 0.Nat0 + -1 >= 0 | 0.Nat + -1.Pos + 0.i + 0.j + 0.i0 + 0.j0 + 1.Pos0 + 0.Nat0 + -1 >= 0 | 0.Nat + 1.Pos + 0.i + 0.j + 0.i0 + 0.j0 + -1.Pos0 + 0.Nat0 + -1 >= 0 | -1.Nat + 0.Pos + 0.i + 0.j + 0.i0 + 0.j0 + 0.Pos0 + 1.Nat0 + -1 >= 0 | 1.Nat + 0.Pos + 0.i + 0.j + 0.i0 + 0.j0 + 0.Pos0 + -1.Nat0 + -1 >= 0) do
+        8: 
+          skip
+        9: 
+      od {(0.Nat + 0.Pos + -1.i + 0.j + 1.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + 0 = 0 & 0.Nat + 0.Pos + 0.i + -1.j + 0.i0 + 1.j0 + 0.Pos0 + 0.Nat0 + 0 = 0 | 0.Nat + -1.Pos + 0.i + 0.j + 0.i0 + 0.j0 + 1.Pos0 + 0.Nat0 + 0 = 0 | -1.Nat + 0.Pos + 0.i + 0.j + 0.i0 + 0.j0 + 0.Pos0 + 1.Nat0 + 0 = 0)};
+    10: 
+      i := -1.Nat + 0.Pos + 1.i + 0.j + 0.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + 0;
+    11: 
+      j := 0.Nat + -1.Pos + 0.i + 1.j + 0.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + 0
+    12: 
+  od {0.Nat + 0.Pos + -1.i + 1.j + 0.i0 + 0.j0 + 0.Pos0 + 0.Nat0 + 0 >= 0}
+13: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{1>=0,Pos>=1,Nat>=0,i<=j}
+
+** Input file:
+% example54.sil %
+while Nat < 0 do skip od;
+while Pos <= 0 do skip od;
+k := 0;
+while (i - j >= 1) do
+  k := k + 1;
+  i := i - Nat;
+  j := j - Pos
+od;;** Program:
+
+0: 
+  while (Nat < 0) do
+    1: 
+      skip
+    2: 
+  od {((0 < Nat) | (Nat = 0))};
+3: 
+  while ((Pos < 0) | (Pos = 0)) do
+    4: 
+      skip
+    5: 
+  od {(0 < Pos)};
+6: 
+  k := 0;
+7: 
+  while ((1 < (i - j)) | ((i - j) = 1)) do
+    8: 
+      k := (k + 1);
+    9: 
+      i := (i - Nat);
+    10: 
+      j := (j - Pos)
+    11: 
+  od {((i - j) < 1)}
+12: 
+** Linearized program:
+0: 
+  while -1.Nat + 0.Pos + 0.k + 0.i + 0.j + -1 >= 0 do
+    1: 
+      skip
+    2: 
+  od {(1.Nat + 0.Pos + 0.k + 0.i + 0.j + -1 >= 0 | -1.Nat + 0.Pos + 0.k + 0.i + 0.j + 0 = 0)};
+3: 
+  while (0.Nat + -1.Pos + 0.k + 0.i + 0.j + -1 >= 0 | 0.Nat + -1.Pos + 0.k + 0.i + 0.j + 0 = 0) do
+    4: 
+      skip
+    5: 
+  od {0.Nat + 1.Pos + 0.k + 0.i + 0.j + -1 >= 0};
+6: 
+  k := 0.Nat + 0.Pos + 0.k + 0.i + 0.j + 0;
+7: 
+  while (0.Nat + 0.Pos + 0.k + 1.i + -1.j + -2 >= 0 | 0.Nat + 0.Pos + 0.k + -1.i + 1.j + 1 = 0) do
+    8: 
+      k := 0.Nat + 0.Pos + 1.k + 0.i + 0.j + 1;
+    9: 
+      i := -1.Nat + 0.Pos + 0.k + 1.i + 0.j + 0;
+    10: 
+      j := 0.Nat + -1.Pos + 0.k + 0.i + 1.j + 0
+    11: 
+  od {0.Nat + 0.Pos + 0.k + -1.i + 1.j + 0 >= 0}
+12: 
+** Precondition:
+{1>=0}
+** Postcondition:
+{1>=0,k>=0,Pos>=1,Nat>=0,i<=j}
+/bin/rm -f *.cmi *.cmo *~ a.out lexer.ml parser.mli parser.ml 

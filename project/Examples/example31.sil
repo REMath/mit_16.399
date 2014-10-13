@@ -1,0 +1,10 @@
+% example31.sil %
+n := ?;
+i := n;
+while (i <> 1) do
+ j := 0;
+ while(j <> i) do
+   j := j + 1
+ od;
+ i := i - 1
+od;;

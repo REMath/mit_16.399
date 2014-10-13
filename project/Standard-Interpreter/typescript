@@ -1,0 +1,180 @@
+Script started on Mon Feb 28 16:58:08 2005
+% ls
+
+abstract_Syntax.ml		parser.mly
+aexp.ml				pretty_Print.ml
+aexp.mli			pretty_Print.mli
+bexp.ml				program_To_Abstract_Syntax.ml
+bexp.mli			program_To_Abstract_Syntax.mli
+bigstep.ml			smallstep.ml
+bigstep.mli			smallstep.mli
+concrete_To_Abstract_Syntax.ml	symbol_Table.ml
+concrete_To_Abstract_Syntax.mli	symbol_Table.mli
+env.ml				typescript
+env.mli				values.ml
+labels.ml			values.mli
+labels.mli			variables.ml
+lexer.mll			variables.mli
+main.ml				x
+makefile
+% make
+
+
+make help        : this help
+make compile     : compile
+./a.out filename : execute
+make examples    : execute all examples
+make clean       : remove auxilairy files
+
+% make compile
+
+ocamlyacc parser.mly
+ocamllex lexer.mll
+62 states, 3001 transitions, table size 12376 bytes
+ocamlc symbol_Table.mli symbol_Table.ml variables.mli variables.ml abstract_Syntax.ml concrete_To_Abstract_Syntax.mli concrete_To_Abstract_Syntax.ml labels.mli labels.ml parser.mli parser.ml lexer.ml program_To_Abstract_Syntax.mli program_To_Abstract_Syntax.ml pretty_Print.mli pretty_Print.ml values.mli values.ml env.mli env.ml aexp.mli aexp.ml bexp.mli bexp.ml smallstep.mli smallstep.ml bigstep.mli bigstep.ml main.ml
+% make examples
+
+./a.out ../Examples/example0.sil
+
+0: 
+  skip
+1: 
+
+
+./a.out ../Examples/example1.sil
+
+0: 
+  x := 1;
+1: 
+  while (x < 100) do
+    2: 
+      x := (x + 1)
+    3: 
+  od {((100 < x) | (x = 100))}
+4: 
+
+x = 100; 
+./a.out ../Examples/example2.sil
+
+0: 
+  x := (-1073741823 - 1);
+1: 
+  y := (x - 1)
+2: 
+
+x = -1073741824; y = _O_(a); 
+./a.out ../Examples/example3.sil
+
+0: 
+  x := 0;
+1: 
+  y := 1
+2: 
+
+x = 0; y = 1; 
+./a.out ../Examples/example4.sil
+
+0: 
+  if true then
+    1: 
+      x := 1
+    2: 
+  else {false}
+    3: 
+      x := 0
+    4: 
+  fi
+5: 
+
+x = 1; 
+./a.out ../Examples/example5.sil
+
+0: 
+  if false then
+    1: 
+      x := 1
+    2: 
+  else {true}
+    3: 
+      x := 0
+    4: 
+  fi
+5: 
+
+x = 0; 
+./a.out ../Examples/example6.sil
+
+0: 
+  x := -1073741824
+1: 
+
+x = _O_(a); 
+./a.out ../Examples/example7.sil
+
+0: 
+  x := 1;
+1: 
+  while ((x < 10) | (x = 10)) do
+    2: 
+      x := (x + 1)
+    3: 
+  od {(10 < x)}
+4: 
+
+x = 11; 
+./a.out ../Examples/example8.sil
+
+0: 
+  x := 1073741823
+1: 
+
+x = 1073741823; 
+./a.out ../Examples/example9.sil
+
+0: 
+  x := (-536870912 * 2);
+1: 
+  y := (536870912 * 2);
+2: 
+  z := ((-1073741823 - 1) * 1);
+3: 
+  t := ((-1073741823 - 1) * 1073741823)
+4: 
+
+x = -1073741824; y = _O_(a); z = -1073741824; t = _O_(a); 
+./a.out ../Examples/example10.sil
+
+0: 
+  x := ?;
+1: 
+  if (x < (-1073741823 - 1)) then
+    2: 
+      x := 1
+    3: 
+  else {(((-1073741823 - 1) < x) | (x = (-1073741823 - 1)))}
+    4: 
+      x := 0
+    5: 
+  fi
+6: 
+
+x = 0; 
+./a.out ../Examples/example11.sil
+
+0: 
+  x := 1;
+1: 
+  while (0 < 1073741824) do
+    2: 
+      x := (x + 1)
+    3: 
+  od {((1073741824 < 0) | (1073741824 = 0))}
+4: 
+
+Fatal error:runtime error in "while" loop at 1.
+% make clean
+
+/bin/rm -f *.cmi *.cmo *~ a.out lexer.ml parser.ml
+% ^Dexit
+
+Script done on Mon Feb 28 16:58:42 2005

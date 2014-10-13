@@ -1,0 +1,976 @@
+Script started on Sat May  8 18:21:10 2004
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % make[K[K[K[Kcd /Volumes/PB_Cousot_ Cours/ai/18course/programs/README [K[K[K[K[K[K
+ai/18course/programs % script ; ./README
+Script started, output file is typescript
+ai/18course/programs % ^Dexit
+Script done, output file is typescript
+/bin/rm -f typescript
+cd 18-02-Non-Relational/18-02-01-Initialization-Simple-Sign; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-02-Errors; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-03-Intervals; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-04-Parity; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-05-Prod-Red; /bin/rm -f typescript*
+cd 18-04-FW-Relational/18-04-01-Octagons; /bin/rm -f typescript* 
+cd 18-04-FW-Relational/18-04-02-Polyhedra; /bin/rm -f typescript*
+cd 18-06-FW-BW-Relational/18-06-01-Octagons; /bin/rm -f typescript*
+cd 18-06-FW-BW-Relational/18-06-02-Polyhedra; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-01-Initialization-Simple-Sign; echo "" > typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-01-Initialization-Simple-Sign; echo "" > typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+^Cmake[1]: *** [notrace] Interrupt
+make: *** [iss] Interrupt
+
+
+ai/18course/programs % script
+Script started, output file is typescript
+ai/18course/programs % make clean
+cd 18-02-Non-Relational/18-02-01-Initialization-Simple-Sign; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-02-Errors; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-03-Intervals; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-04-Parity; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-05-Prod-Red; /bin/rm -f typescript*
+cd 18-04-FW-Relational/18-04-01-Octagons; /bin/rm -f typescript* 
+cd 18-04-FW-Relational/18-04-02-Polyhedra; /bin/rm -f typescript*
+cd 18-06-FW-BW-Relational/18-06-01-Octagons; /bin/rm -f typescript*
+cd 18-06-FW-BW-Relational/18-06-02-Polyhedra; /bin/rm -f typescript*
+ai/18course/programs % make
+cd 18-02-Non-Relational/18-02-01-Initialization-Simple-Sign; echo "" > typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-01-Initialization-Simple-Sign; echo "" > typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-01-Initialization-Simple-Sign; echo "" > typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-02-Errors; echo "" > typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make err >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-02-Errors; echo "" > typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make err >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-02-Errors; echo "" > typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make err >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-03-Intervals; echo "" > typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make int >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-03-Intervals; echo "" > typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make int >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-03-Intervals; echo "" > typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make int >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-04-Parity; echo "" > typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make par >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-04-Parity; echo "" > typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make par >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-04-Parity; echo "" > typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make par >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make err-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make err-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make err-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-iss >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-iss >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-iss >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+^Cmake[1]: *** [par-iss] Interrupt
+make: *** [par-iss] Interrupt
+
+ai/18course/programs % cd /Volumes/PB_Cousot_Cours/ai/18course/programs/18-01-Ge neric-FW-Abstract-Interpreter 
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % make
+
+Forward non-relational static analysis:
+make help        : this help
+1) reset:
+make reset       : erase all mode choices
+2) choose tracing mode:
+make trace       : tracing all
+make traceaexp   : tracing arithmetic expressions
+make tracebexp   : tracing boolean expressions
+make tracecom    : tracing commands
+make tracered    : tracing ternary reductions
+make notrace     : no tracing
+3) choose abstract interpreter mode:
+3a) relational/non-relational analysis:
+make r           : relational abstract interpretor
+make nr          : non-relational abstract interpretor
+3b) boolean expressions:
+make fbool       : forward analysis
+make fbbool      : forward/backward analysis
+make fbrbool     : forward/backward reductive analysis
+3c) arithmetic expressions:
+make fassign     : forward analysis
+make fbassign    : forward/backward analysis
+4) choose static analysis and compile analyzer:
+make err         : error analysis
+make iss         : initialization and simple sign analysis
+mamake int         : interval analysis
+kemake par         : parity analysis
+ make err-int     : error x interval analysis
+tmake iss-int     : initialization and simple sign x interval analysis
+ramake par-int     : parity x interval analysis
+cemake par-iss     : parity x initialization and simple sign analysis
+make par-iss-int : parity x initialization and simple sign analysis x interval
+5) analyze:
+./a.out          : analyze (the standard input)
+./a.out file.sil : analyze (the file "file.sil")
+make examples    : analyze all examples
+6) clean:
+make clean       : remove auxiliary files
+
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % make trace
+Tracing arithmetic expressions
+Tracing boolean expressions
+Tracing commands
+Tracing ternary reductions
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % make fbbool
+Forward/backward analysis of boolean expressions
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % make fbassign
+Forward/backward analysis of assignments
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % make iss
+ocamlyacc parser.mly
+ocamllex lexer.mll
+62 states, 3001 transitions, table size 12376 bytes
+ocamlc trace.mli trace.ml symbol_Table.mli symbol_Table.ml variables.mli variables.ml abstract_Syntax.ml concrete_To_Abstract_Syntax.mli concrete_To_Abstract_Syntax.ml labels.mli labels.ml parser.mli parser.ml lexer.ml program_To_Abstract_Syntax.mli program_To_Abstract_Syntax.ml pretty_Print.mli pretty_Print.ml values.mli values.ml avalues.mli avalues.ml aenv.mli aenv.ml aaexp.mli aaexp.ml baexp.mli baexp.ml fixpoint.mli fixpoint.ml abexp.mli abexp.ml acom.mli acom.ml main.ml
+"Initialization and simple sign" static analysis
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % m[K./a.out
+0: 
+  x := 1073741823;
+1: 
+syntax error
+Fatal error: exception Program_To_Abstract_Syntax.Syntax_Error
+18course/programs/18-01-Generic-FW-Abstract-Interpreter %   x := 1073741823;
+tcsh: x: Command not found.
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % 1: 
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % 1:x := 1073741823 ;[17D1:[K[K1:x := 1073741823 ;[17D./a.out[K[7Dmake iss[8D./a.out[K
+x := 1073741823;;
+{ x:ERR }
+0: 
+  x := 1073741823
+1: 
+Baexp[1073741823]({ x:ERR })<INI> = { x:ERR }
+Aexp[1073741823] = POS
+Acom[1:]({ x:ERR }) = { x:POS }
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % ./a.out
+ y := 1073741824;;
+{ y:ERR }
+0: 
+  y := 1073741824
+1: 
+Baexp[1073741824]({ y:ERR })<INI> = { y:ERR }
+Aexp[1073741824] = BOT
+Acom[1:]({ y:ERR }) = { y:BOT }
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % ./a.out
+x := 1073741823;
+ y := 1073741824;;
+{ x:ERR; y:ERR }
+0: 
+  x := 1073741823;
+1: 
+  y := 1073741824
+2: 
+Baexp[1073741823]({ x:ERR; y:ERR })<INI> = { x:ERR; y:ERR }
+Aexp[1073741823] = POS
+Acom[1:]({ x:ERR; y:ERR }) = { x:POS; y:ERR }
+Baexp[1073741824]({ x:POS; y:ERR })<INI> = { x:POS; y:ERR }
+Aexp[1073741824] = BOT
+Acom[2:]({ x:POS; y:ERR }) = { x:POS; y:BOT }
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % ./a.out
+w := -1073741823;;
+{ w:ERR }
+0: 
+  w := -1073741823
+1: 
+Aexp[1073741823] = POS
+Baexp[-1073741823]({ w:ERR })<INI> = { w:ERR }
+Aexp[-1073741823] = NEG
+Acom[1:]({ w:ERR }) = { w:NEG }
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % ./a.out
+w := -1073741823;
+x := -1073741824;
+;;
+syntax error
+Fatal error: exception Program_To_Abstract_Syntax.Syntax_Error
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % ./a.out
+w := -1073741823;
+x := -1073741824;;
+{ w:ERR; x:ERR }
+0: 
+  w := -1073741823;
+1: 
+  x := -1073741824
+2: 
+Aexp[1073741823] = POS
+Baexp[-1073741823]({ w:ERR; x:ERR })<INI> = { w:ERR; x:ERR }
+Aexp[-1073741823] = NEG
+Acom[1:]({ w:ERR; x:ERR }) = { w:NEG; x:ERR }
+Aexp[1073741824] = BOT
+Baexp[-1073741824]({ w:NEG; x:ERR })<INI> = { w:BOT; x:BOT }
+Aexp[-1073741824] = BOT
+Acom[2:]({ w:NEG; x:ERR }) = { w:BOT; x:BOT }
+18course/programs/18-01-Generic-FW-Abstract-Interpreter % cd /Volumes/PB_Cousot_ Cours/ai/18course/programs/README [K[K[K[K[K[K
+ai/18course/programs % script
+Script started, output file is typescript
+ai/18course/programs % make clean
+cd 18-02-Non-Relational/18-02-01-Initialization-Simple-Sign; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-02-Errors; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-03-Intervals; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-04-Parity; /bin/rm -f typescript*
+cd 18-02-Non-Relational/18-02-05-Prod-Red; /bin/rm -f typescript*
+cd 18-04-FW-Relational/18-04-01-Octagons; /bin/rm -f typescript* 
+cd 18-04-FW-Relational/18-04-02-Polyhedra; /bin/rm -f typescript*
+cd 18-06-FW-BW-Relational/18-06-01-Octagons; /bin/rm -f typescript*
+cd 18-06-FW-BW-Relational/18-06-02-Polyhedra; /bin/rm -f typescript*
+ai/18course/programs % make
+cd 18-02-Non-Relational/18-02-01-Initialization-Simple-Sign; echo "" > typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-01-Initialization-Simple-Sign; echo "" > typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-01-Initialization-Simple-Sign; echo "" > typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-01-Initialization-Simple-Sign/typescript-iss-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-02-Errors; echo "" > typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make err >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-02-Errors; echo "" > typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make err >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-02-Errors; echo "" > typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make err >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-02-Errors/typescript-err-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-03-Intervals; echo "" > typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make int >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-03-Intervals; echo "" > typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make int >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-03-Intervals; echo "" > typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make int >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-03-Intervals/typescript-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-04-Parity; echo "" > typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make par >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-04-Parity; echo "" > typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make par >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-04-Parity; echo "" > typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make par >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-04-Parity/typescript-par-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make err-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make err-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make err-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-err-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make iss-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-iss-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-iss >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-iss >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-iss >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-f
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make fassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-iss-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-f
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-f
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-iss-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fb
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fb
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-02-Non-Relational/18-02-05-Prod-Red; echo "" > typescript-par-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make reset >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make notrace >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [notrace] Error 1 (ignored)
+cd 18-01-Generic-FW-Abstract-Interpreter; make nr >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbrbool >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make fbassign >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make par-iss-int >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make examples >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fbr
+cd 18-01-Generic-FW-Abstract-Interpreter; make clean >> ../18-02-Non-Relational/18-02-05-Prod-Red/typescript-par-iss-int-fbr
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+tcsh: /bin/rm: No match.
+make[1]: [clean] Error 1 (ignored)
+cd 18-04-FW-Relational/18-04-01-Octagons; echo "" > typescript-fw-oct
+cd 18-03-Generic-FW-REL-Abstract-Interpreter; make clean >> ../18-04-FW-Relational/18-04-01-Octagons/typescript-fw-oct
+tcsh: /bin/rm: No match.
+make[1]: *** [clean] Error 1
+make: [fw-oct] Error 2 (ignored)
+cd 18-03-Generic-FW-REL-Abstract-Interpreter; make oct >> ../18-04-FW-Relational/18-04-01-Octagons/typescript-fw-oct
+cd 18-03-Generic-FW-REL-Abstract-Interpreter; make compil >> ../18-04-FW-Relational/18-04-01-Octagons/typescript-fw-oct
+cd 18-03-Generic-FW-REL-Abstract-Interpreter; make examples >> ../18-04-FW-Relational/18-04-01-Octagons/typescript-fw-oct
+cd 18-03-Generic-FW-REL-Abstract-Interpreter; make clean >> ../18-04-FW-Relational/18-04-01-Octagons/typescript-fw-oct
+cd 18-06-FW-BW-Relational/18-06-01-Octagons; echo "" > typescript-fw-bw-oct
+cd 18-05-Generic-FW-BW-REL-Abstract-Interpreter; make clean >> ../18-06-FW-BW-Relational/18-06-01-Octagons/typescript-fw-bw-oct
+tcsh: /bin/rm: No match.
+make[1]: *** [clean] Error 1
+make: [fw-bw-oct] Error 2 (ignored)
+cd 18-05-Generic-FW-BW-REL-Abstract-Interpreter; make oct >> ../18-06-FW-BW-Relational/18-06-01-Octagons/typescript-fw-bw-oct
+cd 18-05-Generic-FW-BW-REL-Abstract-Interpreter; make compil >> ../18-06-FW-BW-Relational/18-06-01-Octagons/typescript-fw-bw-oct
+cd 18-05-Generic-FW-BW-REL-Abstract-Interpreter; make examples >> ../18-06-FW-BW-Relational/18-06-01-Octagons/typescript-fw-bw-oct
+cd 18-05-Generic-FW-BW-REL-Abstract-Interpreter; make clean >> ../18-06-FW-BW-Relational/18-06-01-Octagons/typescript-fw-bw-oct
+ai/18course/programs % 

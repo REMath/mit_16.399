@@ -1,0 +1,83 @@
+Script started on Mon Apr  4 12:36:28 2005
+% ls
+abstract_Syntax.ml              fixpoint_no_printing.ml
+caexp.ml                        fixpoint_printing_iterates.ml
+caexp.mli                       labels.ml
+cbexp.ml                        labels.mli
+cbexp.mli                       lexer.mll
+ccom.ml                         main.ml
+ccom.mli                        makefile
+cenv.ml                         parser.mly
+cenv.mli                        pretty_Print.ml
+concrete_To_Abstract_Syntax.ml  pretty_Print.mli
+concrete_To_Abstract_Syntax.mli program_To_Abstract_Syntax.ml
+cvalues.ml                      program_To_Abstract_Syntax.mli
+cvalues.mli                     symbol_Table.ml
+env.ml                          symbol_Table.mli
+env.mli                         values.ml
+explosion1.txt                  values.mli
+fixpoint.ml                     variables.ml
+fixpoint.mli                    variables.mli
+% make trace
+ocamlyacc parser.mly
+ocamllex lexer.mll
+62 states, 3001 transitions, table size 12376 bytes
+ocamlc symbol_Table.mli symbol_Table.ml variables.mli variables.ml
+abstract_Syntax.ml concrete_To_Abstract_Syntax.mli
+concrete_To_Abstract_Syntax.ml labels.mli labels.ml parser.mli parser.ml
+lexer.ml program_To_Abstract_Syntax.mli program_To_Abstract_Syntax.ml
+pretty_Print.mli pretty_Print.ml values.mli values.ml cvalues.mli
+cvalues.ml env.mli env.ml cenv.mli cenv.ml caexp.mli caexp.ml cbexp.mli
+cbexp.ml fixpoint.mli fixpoint.ml ccom.mli ccom.ml main.ml
+fixpoint tracing mode
+% cat ../Examples/example12-1.sil
+% example12-1.sil %
+n := 1;
+x := 1;
+while (x < n) do
+        x := x + 1;
+        a := ?;
+        y := 1;
+        while (y < n) do
+                y := y + 1;
+                b := ?
+        od
+od;;
+% ./a.out ../Examples/example12-1.sil
+
+{ [ n = _O_(i); x = _O_(i); a = _O_(i); y = _O_(i); b = _O_(i); ] }
+0: 
+  n := 1;
+1: 
+  x := 1;
+2: 
+  while (x < n) do
+    3: 
+      x := (x + 1);
+    4: 
+      a := ?;
+    5: 
+      y := 1;
+    6: 
+      while (y < n) do
+        7: 
+          y := (y + 1);
+        8: 
+          b := ?
+        9: 
+      od {((n < y) | (y = n))}
+    10: 
+  od {((n < x) | (x = n))}
+11: 
+
+iterate 0 = { }
+iterate 0 = { }
+fixpoint = { }
+iterate 1 = { [ n = 1; x = 1; a = _O_(i); y = _O_(i); b = _O_(i); ] }
+iterate 0 = { }
+fixpoint = { }
+fixpoint = { [ n = 1; x = 1; a = _O_(i); y = _O_(i); b = _O_(i); ] }
+{ [ n = 1; x = 1; a = _O_(i); y = _O_(i); b = _O_(i); ] }
+% ^Dexit
+
+Script done on Mon Apr  4 12:37:52 2005

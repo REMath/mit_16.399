@@ -1,0 +1,6 @@
+% example41.sil %
+X:=?;
+Y:=X;
+while (X >= 0) & (Y >= 0) do
+  Y:=Y+1
+od;;

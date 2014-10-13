@@ -1,0 +1,13 @@
+% example68.sil %
+x := ?;
+while (x > 0) do
+  k := k - 1;
+  y := ?;
+  while (y > 0) do
+    l := l - 1;
+    y := y - 1
+  od;
+  while (l <> 0) do skip od;
+  x := x - 1
+od;
+while (k <> 0) do skip od;;

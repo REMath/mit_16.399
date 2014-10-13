@@ -1,0 +1,9 @@
+% example64.sil %
+i := n;
+while (i >= 0) do
+  j := 0;
+  while (j <= i - 1) do
+    j := j + 1
+  od;
+  i := i - 1
+od;;

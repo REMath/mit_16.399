@@ -1,0 +1,934 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- favicon -->
+<link rel="icon" href="../../favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="../../favicon.ico"
+type="image/x-icon">
+<HEAD>
+
+<TITLE>MIT Course 16.399: &#171;&nbsp;Abstract Interpretation&nbsp;&#187;
+Home Page</TITLE>
+
+<script type="text/javascript" defer="defer">
+	function initPage() { onLoad() }
+
+<!-- The author of this antispam script is David Alexander Madore -->
+// <![CDATA[
+var textNodeType;
+function textContent(n) {
+	 if ( n.nodeType == textNodeType ) {
+		  return n.data;
+	 } else {
+		  var children = n.childNodes;
+		  var t = "";
+		  for ( var i=0 ; i<children.length ; i++ ) {
+				t = t.concat(textContent(children.item(i)));
+		  }
+		  return t;
+	 }
+}
+function despam() {
+	 // MSIE seems to barf...  Deactivate for now
+	 if ( (/MSIE/).test(navigator.userAgent) )
+		  return;
+	 // Now replace as appropriate.
+	 var elts = document.getElementsByTagName("span");
+	 for ( var i=0 ; i<elts.length ; i++ ) {
+		  var elt = elts.item(i);
+		  if ( elt.className == "replace-commercial-at" ) {
+				elt.parentNode.replaceChild(document.createTextNode("@"),elt);
+				i--;  // Semi-bugware
+		  } else if ( elt.className == "replace-full-stop" ) {
+				elt.parentNode.replaceChild(document.createTextNode("."),elt);
+				i--;  // Semi-bugware
+		  }
+	 }
+	 // Merge adjacent text nodes.
+	 try {
+		  document.normalize();  // Your DOM is BROKEN!
+	 } catch (exn) {
+		  document.documentElement.normalize();
+	 }
+	 // Next, process all <a> elements having class="despammed-address".
+	 elts = document.getElementsByTagName("a");
+	 for ( var i=0 ; i<elts.length ; i++ ) {
+		  var elt = elts.item(i);
+		  if ( elt.className == "despammed-address" ) {
+				var addr = "mailto:".concat(textContent(elt));
+				elt.setAttribute("href",addr);  // (abstract)
+				elt.href = addr;  // (semantic)
+		  }
+	 }
+}
+function onLoad() {
+	 // Start with some bugware...
+	 try {
+		  textNodeType = Node.TEXT_NODE;
+	 } catch (exn) {  // Your DOM is BROKEN!
+		  textNodeType = 3;
+	 }
+	 // Now despam email adresses.
+	 despam();
+}
+// ]]>
+
+</script>
+
+</HEAD>
+
+<BODY BGCOLOR="#CCCCCC" LINK="#0000FF"  VLINK="#663399"
+ALINK="#FF00FF">
+
+<P>
+<table th="100%" border="1" cellspacing="0" cellpadding="3">
+<tr><td align="left" valign="top" bgcolor="#E0E0E0">
+<FONT SIZE = "+3"><B>&nbsp;<FONT SIZE ="+3"><a
+href="http://web.mit.edu/"><IMG SRC="http://web.mit.edu/afs/athena.mit.edu/course/16/16.399/www/pict/MIT-logo.gif"
+ALT="MIT" WIDTH="54" HEIGHT="28" BORDER="0"
+HSPACE="0"></A>&nbsp;&nbsp;&nbsp;16.399: Abstract
+Interpretation&nbsp;&nbsp;&nbsp;</B></FONT>
+</td></tr>
+</table>
+<P>
+<H3>Spring term 2005</H3>
+<H3>Content:</H3>
+<ul>
+    <LI><a href="index.html#info">Course information</A>
+    <LI><a href="index.html#instructor">Instructor</A>
+    <LI><a href="index.html#objective">Course objective and themes</A>
+    <LI><a href="index.html#objective">Course description</A>
+    <LI><a href="index.html#notes">Course notes</A>
+    <LI><a href="index.html#schedule">Course schedule</A>
+    <LI><a href="index.html#assignments">Assignments</A>
+    <LI><a href="index.html#project">Personnal project</A>
+    <LI><a href="index.html#grading">Grading</A>
+    <LI><a href="index.html#final">Final exam problem</A>
+    <LI><a href="index.html#reference">Bibliographic reference</A>
+</ul>
+<a name="info">
+<H3>Course Information:</H3>
+<UL>
+    <B>Course number:</B> 16.399<BR>
+<B>Title:</B> Abstract Interpretation<BR>
+<B>Units:</B> H level course, 3-0-9<BR>
+<B>Lecture hours:</B> Tuesday 11:00&#8211;12:30 and Thursday
+11:00&#8211;12:30
+(see the <a href="index.html#schedule">course schedule</A> for exceptions)<BR>
+<B>Location:</B> 33&#8211;419<BR>
+<B>Course web site:</B> <a
+href="http://web.mit.edu/afs/athena.mit.edu/course/16/16.399/www"><tt>http://web.mit.edu/afs/athena.mit.edu/course/16/16.399/www</tt></A><BR>
+<B>Prerequisites:</B> basic skill in mathematics and experience with
+computer programming.
+</UL>
+
+<a name="instructor">
+<H3>Instructor:</H3>
+<UL>
+    <a href="http://www.mit.edu/~cousot">Patrick Cousot</A><BR>
+<a
+href="http://www.nap.edu/readingroom/books/biomems/jhunsaker.pdf">Jerome
+Clarke
+Hunsaker</A> Visiting Professor at the <a
+href="http://web.mit.edu/">MIT</A> <a
+href="http://web.mit.edu/aeroastro/www/">Aeronautics
+and Astronautics Department</A><BR>
+<a href="http://www.di.ens.fr/~cousot/">Professor</A> at the <a
+    href="http://www.di.ens.fr/index.html"> Computer Science
+    Department</A> of the <a
+href="http://www.ens.fr/index_en.php">&Eacute;cole
+    Normale Sup&eacute;rieure</A> in <a
+href="http://www.paris.fr/en/">Paris</A>
+    (<a href="http://www.meteofrance.com/FR/index.jsp">France</A>)<P>
+Office: 33&#8212;219<BR>
+<a href="http://web.mit.edu/aeroastro/www/">MIT Aero-Astro</A><BR>
+125 Massachusetts Av.<BR>
+Boston MA 02139 U.S.A.<BR>
+Tel: 617&#8211;253&#8211;7439<BR>
+Email: <a class="despammed-address">cousot<span
+class="replace-commercial-at"><span class="subreplace-commercial-at"><img
+src="http://web.mit.edu/afs/athena.mit.edu/course/16/16.399/www/pict/commercial_at.png" alt="[@]" border="0" width="10"
+/></span></span>mit<span class="replace-full-stop"><span
+class="subreplace-full-stop"><img
+src="http://web.mit.edu/afs/athena.mit.edu/course/16/16.399/www/pict/full_stop.png" alt="[.]" width="5" /></span></span>edu</a><P>
+Office hours: after class or by email appointment<BR>
+</UL>
+    
+<P><a name="objective">
+<H3>Course Objective and Themes:</H3>
+<UL>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Abstract Interpretation is a theory of
+    approximation of mathematical structures, in particular those involved
+    in the semantic models of computer systems.  Abstract interpretation
+    can be applied to the systematic construction of methods and effective
+    algorithms to approximate undecidable or very complex problems in
+    computer science such that the semantics, the proof, the static
+    analysis, the verification, the safety and the security of software or
+    hardware computer systems.  In particular, abstract
+    interpretation-based static analysis, which automatically infers
+    dynamic properties of computer systems, has been very successful these
+    last years to automatically verify complex properties of real-time,
+    safety critical, embedded systems.<BR>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The course is an introduction to abstract
+    interpretation with application to static analysis (the automatic,
+    compile-time determination of run-time properties of programs) and
+    software verification (conformance to a specification).
+</UL>
+
+<a name="description"><P>
+<H3>Prospective Course Description:</H3>
+
+The content of the course is the following:
+<UL>
+        <LI> The software verification problem: specification, testing
+    (debugging, simulation, code review), verification by formal methods
+    (deductive methods, model-checking, static analysis) and their
+    limitations (undecidability, complexity), intuitive notion of
+    approximation, false alarms);
+
+    <LI> Mathematical foundations (naive set theory, first order classical
+    logic, lattice theory, fixpoint theory);
+
+    <LI> Semantics of programming languages (abstract syntax, operational
+    semantics, inductive definitions, example of a simple imperative
+    language, grammar and interpretor of the language, trace semantics);
+
+    <LI> Program specification and manual proofs (safety properties, Hoare
+    logic, predicate transformers, liveness properties, linear-time
+    temporal logic (LTL));
+
+    <LI> Order-theoretic approximation (abstraction, closures, Galois
+    connections, fixpoint abstraction, widening, narrowing, reduced
+    product, absence of best approximation, refinement);
+
+    <LI> Principle of static analysis by abstract interpretation
+    (reachability analysis of a transition system, finite approximation,
+    model-checking, infinite approximation, static analysis, program-based
+    versus language-based analysis, limitations of finite approximations);
+
+    <LI> Design of a generic structural abstract interpreter (collecting
+    semantics, non-relational and relational analysis, convergence
+    acceleration by widening/narrowing);
+
+    <LI> Static analysis (forward reachability analysis, backward analysis,
+    iterated forward/backward analysis, <I>inevitability analysis,
+    termination</I>);
+
+    <LI> Numerical abstract domains (intervals, <I>affine equalities,
+    congruences, octagons,</I> polyhedra);
+
+    <LI> <I>Symbolic abstract domains (abstraction of sequences, trees and
+    graphs, BDDs, word and tree automata, pointer analysis);</I>
+
+        <LI> <I>Case studies (abstractions used in <a
+    href="http://www.astree.ens.fr/">ASTR&Eacute;E</A> and <a
+    href="http://www.cs.tau.ac.il/~tvla/">TVLA</A>);</I>
+
+</UL>
+Italicized topics could not be handled by lack of time.
+
+<P><a name="notes">
+<H3>Course Notes:</H3>
+<UL>
+    The course slides are available along with the <a
+href="index.html#schedule">course 
+    schedule</A>.
+</UL>
+
+<P><a name="schedule">
+<H3>Course Schedule:</H3>
+The schedule conforms to the <a
+href="http://web.mit.edu/registrar/www/calendar.html">MIT academic calendar
+2004&#8212;2005</A>.
+<UL>
+    <LI><a name="lecture-1"><I>Thursday February 10<sup>th</sup>, 2005,
+<B>Lecture 1</B>:</I>
+    A short informal presentation of the course topic followed by a
+    discussion with the students to adjust the course content to their
+    desiderata. Here are the <a
+    href="lecture_01-intro/Cousot_MIT_2005_Course_01_4-1.pdf">slides</A>
+and the
+    corresponding <a href="index.html#reading-assignment-1">reading assignment</A>.
+    
+    <LI><a name="lecture-2"><I>Tuesday February 15<sup>th</sup>, 2005,
+<B>Lecture 2</B>:</I> A
+    discussion of the software verification problem, classical program
+    proof methods. Here are the <a
+
+href="lecture_02-soft-verif/Cousot_MIT_2005_Course_02_4-1.pdf">slides</A>
+and the
+    corresponding <a href="index.html#reading-assignment-2">reading assignment</A>.
+    
+    <LI><a name="lecture-3"><I>Thursday February 17<sup>th</sup>, 2005,
+<B>Lecture 3</B>:</I>
+    undecidabily, complexity, automatic abstract termination proofs by
+    semidefinite programming. Here are the <a
+    href="lecture_03-proofs/Cousot_MIT_2005_Course_03_4-1.pdf">slides</A>
+and the
+    corresponding <a
+
+href="http://www.di.ens.fr/~cousot/publications.www/VMCAI05/matlab/">programs</A>
+    (that require <a
+    href="http://www.mathworks.com/">Matlab<sup>&reg;</sup></A>
+    (commercial), <a
+    href="http://control.ee.ethz.ch/~joloef/yalmip.msql">YALMIP</A> of <a
+    href="http://control.ee.ethz.ch/~joloef/">Johan L&ouml;fberg</A> and
+    the corresponding <a
+
+href="http://control.ee.ethz.ch/~joloef/manual/htmldata/solvers.htm">solvers</A>),
+    <a
+
+href="http://www.di.ens.fr/~cousot/publications.www/VMCAI05/examples/">examples</A>
+    (in <a
+
+href="http://www.di.ens.fr/~cousot/publications.www/VMCAI05/CousotVMCAI05examples.tgz">compressed
+    form</A>) and <a href="index.html#reading-assignment-3">reading assignment</A>.
+
+    <LI><I>Tuesday February 22<sup>nd</sup>, 2005:</I> No lecture (Monday
+    schedule of classes to be held).
+    
+    <LI> <I>Thursday February 24<sup>th</sup>, 2005:</I> No lecture
+    (students should learn about <a href="index.html#Ocaml">Ocaml</A>).
+    
+    <LI><a name="lecture-4"><I>Tuesday March 1<sup>st</sup>, 2005,
+<B>Lecture 4</B>:</I>
+    Na&iuml;ve set theory. Here are the <a
+
+href="lecture_04-set-theo/Cousot_MIT_2005_Course_04_4-1.pdf">slides</A>.
+The <a
+    href="index.html#reading-assignment-4">reading assignment</A> explores the <a
+    href="http://vl.zuser.org/">Z notation</A> for describing
+    computer-based systems, which is based on Zermelo-Fraenkel set theory
+    and first order predicate logic.
+
+    <LI><a name="lecture-5"><I>Thursday March 3<sup>rd</sup>, 2005,
+<B>Lecture 5</B>:</I>
+    Operational semantics. Here are the <a
+    href="lecture_05-op-sem/Cousot_MIT_2005_Course_05_4-1.pdf">slides</A>.
+The <a
+    href="index.html#reading-assignment-5">reading assignment</A> explores the
+    informal operational semantics of C. The course uses a simple
+    imperative language (SIL, see <a href="project/Examples/index.html">program
+    examples</A>) for which a <a href="project/Parser/index.html">parser/pretty
+    printer</A> and a <a
+    href="project/Standard-Interpreter.html">definitional standard
+    interpreter</A> are provided in <a href="index.html#Ocaml">Ocaml</A>.
+    
+    
+    <LI><a name="lecture-6"><I>Tuesday March 8<sup>th</sup>, 2005,
+<B>Lecture 6</B>:</I>
+    First order logic. Here are the <a
+    href="lecture_06-logic/Cousot_MIT_2005_Course_06_4-1.pdf">slides</A>.
+The <a
+    href="index.html#reading-assignment-6">reading assignment</A> explores programs
+    as predicates.
+    
+    <LI><a name="lecture-7"><I>Thursday March 10<sup>th</sup>, 2005,
+    <B>Lecture 7</B>:</I> Program properties: semantics, specification,
+    logics. Here are the <a
+    href="lecture_07-spec/Cousot_MIT_2005_Course_07_4-1.pdf">slides</A> and
+    <a href="lecture_07-spec/programs.html">3-2 filter program</A>. The <a
+    href="index.html#reading-assignment-7">reading assignment</A> explores program
+    specification using the synchronous dataflow programming language
+    Lustre.
+    
+    <LI><a name="lecture-8"><I>Tuesday March 15<sup>st</sup>, 2005,
+<B>Lecture 8</B>:</I>  
+Big-step collecting semantics; Program property classification (safety/liveness).
+Here are the <a
+href="lecture_08-col-sem/Cousot_MIT_2005_Course_08_4-1.pdf">slides</A>.
+The <a
+    href="index.html#reading-assignment-8">reading assignment</A> is on
+safety/liveness. 
+
+    <LI><a name="lecture-9"><I>Thursday March 17<sup>th</sup>, 2005,
+<B>Lecture 9</B>:</I> 
+Lattice theory &#8212; Part I. 
+ Here are the <a href="lecture_09-lattice1/Cousot_MIT_2005_Course_09_4-1.pdf">slides</A>.
+The <a
+    href="index.html#reading-assignment-9">reading assignment</A> is on static analysis
+    with TDGs (extensions of BDDs) 
+    
+    <LI><a name="lecture-10"><I>Tuesday March 22<sup>nd</sup>, 2005</I>
+No course, spring vacation.
+    <LI><a name="lecture-11"><I>Thursday March 24<sup>th</sup>, 2005</I>
+No course, spring vacation.
+    <LI><a name="lecture-12"><I>Tuesday March 29<sup>th</sup>, 2005, <B>Lecture 10</B>:</I> Lattice theory &#8212; Part II  Here are the <a
+href="lecture_10-lattice2/Cousot_MIT_2005_Course_10a_4-1.pdf">slides</A>.
+Ordered maps, Closures and Galois connections, part I. Here are the <a
+href="lecture_10-maps1/Cousot_MIT_2005_Course_10b_4-1.pdf">slides</A>. The <a
+    href="index.html#reading-assignment-10">reading assignment</A> is on logical
+    relations and Galois connections.
+    <LI><a name="lecture-13"><I>Thursday March 31<sup>st</sup>, 2005:</I> No course, 
+    NSF panel.
+    <LI><a name="lecture-14"><I>Tuesday April 5<sup>th</sup>, 2005, <B>Lecture 11</B>:</I>
+    Ordered maps, Closures and Galois connections, part II. Here are the <a
+href="lecture_11-a-maps2/Cousot_MIT_2005_Course_11a_4-1.pdf">slides</A>. 
+Fixpoints, Part I. Here are the <a
+href="lecture_11-b-fixpoints1/Cousot_MIT_2005_Course_11b_4-1.pdf">slides</A>.
+The <a href="index.html#reading-assignment-11">reading assignment</A> is
+on fixpoint theorems.
+    <LI><a name="lecture-15"><I>Thursday April 7<sup>th</sup>, 2005, <B>Lecture 12</B>:</I>
+Fixpoints, Part II and inductive definitions. Here are the <a
+href="lecture_12-fixpoints2/Cousot_MIT_2005_Course_12_4-1.pdf">slides</A>.
+The <a href="index.html#reading-assignment-12">reading assignment</A> is on
+asynchronous iterations with memory, it will allow to give a very short proof
+of the special case of <a href="http://www.mit.edu/~vkuncak/papers/OnComputingFixpoint.pdf">boolean equations</A>.
+    <LI><a name="lecture-16"><I>Tuesday April 12<sup>th</sup>, 2005, <B>Lecture 13</B>:</I>
+Abstraction, Part I. Here are the <a
+href="lecture_13-abstraction1/Cousot_MIT_2005_Course_13_4-1.pdf">slides</A>
+and the <a href="index.html#reading-assignment-13">reading assignment</A>.
+    <LI><a name="lecture-17"><I>Thursday April 14<sup>th</sup>, 2005, <B>Lecture 14</B>:</I>
+Abstraction, Part II. Here are the <a
+href="lecture_14-1-abstraction2/Cousot_MIT_2005_Course_14-1.pdf">slides</A>.
+Reachability and postcondition semantics. Here are the <a
+href="lecture_14-2-fw-col/Cousot_MIT_2005_Course_14-2_4-1.pdf">slides</A>.
+The <a href="index.html#reading-assignment-14">reading assignment</A> is on the
+initial presentation of this material. The reachability and postcondition collecting semantics of SIL is given in the
+form of a <a href="project/Collecting-Interpreter.html">collecting
+	    interpretor</A> written in <a href="index.html#Ocaml">Ocaml</A>.
+
+<LI> <I>Tuesday April 19<sup>th</sup>, 2005:</I> No course, Patriots
+Day&#8212;Vacation.
+    <LI><a name="lecture-18"><I>Thursday April 21<sup>th</sup>, 2005, <B>Lecture 15</B>:</I>
+Approximation. Here are the <a
+    href="lecture_15-approximation/Cousot_MIT_2005_Course_15_4-1.pdf">slides</A>
+    (and the <a
+    href="lecture_15-approximation/programs/iteration.ml">example iteration OCaml program</A>).
+    The <a href="index.html#reading-assignment-15">reading assignment</A> is on the
+    initial presentation of this material. 
+    
+    <LI><a name="lecture-19"><I>Tuesday April 26<sup>th</sup>, 2005,
+    <B>Lecture 16</B>:</I> Non-relational monotonic finitary static analysis, part I. Here are
+    the <a href="lecture_16_ana-sta-nr1/Cousot_MIT_2005_Course_16_4-1.pdf">slides</A>.
+    There is no reading assignment but the personnal project <a
+    href="index.html#homework-1">homework assignment 1</A> is proposed instead.
+    
+
+    <LI><a name="lecture-20"><I>Thursday April 28<sup>th</sup>, 2005:</B></I>
+    No course, NSF panel.
+    
+    <LI><a name="lecture-21"><I>Tuesday May 3<sup>rd</sup>, 2005, <B>Lecture 17</B>:</I> 
+    Non-relational monotonic finitary static analysis, part II.  Here are
+    the <a href="lecture_17_ana-sta-nr2/Cousot_MIT_2005_Course_17_4-1.pdf">slides</A>.
+    There is no reading assignment but the personnal project <a
+    href="index.html#homework-2">homework assignment 2</A> is proposed instead.
+    
+    
+    <LI><a name="lecture-22"><I>Thursday May 5<sup>th</sup>, 2005,
+    <B>Lecture 18</B>:</I> Non-relational, non-monotonic infinitary static
+    analysis by convergence acceleration with widening/narrowing. Here are
+    the <a
+    href="lecture_18_ana-sta-nr-wn/Cousot_MIT_2005_Course_18_4-1.pdf">slides</A>.
+    The optional <a href="index.html#reading-assignment-18">reading assignment</A> is on  widenings
+    in interprocedural analysis.
+    
+    <LI><a name="lecture-23"><I>Tuesday May 10<sup>th</sup>, 2005, <B>Lecture 19</B>:</I> 
+    Iterative reduced product. Linearization. Polyhedral relational static analysis.
+    Here are the <a href="lecture_19_ana-sta-r/Cousot_MIT_2005_Course_19_4-1.pdf">slides</A>.
+    The <a href="index.html#reading-assignment-19">reading assignment</A> and/or the <a
+    href="index.html#homework-3">homework assignment 3</A> are both optional.
+    
+    <LI><a name="lecture-24"><I>Thursday May 12<sup>th</sup>, 2005, <B>Lecture
+    20, last class</B>:</I> 
+    Iterated forward/backward analysis. Short presentation of the<a
+    href="http://www.astree.ens.fr/">ASTR&Eacute;E</A> static analyser.
+    Here are the <a href="lecture_20_ana-sta-fb/Cousot_MIT_2005_Course_20_4-1.pdf">slides</A>.
+    The optional <a href="index.html#reading-assignment-20">reading assignment</A>
+    considers approximations of other combinations of fixpoints, extending 
+    the results presented in the course to a subset of the &#181;-calculus.
+    The <a href="index.html#homework-3">homework assignment 4</A> is also optional.
+    
+    <LI><I>Friday May 13<sup>th</sup>, 2005, <B><a
+    href="http://www.mit.edu/~cousot/MintaMartinLecture/Minta-Martin-Cousot-2005_4-1.pdf">Minta Martin
+    Lecture</A></B>:</I> 
+    4:00&#8212;5:00&nbsp;pm, in the <a
+    href="http://whereis.mit.edu/map-jpg?selection=E15&Buildings=go">Bartos
+    Theater</A>
+    <a href="http://www.mit.edu/~cousot/MintaMartinLecture/directions.html">(E15-054)</A>.
+    
+    <LI> <I>Tuesday May 16&#8212;20<sup>th</sup>, 2005:</I> Final exam week
+    <UL>
+	<LI> <a href="index.html#final-exam">Final writen exam on Monday, May 16,
+	room 33-422, from 9:00&#8212;12:00.</A>
+	<LI> Final oral exam on Monday, May 16, room 33-308
+	starting 4:00pm
+    </UL>
+</UL>
+
+<P>
+
+<a name="assignments">
+<H3>Assignments:</H3>
+
+Most of the assigned readings, which are available on the web, are recently
+published research articles taken from the literature on programming,
+software verification, abstract interpretation and static analysis.
+<P>
+
+<UL> 
+<LI><a name="reading-assignment-1"><I>Reading assignment of <a href="index.html#lecture-1">Lecture 1</A>,
+Thursday February 10<sup>th</sup>, 2005:</I>
+<br>
+
+<TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+    <a href="http://www.di.ens.fr/~cousot/">Patrick Cousot</A>.<BR>
+        <a
+href="http://www.di.ens.fr/~cousot/publications.www/Cousot-LNCS2000-sv-sb.pdf">Abstract
+    Interpretation Based Formal Methods and Future Challenges</A>.<BR>
+        In <a
+
+href="http://www.springerlink.com/app/home/issue.asp?wasp=9f52ykryrp3kwx22ta5x&referrer=parent&backto=journal,1353,1903;linkingpublicationresults,1:105633,1"><I>Informatics,
+    10 Years Back &#8212; 10 Years Ahead</I></A>,<BR>
+    R. Wilhelm (Ed.), Lecture Notes in Computer Science 2000, Springer,
+pp. 138&#8211;156, 2001.
+</TD></TR></TABLE>
+
+<LI><a name="reading-assignment-2"><I>Reading assignment of <a href="index.html#lecture-2">Lecture 2</A>,
+Tuesday February 15<sup>th</sup>,
+         2005:</I>
+        <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+	    <a href="http://spinroot.com/gerard/">Gerard J. Holzmann</A>.<BR>
+        <a href="http://spinroot.com/gerard/pdf/fme03.pdf">Trends in
+Software
+        Verification</A>.<BR>
+        In <a href="index.html">Proceedings FME 2003: Formal Methods, International
+Symposium of Formal Methods
+                   Europe</A>, Pisa, Italy, September 88&#8211;14, 2003, 
+               K. Araki,
+                   S. Gnesi and
+                   D. Mandrioli (Eds.), 
+               Lecture Notes in Computer Science 2805, Springer, pp.
+               40&#8211;50,
+               2003.
+           </TD></TR></TABLE>
+<LI><a name="reading-assignment-3"><I>Reading assignment of <a href="index.html#lecture-3">Lecture 3</A>,
+Thursday February 17<sup>th</sup>,
+2005:</I>
+        <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+        <a href="http://www.di.ens.fr/~cousot/">Patrick Cousot</A>.<BR>
+        <a
+href="http://www.di.ens.fr/~cousot/publications.www/CousotVMCAI05-LNCS3385-pp1-24-cl.pdf">Proving
+Program Invariance and Termination by Parametric Abstraction, Lagrangian
+Relaxation and Semidefinite Programming</A>.<BR>
+        In 
+<CITE>
+<a href =
+"http://www.polytechnique.fr/vmcai05/">Sixth International Conference on
+Verification, Model 
+                Checking and Abstract Interpretation (VMCAI'05)</A>,
+</CITE>
+Paris, France, January 17&#8212;19, 2005. 
+<a href
+="http://www.springeronline.com/sgw/cda/frontpage/0,11855,5-147-22-37970265-0,00.html?referer=http://www.springeronline.com/sgw/cda/redirect/alertlink$mid=50250$aid=40150564">LNCS
+3385</A>, Springer, Berlin, pp. 1&#8212;24.
+
+           </TD></TR></TABLE>
+	
+<LI><a name="reading-assignment-4"><I>Reading assignment of <a href="index.html#lecture-4">Lecture 4</A>,
+Tuesday March 1<sup>st</sup>,
+2005:</I>
+        <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+        <a
+        href="http://web.comlab.ox.ac.uk/oucl/people/mike.spivey.html">J.
+M. Spivey</A>.<BR>
+        <a href="http://spivey.oriel.ox.ac.uk/mike/zrm/zrm.pdf">The Z
+Notation:
+A Reference Manual, 2<sup>nd</SUP> edition</A>, Prentice-Hall, 168 p.,
+1992. Read Chapter 1, &#171;&nbsp;Tutorial
+Introduction&nbsp;&#187;, pp.&nbsp;1&#8212;23.
+        </TD></TR></TABLE>
+	
+	
+<LI><a name="reading-assignment-5"><I>Reading assignment of <a href="index.html#lecture-5">Lecture 5</A>,
+Thursday March 3<sup>rd</sup>, 2005:</I>
+        <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+Study the syntax and semantics of integer type declarations, the
+evaluation of integer arithmetic 
+expressions, the evaluation of boolean expressions and the execution
+of assignments, tests and iterations for the C programming language either
+in the
+<a href="http://cm.bell-labs.com/cm/cs/who/dmr/cman.pdf">1975 C Reference
+Manual</A> 
+by <a href="http://www.cs.bell-labs.com/who/bwk/index.html">Brian W.
+Kernighan</A> and 
+<a href="http://www.cs.bell-labs.com/who/dmr/index.html">Dennis M.
+Ritchie</A>
+or in the <a
+href="http://www.winapi.co.kr/pds/doc/ISO-C-FDIS.1999-04.pdf">1999
+standard definition 
+of the C programming language</A>. 
+        </TD></TR></TABLE>
+    
+<LI><a name="reading-assignment-6"><I>Reading assignment of <a href="index.html#lecture-6">Lecture 6</A>, 
+Tuesday March 8<sup>th</sup>, 2005:</I>
+        <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+	    <a href="http://www.cs.toronto.edu/~hehner/">E.C.R. Hehner</A>: 
+	    	    <a
+	    href="http://www.cs.toronto.edu/~hehner/SPTC.pdf">Specifications,
+	    Programs, and Total Correctness</A>, Science of Computer
+	    Programming, volume 34, pp. 191&#8211;205, 1999.
+        </TD></TR></TABLE>
+
+<LI><a name="reading-assignment-7"><I>Reading assignment of <a href="index.html#lecture-7">Lecture 7</A>, 
+Tuesday March 10<sup>th</sup>, 2005:</I>
+        <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+	    <a
+
+href="http://www-verimag.imag.fr/PEOPLE/Nicolas.Halbwachs/index-english.html">N.
+Halbwachs</A>, 
+	    <a href="http://www-verimag.imag.fr/~caspi/">P. Caspi</A>, 
+	    <a href="http://www-verimag.imag.fr/~raymond/">P. Raymond</A> and 
+	    <a
+
+href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/p/Pilaud:Daniel.html">D.
+Pilaud</A>. 
+	    <a
+
+href="http://www-verimag.imag.fr/PEOPLE/Nicolas.Halbwachs/PS/lustre.ieee.ps">``The
+synchronous dataflow programming language Lustre''</A>. 
+	    Proceedings of the IEEE, vol. 79, nb. 9. September 1991 (to be 
+	    gunziped to get ps).
+        </TD></TR></TABLE>
+  
+<LI><a name="reading-assignment-8"><I>Reading assignment of <a href="index.html#lecture-8">Lecture 8</A>, 
+Tuesday March 15<sup>th</sup>, 2005:</I>
+        <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+	    <a href="http://www.cs.cornell.edu/fbs/">Fred B. Schneider</A>.
+	    <a
+href="http://www.cs.cornell.edu/fbs/publications/87-874.ps">``Decomposing
+Properties into Safety and Liveness using Predicate
+	    Logic</A>. Cornell University Computer Science Department Technical
+Report TR 87-874, October 1987 (<a
+href="papers/87-874.pdf">pdf</A><a href="index.html#footnote1">&nbsp;<sup>(1)</sup></A>).
+
+       </TD></TR></TABLE>
+       
+  <LI><a name="reading-assignment-9"><I>Reading assignment of <a href="index.html#lecture-9">Lecture 9</A>, 
+ Thursday March 17<sup>th</sup>, 2005:</I>
+         <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD><a href="http://www.di.ens.fr/~mauborgn/">Laurent
+ Mauborgne</A>.
+         <a
+ href="http://www.di.ens.fr/~mauborgn/publi/scp31.pdf">``Abstract
+ Interpretation Using Typed Decision Graphs''</A>.
+      Science of Computer Programming, 31(1):91&#8212;112, May 1998.
+        </TD></TR></TABLE> 
+
+<LI><a name="reading-assignment-10"><I>Reading assignment of <a href="index.html#lecture-12">Lecture 10</A>, 
+ Tuesday March 28<sup>th</sup>, 2005:</I>
+        <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+	    <a href="http://web.comlab.ox.ac.uk/oucl/people/kevin.backhouse.html">Kevin Backhouse</A> and <a href="http://www.cs.nott.ac.uk/~rcb/">Roland Backhouse</A>
+	    <a href="http://www.cs.nott.ac.uk/~rcb/MPC/GCsAndLRs.ps.gz">``Galois Connections and Logical Relations''</A>.
+	    Int. Conf. on Mathematics of Program Construction, Dagstuhl, Germany, 
+	    July 2002. Springer Verlag LNCS 2386, pp. 23&#8212;39. 
+	    <a href="http://www.cs.nott.ac.uk/~rcb/MPC/SafetyForFree.ps.gz">Here</A> is a journal version.
+        </TD></TR></TABLE> 
+	
+<LI><a name="reading-assignment-11"><I>Reading assignment of <a href="index.html#lecture-14">Lecture 11</A>, 
+ Tuesday April 5<sup>th</sup>, 2005:</I>
+        <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+        <a href="http://www.hss.caltech.edu/~fede/">Federico Echenique</A>
+        <a href="http://www.hss.caltech.edu/~fede/wp/pf-tarski4.pdf">A short and constructive proof of Tarski's fixed-point
+        theorem</A>. International Journal of Game Theory, 2005.
+        </TD></TR></TABLE>
+	
+<LI><a name="reading-assignment-12"><I>Reading assignment of <a href="index.html#lecture-15">Lecture 12</A>, 
+         Thursday April 7<sup>th</sup>, 2005:</I>
+     <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+         <a href="http://www.di.ens.fr/~cousot/">Patrick Cousot</A>. 
+         <a href="http://www.di.ens.fr/~cousot/publications.www/Cousot-IMAG-RR88-Sep-1977.pdf">Asynchronous iterative methods for solving a fixed point system
+          of monotone equations in a complete lattice.</A>. 
+         In Research Report R.R. 88, Laboratoire IMAG, University of Grenoble, France. 15 pages. September 1977.
+     </TD></TR></TABLE>
+	 
+<LI><a name="reading-assignment-13"><I>Reading assignment of <a href="index.html#lecture-16">Lecture 13</A>, 
+         Tuesday April 12<sup>th</sup>, 2005:</I>
+     <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+         <a href="http://www.di.ens.fr/~cousot/">Patrick Cousot</A>. 
+         <a href="http://www.di.ens.fr/~cousot/publications.www/Cousot-81-PFA-ch10-p303-342.pdf">Semantic foundations of program analysis</A>. 
+         In S.S. Muchnick and N.D. Jones, editors, 
+         Program Flow Analysis: Theory and Applications, Ch. 10, pages 303&#8212;342, 
+         Prentice-Hall, 1981.
+     </TD></TR></TABLE>
+ 
+<LI><a name="reading-assignment-14"><I>Reading assignment of <a href="index.html#lecture-17">Lecture 14</A>, 
+         Thursday April 14<sup>th</sup>, 2005:</I>
+     <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+         <a href="http://www.di.ens.fr/~cousot/">Patrick Cousot</A> and
+	 <a
+	 href="http://www.enseignement.polytechnique.fr/profs/informatique/Radhia.Cousot/">Radhia Cousot</A>. 
+         <a href="http://www.di.ens.fr/~cousot/publications.www/CousotCousot-POPL-79-ACM-p269--282-1979.pdf">Systematic Design of Program Analysis Frameworks</A>.
+	  In <a href="http://portal.acm.org/citation.cfm?id=567778">Conference Record of the Sixth Annual ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages</A>, pages 269&#8212;282, San Antonio, Texas, 1979. ACM Press, New York.
+     </TD></TR></TABLE>
+     
+
+<LI><a name="reading-assignment-15"><I>Reading assignment of <a href="index.html#lecture-18">Lecture 15</A>, 
+          Thursday April 21<sup>st</sup>, 2005:</I>
+      <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+          <a href="http://www.di.ens.fr/~cousot/">Patrick Cousot</A> and
+      <a
+      href="http://www.enseignement.polytechnique.fr/profs/informatique/Radhia.Cousot/">Radhia Cousot</A>. 
+      <a href="http://www.di.ens.fr/~cousot/publications.www/CousotCousot-POPL-77-ACM-p238--252-1977.pdf">Abstract interpretation: a unified lattice model for static analysis of programs 
+      by construction or approximation of fixpoints</A>. In 
+      <a href="http://portal.acm.org/citation.cfm?doid=512950.512973">Conference Record of the Fourth Annual ACM SIGPLAN-SIGACT Symposium on Principles of 
+      Programming Languages</A>, pages 238&#8212;252, Los Angeles, California, 1977. ACM Press, New York, NY, USA.
+      </TD></TR></TABLE>
+  
+<LI><a name="reading-assignment-16"><I>Reading assignment of <a href="index.html#lecture-19">Lecture
+16</A>, 
+          Tuesday April 28<sup>th</sup>, 2005:</I> 
+      <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+         None, but the personnal project
+	  <a href="index.html#homework-1">homework assignement 1</A> is proposed
+	  instead.
+      </TD></TR></TABLE>
+
+ 
+<LI><a name="reading-assignment-17"><I>Reading assignment of <a href="index.html#lecture-21">Lecture 17</A>, 
+          Tuesday May 3<sup>rd</sup>, 2005:</I> 
+      <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+         None, but the personnal project
+	  <a href="index.html#homework-2">homework assignement 2</A> is proposed
+	  instead.
+      </TD></TR></TABLE>
+    
+<LI><a name="reading-assignment-18"><I>Optional reading assignment of <a href="index.html#lecture-22">Lecture 18</A>, 
+          Thursday May 5<sup>th</sup>, 2005:</I> 
+      <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+  <a href="http://www.ensmp.fr/~bourdonc/">Fran&ccedil;ois Bourdoncle</A>,
+    <a href="http://www.exalead.com/Francois.Bourdoncle/jfp92.pdf">Abstract
+  interpretation by dynamic partitioning</A> Journal of Functional
+  Programming, Vol.&nbsp;2, No.&nbsp;4 (1992) 407&#8212;435.
+  </TD></TR></TABLE>
+
+<LI><a name="reading-assignment-19"><I>Optional reading assignment of <a
+href="index.html#lecture-23">Lecture 19</A>, 
+          Tuesday May 10<sup>th</sup>, 2005:</I> 
+      <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+      <a href="http://www-verimag.imag.fr/PEOPLE/Nicolas.Halbwachs/">Nicolas
+      Halbwachs</A>,
+      <a href="http://www-verimag.imag.fr/PEOPLE/Nicolas.Halbwachs/PS/sas94.ps">About synchronous programming and abstract interpretation</A>. International Symposium on Static Analysis, SAS'94,  LNCS 864, Springer Verlag. Namur (Belgium), September 1994.      
+  </TD></TR></TABLE>
+
+<LI><a name="reading-assignment-20"><I>Optional reading assignment of <a
+href="index.html#lecture-24">Lecture 20</A>, 
+          Thursday May 12<sup>th</sup>, 2005:</I> 
+      <TABLE CELLSPACING="15"><TR ALIGN="LEFT"><TD>
+      <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/m/Mass=eacute=:Damien.html">Damien
+      Mass&eacute;</A>,
+      <!-- <a href="http://www.ea2215.univ-brest.fr/publications/liste_publis.php?choix=39&type=c"> -->
+      <a href="http://beru.univ-brest.fr/~jlegrand/damien.html">Combining Forward and Backward Analyses of Temporal Properties</A>. PADO
+      2001, O. Danvy, A. Filinski (Eds.), Lecture Notes in Computer Science 2053, pp. 103&#8212;116, Springer 
+      2001
+  </TD></TR></TABLE>
+  
+  </UL> 
+	  <P>
+<a name="project">
+
+<H3>Project:</H3>
+
+    <UL>
+	<LI><a name="Ocaml">The personnal project is to be written in <a
+	href="http://caml.inria.fr/">OCaml</A> for which <a
+	href="http://caml.inria.fr/ocaml/distrib.html">compilers are freely
+	available on many platforms</A>. Here are <a
+	href="project/OCaml/OCaml.pdf">course notes on OCaml</A> as well as
+	corresponding <a href="project/OCaml/programs/index.html">programming
+	examples</A>.
+		<P></P>
+	<LI> The personnal project is on the design and implementation of a
+	static analyzer of numerical programs written in SIL (a <U>s</U>imple
+	<U>i</U>mperative <U>l</U>anguage).
+	<UL>
+	    <LI> The syntax and operational semantics of SIL has been
+	    formally specified in <a href="index.html#lecture-5">lecture 5</A> and
+	    respectively implemented in <a href="index.html#Ocaml">Ocaml</A> by a <a
+	    href="project/Parser/index.html">parser/pretty printer</A> and a <a
+	    href="project/Standard-Interpreter.html">definitional standard
+	    interpreter</A>
+	    
+	    <LI> Here are <a href="project/Examples/index.html">SIL program examples</A>
+	    
+	    <LI> The reachability collecting semantics described in <a
+	    href="index.html#lecture-18">Lecture 15</A> has been implemented in a
+	    <a href="project/Collecting-Interpreter.html">collecting
+	    interpretor</A>
+	    
+        <LI> The non-relational initialization and simple sign analysis
+	        of SIL described in  <a href="index.html#lecture-19">lecture 16</A> is
+	        provided below:
+	        <UL>
+	        <LI> <a href="project/Initialization-Simple-Sign/index.html">With
+	        forward-only analysis of boolean expressions</A>
+	        </UL>
+	        In lecture <a href="index.html#lecture-20">lecture 17</A>, we studied
+	                several refinements of non-relational analyses:
+	                    <UL>
+	                    <LI> <a href="project/Initialization-Simple-Sign-FB/index.html">With forward
+	                    &amp; backward analysis of boolean expressions</A>
+	                    <LI> <a
+	                    href="project/Initialization-Simple-Sign-FB-LDI-B/index.html">With
+	                    local decreasing iterations for forward &amp; backward
+	                    analysis of boolean expressions</A>
+	                    <LI> <a
+	                    href="project/Initialization-Simple-Sign-FB-LDI-BA/index.html">With
+	                    local decreasing iterations for forward &amp; backward
+	                    analysis of boolean expressions and assignments</A>
+	                    </UL>
+		<P><a name="homework-1"></P>
+	        </UL>
+	        <LI> Homework 1:
+	        <UL>
+	            <LI> Change file 
+		    <A href="project/Initialization-Simple-Sign/avalues.ml"><tt>avalues.ml</tt></A> of the
+		    non-relational initialization and simple sign abstract
+		    interpretors discussed in <a href="index.html#lecture-19">Lecture
+		    16</A>  to implement a finitary analysis of your choice
+		    (e.g. initialization analysis, Killdall's constant
+		    propagation, enriched sign analysis,
+		    etc, preferably based on your own ideas).
+		    <LI> Provide the abstraction and concretization
+		    functions for sets of concrete values as comments in the file.
+	            <LI> The main design criteria should be
+		    <I><b>originality</b></I> and <I>soundness</I>
+	        </UL> 
+		<P><a name="homework-2"></P>
+	        <LI> Homework 2:
+	        <UL>
+	            <LI> Change file <A
+		    href="project/Initialization-Simple-Sign-FB/avalues.ml"><tt>avalues.ml</tt></A>
+		    of the non-relational initialization and simple sign
+		    abstract interpretors with backward analysis of
+		    expressions discussed in <a href="index.html#lecture-20">Lecture
+		    17</A> to implement the finitary analysis that you have
+		    chosen.
+	        </UL> 
+ 		<P><a name="homework-3"></P>
+	        <LI> Homework 3 (optional):
+	        <UL>
+	            <LI> Given the <a   
+		    href="project/Generic-FW-REL-Abstract-Interpreter.html">generic
+		    forward relational analyzer</A>, modify the polyhedral
+		    analysis in file <A
+		    href="http://web.mit.edu/16.399/www/project/Relational-FW/Polyhedra/avalues.ml"><tt>aenv.ml</tt></A>
+		    to implement an octagonal analysis using the <a
+		    href="http://www.di.ens.fr/~mine/oct/">The Octagon
+		    Abstract Domain Library</A> (which interface is similar
+		    to that of <a
+		    href="http://www.irisa.fr/prive/bjeannet/newpolka.html">New
+		    Polka</A> used in the course), or
+		    <LI> Modify the polyhedral analysis in file
+		    <A
+		    href="http://web.mit.edu/16.399/www/project/Relational-FW/Polyhedra/avalues.ml"><tt>aenv.ml</tt></A>
+		    to handle strict inequalities
+	        </UL> 
+ 		<P><a name="homework-4"></P>
+		<LI> Homework 4 (optional):
+	        <UL>
+	            <LI> The <a
+		    href="project/Generic-FW-BW-REL-Abstract-Interpreter.html">generic iterative pre/postcondition static analyzer is
+		    available online</A> as well as the
+		    <a href="project/Relational-FW-BW.html">polyhedral
+		    analaysis</A> instance
+		    <LI> Instanciate the analyzer for octagonal analysis using the <a
+		    href="http://www.di.ens.fr/~mine/oct/">The Octagon
+		    Abstract Domain Library</A>
+	        </UL> 
+   </UL>
+
+<P><a name="grading">
+<H3>Grading:</H3>
+<UL>
+    The course is letter graded.<P>
+    
+    The grading proposal below is tentative and is to be discussed with the
+    course participants.<BR>
+  
+<TABLE>
+    
+    <TR VALIGN="TOP">
+        <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+        <TD>10%</TD>
+        <TD>Class participation</TD>
+    </TR>
+    
+    <TR VALIGN="TOP">
+        <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+        <TD>30%</TD>
+        <TD>Presentation</TD>
+    </TR>
+        
+    <TR VALIGN="TOP">
+        <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+        <TD>40%</TD>
+        <TD>Personal project</TD>
+    </TR>
+    
+    <TR VALIGN="TOP">
+        <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+        <TD>20%</TD>
+        <TD><a name="final-exam">Final writen exam, open book, 3 hours, 
+	Monday, May 16 from 9&#8212;12, room 33-422
+	</TD>
+    </TR>
+    
+</TABLE>
+The presentation of a research paper will be in Computer Science conference
+format (25mn of talk and 5mn of questions). The article is to be selected
+by the students in the list of assigned readings. Issues about giving a
+talk are discussed <a
+href="http://www.brics.dk/~danvy/issues.html">here</A>. The presentations
+will be held outside of lecture hours during the finals week &#8212;
+on Monday, May 16, room 33-308,
+	starting 4:00pm.
+
+</UL>
+<P><a name="final">
+<H3>Final exam problem:</H3>
+	<UL>
+	    <LI> Here is the <a href="final/Cousot_MIT_2005_Final_Exam-problem.pdf">final exam problem</A> (which 
+	    consists
+	    in proving that model checking is an abstract interpretation of
+	    the temporal formul&aelig; semantics)
+	    <!-- <LI> Here is the <a href="final/Cousot_MIT_2005_Final_Exam-answer.pdf">answer to the final exam problem</A>
+	            <LI> There is also the <a href="final/Cousot_MIT_2005_Final_Exam-problemanswer.pdf">questions and
+	            answers</A> all together -->
+	</UL>
+
+<P><a name="reference">
+<H3>Bibliographic reference:</H3>
+<PRE>
+   @unpublished{Cousot-MITcourse05,
+      author =  {P.~Cousot},
+      title =   {Abstract interpretation},
+      note =    {MIT course 16.399, \url{http://web.mit.edu/16.399/www/}},
+      month =   {Feb.--May},
+      year =    2005,
+   }
+</PRE>
+
+
+<hr>
+<a name="footnote1"><sup>(1)</sup>&nbsp;posted with permission of the author.</A>
+<hr>
+
+<!-- <TABLE>
+    
+    <TR VALIGN="TOP">
+        <TD><IMG SRC="http://web.mit.edu/afs/athena.mit.edu/course/16/16.399/www/pict/road_work.gif" ALT="Work in progress"
+        WIDTH="50" HEIGHT="50" ALIGN="MIDDLE"></TD>
+        <TD>This site will be under construction until the end of the
+course. 
+    Corrections and modifications can be done at any time on previous
+    lecture slides.
+</TD>
+    </TR>
+    
+</TABLE> -->
+Last modified Sunday, 05-Jun-2005 14:12:47 EDT
+<hr>
+&copy; <a href="http://www.mit.edu/~cousot/copyright.shtml">Copyright
+notice</A>
+</BODY>
+</HTML>

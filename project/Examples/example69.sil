@@ -1,0 +1,9 @@
+% example69.sil %
+x := 0;
+k := 0;
+while (x < y) do
+  k := k + 1;
+  n := n - 1;
+  x := x + 1
+od;
+while (n <> 0) do skip od;;

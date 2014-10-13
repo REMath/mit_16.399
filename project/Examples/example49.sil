@@ -1,0 +1,6 @@
+% example49.sil %
+x := y;
+z := 2 * x + 1;
+while y <> 0 do
+  skip
+od;;

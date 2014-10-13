@@ -1,0 +1,10 @@
+% example52bis.sil %
+x := x0;
+y := y0;
+% { x = x0 /\ y = y0} %
+m := 0;
+while (x <> y) do
+  m := m + 1;
+  x := x - 1
+od;;
+% { x = y = y0 <= x0 /\ m = x0 - y0} %

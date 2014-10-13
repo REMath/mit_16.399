@@ -1,0 +1,5 @@
+% example48.sil %
+X := X + Y + 3;
+while (X + Y <> 5)  do
+  skip
+od;;

@@ -1,0 +1,10 @@
+% example40.sil %
+I:=2;J:=0;B:=?;
+while B<>0 do
+  if B<>1 then
+     I:=I+1
+  else
+     I:=I+2;
+     J:=J+1
+  fi
+od;;

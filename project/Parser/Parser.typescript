@@ -1,0 +1,28 @@
+ Script started on Sat Feb 26 12:27:11 2005
+ % make compile
+ ocamlyacc parser.mly
+ ocamllex lexer.mll
+ 62 states, 3001 transitions, table size 12376 bytes
+ ocamlc symbol_Table.mli symbol_Table.ml variables.mli variables.ml 
+ abstract_Syntax.ml concrete_To_Abstract_Syntax.mli 
+ concrete_To_Abstract_Syntax.ml labels.mli labels.ml parser.mli 
+ parser.ml lexer.ml program_To_Abstract_Syntax.mli 
+ program_To_Abstract_Syntax.ml pretty_Print.mli pretty_Print.ml 
+ main.ml
+ % ./a.out ../Examples/example1.sil
+ 
+ 0: 
+   x := 1;
+ 1: 
+   while (x < 100) do
+     2: 
+       x := (x + 1)
+     3: 
+   od {((100 < x) | (x = 100))}
+ 4: 
+ 
+ % make clean
+ /bin/rm -f *.cmi *.cmo *~ a.out lexer.ml parser.mli parser.ml
+ % ^Dexit
+ Script done on Sat Feb 26 12:27:52 2005
+ 

@@ -1,0 +1,8 @@
+% example17.sil %
+x := 0;
+y := ?;
+if (x = y) then
+  skip
+else
+  r := 1/0
+fi;;

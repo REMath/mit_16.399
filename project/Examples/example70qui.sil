@@ -1,0 +1,7 @@
+% example70qui.sil %
+k := 0;
+while x <> y do
+  k := k  + 1;
+  x := x - 1;
+  y := y + 1
+od;;

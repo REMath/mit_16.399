@@ -1,0 +1,10 @@
+% example36.sil %
+x:=?;
+y:=?;
+if (x = y) then
+  x := 0;
+  y := 200
+else
+  x := 20;
+  y := 0
+fi;;

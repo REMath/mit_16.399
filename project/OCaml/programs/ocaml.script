@@ -1,0 +1,2034 @@
+% ocaml
+        Objective Caml version 3.06
+
+# "hellow world";;
+- : string = "hellow world"
+# ^D
+% ocaml
+				Objective Caml version 3.06
+
+# exit 0;;
+% 
+% ocaml
+				Objective Caml version 3.06
+
+# let fin () = print_string "fin\n";;
+val fin : unit -> unit = <fun>
+# at_exit fin;;
+- : unit = ()
+# exit 1;;
+fin
+% 
+% ocaml
+				Objective Caml version 3.06
+
+# exit;;
+- : int -> 'a = <fun>
+# at_exit;;
+- : (unit -> unit) -> unit = <fun>
+# ^D
+% 
+% ocaml
+
+        Objective Caml version 3.06
+
+# (* This is a comment (* with a comment
+* inside *) a comment, useful to comment
+* commented programs *)
+  "hellow world";;
+- : string = "hellow world"
+# ^D
+% ocaml
+
+        Objective Caml version 3.06
+
+# let incr x = x + 1;;
+val incr : int -> int = <fun>
+# let o f g x = (f (g (x)));;
+val o : ('a -> 'b) -> ('c -> 'a) -> 'c -> 'b = <fun>
+# let incr2 = o incr incr;;
+val incr2 : int -> int = <fun>
+# incr 2 7;;
+- : int = 9
+# ^D
+% ocaml
+				Objective Caml version 3.06
+
+# let x = ref 0;;
+val x : int ref = {contents = 0}
+# !x;;
+- : int = 0
+# x := 1;;
+- : unit = ()
+# !x;;
+- : int = 1
+# ^D
+% 
+% ocaml
+				Objective Caml version 3.06
+
+# let s = "abcdef";;
+val s : string = "abcdef"
+# s;;
+- : string = "abcdef"
+# set s 0 'X';;
+Unbound value set
+# String.set s 0 'X';;
+- : unit = ()
+# s;;
+- : string = "Xbcdef"
+# ^D
+% 
+% ocaml
+				Objective Caml version 3.06
+
+# ();;
+- : unit = ()
+# ignore;;
+- : 'a -> unit = <fun>
+# ignore 12345;;
+- : unit = ()
+# let id x = x;;
+val id : 'a -> 'a = <fun>
+# id ();;
+- : unit = ()
+# ^D
+% 
+% ocaml
+				Objective Caml version 3.06
+
+# true;;
+- : bool = true
+# false;;
+- : bool = false
+# not true;;
+- : bool = false
+# not false;;
+- : bool = true
+# true && true;;
+- : bool = true
+# true & false;;
+- : bool = false
+# false or false;;
+- : bool = false
+# false || true;;
+- : bool = true
+
+# (&&);;
+- : bool -> bool -> bool = <fun>
+# (&&) true false;;
+- : bool = false
+# (or) true false;;
+- : bool = true
+
+# failwith "fail";;
+Exception: Failure "fail".
+# true or (failwith "fail");;
+- : bool = true
+# true or (failwith "fail");;
+- : bool = true
+# false && (failwith "fail");;
+- : bool = false
+# true && (failwith "fail");;
+Exception: Failure "fail".
+ 
+# false && true;;
+- : bool = false
+# (&&) false true;;
+- : bool = false
+# true && (failwith "fail");;;;
+Exception: Failure "fail".
+# false && (failwith "fail");;;;
+- : bool = false
+# (&&) false (failwith "fail");;
+- : bool = false
+# ^D
+% 
+
+
+# 99 * 99;;
+- : int = 9801
+# max_int;;
+- : int = 1073741823
+# (2.0 ** 30.0) -. 1.0;;
+- : float = 1073741823.
+# min_int;;
+- : int = -1073741824
+
+# 4 + 5;;
+- : int = 9
+# 4 - 5;;
+- : int = -1
+# 4 * 5;;
+- : int = 20
+# 4 / 5;;
+- : int = 0
+# 5 / 4;;
+- : int = 1
+# 5 mod 4;;
+- : int = 1
+
+# 0 lsr 1;;
+- : int = 0
+# 5 land 4;;
+- : int = 4
+# 5 lor 3;;
+- : int = 7
+# 5 lor 4;;
+- : int = 5
+# 5 lsl 2;;
+- : int = 20
+# 5 lsr 2;;
+- : int = 1
+
+# zero;;
+Unbound value zero
+# Int32.zero;;
+- : int32 = <int32 0>
+# open Int32;;
+# zero;;
+- : int32 = <int32 0>
+# one;;
+- : int32 = <int32 1>
+# minus_one;;
+- : int32 = <int32 -1>
+# neg;;
+- : int32 -> int32 = <fun>
+# add;;
+- : int32 -> int32 -> int32 = <fun>
+# sub;;
+- : int32 -> int32 -> int32 = <fun>
+# mul;;
+- : int32 -> int32 -> int32 = <fun>
+# div;;
+- : int32 -> int32 -> int32 = <fun>
+# rem;;
+- : int32 -> int32 -> int32 = <fun>
+# succ;;
+- : int32 -> int32 = <fun>
+# pred;;
+- : int32 -> int32 = <fun>
+# abs;;
+- : int32 -> int32 = <fun>
+# max_int;;
+- : int32 = <int32 2147483647>
+# min_int;;
+- : int32 = <int32 -2147483648>
+# logand;;
+- : int32 -> int32 -> int32 = <fun>
+# logor;;
+- : int32 -> int32 -> int32 = <fun>
+# logxor;;
+- : int32 -> int32 -> int32 = <fun>
+# lognot;;
+- : int32 -> int32 = <fun>
+# shift_left;;
+- : int32 -> int -> int32 = <fun>
+# shift_right;;
+- : int32 -> int -> int32 = <fun>
+# shift_right_logical;;
+- : int32 -> int -> int32 = <fun>
+# of_int;;
+- : int -> int32 = <fun>
+# to_int;;
+- : int32 -> int = <fun>
+# of_float;;
+- : float -> int32 = <fun>
+# to_float;;
+- : int32 -> float = <fun>
+# of_string;;
+- : string -> int32 = <fun>
+# to_string;;
+- : int32 -> string = <fun>
+# format;;
+- : string -> int32 -> string = <fun>
+
+# open Int64;;
+# zero;;
+- : int64 = <int64 0>
+# one;;
+- : int64 = <int64 1>
+# minus_one;;
+- : int64 = <int64 -1>
+# neg;;
+- : int64 -> int64 = <fun>
+# add;;
+- : int64 -> int64 -> int64 = <fun>
+# sub;;
+- : int64 -> int64 -> int64 = <fun>
+# mul;;
+- : int64 -> int64 -> int64 = <fun>
+# div;;
+- : int64 -> int64 -> int64 = <fun>
+# rem;;
+- : int64 -> int64 -> int64 = <fun>
+# succ;;
+- : int64 -> int64 = <fun>
+# pred;;
+- : int64 -> int64 = <fun>
+# abs;;
+- : int64 -> int64 = <fun>
+# max_int;;
+- : int64 = <int64 9223372036854775807>
+# min_int;;
+- : int64 = <int64 -9223372036854775808>
+# logand;;
+- : int64 -> int64 -> int64 = <fun>
+# logor;;
+- : int64 -> int64 -> int64 = <fun>
+# logxor;;
+- : int64 -> int64 -> int64 = <fun>
+# lognot;;
+- : int64 -> int64 = <fun>
+# shift_left;;
+- : int64 -> int -> int64 = <fun>
+# shift_right;;
+- : int64 -> int -> int64 = <fun>
+# shift_right_logical;;
+- : int64 -> int -> int64 = <fun>
+# of_int;;
+- : int -> int64 = <fun>
+# to_int;;
+- : int64 -> int = <fun>
+# of_float;;
+- : float -> int64 = <fun>
+# to_float;;
+- : int64 -> float = <fun>
+#  of_string;;
+- : string -> int64 = <fun>
+# to_string;;
+- : int64 -> string = <fun>
+# format;;
+- : string -> int64 -> string = <fun>
+# of_int32;;
+- : int32 -> int64 = <fun>
+# to_int32;;
+- : int64 -> int32 = <fun>
+# of_nativeint;;
+- : nativeint -> int64 = <fun>
+# to_nativeint;;
+- : int64 -> nativeint = <fun>
+# bits_of_float;;
+- : float -> int64 = <fun>
+# float_of_bits;;
+- : int64 -> float = <fun>
+
+# min_int;;
+- : int64 = <int64 -9223372036854775808>
+# max_int;;
+- : int64 = <int64 9223372036854775807>
+# min_float;;
+- : float = 2.22507385851e-308
+
+# int_of_float 10.5;;
+- : int = 10
+# float_of_int 10;;
+- : float = 10.
+
+# 10 / 3;;
+- : int = 3
+# 10.0 /. 3.0;;
+- : float = 3.33333333333
+# 10.0 / 3.0;;
+This expression has type float but is here used with type int
+
+# 5. +. 4.0;;
+- : float = 9.
+# 5. *. 4.;;
+- : float = 20.
+# 5. -. 4.;;
+- : float = 1.
+# 4. /. 5.;;
+- : float = 0.8
+# 2. ** 5.;;
+- : float = 32.
+# 5. - 4.;;
+This expression has type float but is here used with type int
+# (int_of_float 5.) - 4;;
+- : int = 1
+
+# exp 1.;;
+- : float = 2.71828182846
+# log 10.;;
+- : float = 2.30258509299
+# log10 10;;
+This expression has type int but is here used with type float
+# sqrt 2;;
+This expression has type int but is here used with type float
+# sin 3.14159;;
+- : float = 2.65358979335e-06
+
+# (~-.);;  
+- : float -> float = <fun>
+# (+.);;
+- : float -> float -> float = <fun>
+# (-.);;
+- : float -> float -> float = <fun>
+# 10. *. 10.;;
+- : float = 100.
+# (/.);;
+- : float -> float -> float = <fun>
+# 10. ** 100.;;
+- : float = 1e+100
+# sqrt;;
+- : float -> float = <fun>
+# exp;;
+- : float -> float = <fun>
+# log;;
+- : float -> float = <fun>
+# log10;;
+- : float -> float = <fun>
+# sin;;
+- : float -> float = <fun>
+# cos;;
+- : float -> float = <fun>
+# tan;;
+- : float -> float = <fun>
+# asin;;
+- : float -> float = <fun>
+# acos;;
+- : float -> float = <fun>
+# atan;;
+- : float -> float = <fun>
+# atan2;;
+- : float -> float -> float = <fun>
+# sinh;;
+- : float -> float = <fun>
+# cosh;;
+- : float -> float = <fun>
+# tanh;;
+- : float -> float = <fun>
+# ceil;;
+- : float -> float = <fun>
+# floor;;
+- : float -> float = <fun>
+# abs_float;;
+- : float -> float = <fun>
+# mod_float;;
+- : float -> float -> float = <fun>
+# frexp;;
+- : float -> float * int = <fun>
+# ldexp;;
+- : float -> int -> float = <fun>
+# modf;;
+- : float -> float * float = <fun>
+# float;;
+- : int -> float = <fun>
+# float_of_int;;
+- : int -> float = <fun>
+# truncate;;
+- : float -> int = <fun>
+# int_of_float;;
+- : float -> int = <fun>
+
+# 'a';;
+- : char = 'a'
+# "a";;
+- : string = "a"
+# "this is a
+	character
+	string";;
+- : string = "this is a\ncharacter\nstring"
+# "a\'b\\c double quote and blackslash";;
+- : string = "a'b\\c double quote and blackslash"
+# print_string "a\'b\\c double quote and blackslash";;
+a'b\c double quote and blackslash- : unit = ()
+# "string on a \
+	single line";;
+- : string = "string on a single line"
+# print_string "\\\"\t\n\r\b special characters in strings";;
+\"                                                                              special characters in strings- : unit = ()
+# 
+
+# int_of_char;;
+- : char -> int = <fun>
+# int_of_char 'e';;
+- : int = 101
+# int_of_char 'Ž';;
+- : int = 233
+# char_of_int;;
+- : int -> char = <fun>
+# char_of_int 45;;
+- : char = '-'
+# char_of_int 215;; (* not printable *)
+- : char = '\215'
+
+# string_of_int;;
+- : int -> string = <fun>
+# string_of_int 12345;;
+- : string = "12345"
+# int_of_string;;
+- : string -> int = <fun>
+# int_of_string "12345";;
+- : int = 12345
+# int_of_string "12345X";;
+Exception: Failure "int_of_string".
+
+# string_of_float;;
+- : float -> string = <fun>
+# string_of_float 3.141519;;
+- : string = "3.141519"
+# float_of_string;;
+- : string -> float = <fun>
+# float_of_string "3.141519";;
+- : float = 3.141519
+
+# string_of_bool;;
+- : bool -> string = <fun>
+# string_of_bool true;;
+- : string = "true"
+# bool_of_string;;
+- : string -> bool = <fun>
+# bool_of_string "false";;
+- : bool = false
+
+# open String;;
+
+# length;;
+- : string -> int = <fun>
+
+# get;;
+- : string -> int -> char = <fun>
+# get "0123456789" 5;;
+- : char = '5'
+# get "0123456789" 100;;
+Exception: Invalid_argument "String.get".
+
+# set;;
+- : string -> int -> char -> unit = <fun>
+# set "0123456789" 5 'X';;
+- : unit = ()
+#  set "0123456789" 100 'X';;
+Exception: Invalid_argument "String.set".
+# set;;
+- : string -> int -> char -> unit = <fun>
+# set "0123456789" 5 'X';;
+- : unit = ()
+#  set "0123456789" 100 'X';;
+Exception: Invalid_argument "String.set".
+
+# create;;
+- : int -> string = <fun>
+# create 5;;
+- : string = "\000\000\000\001\000"
+#  create 5;;
+- : string = "\000\031\214\208\000"
+#  create 5;;
+- : string = "\000\011\216\016\000"
+
+# make;;
+- : int -> char -> string = <fun>
+# make 5 'X';;
+- : string = "XXXXX"
+
+# copy;;
+- : string -> string = <fun>
+# copy "abcdef";;
+- : string = "abcdef"
+
+# sub;;
+- : string -> int -> int -> string = <fun>
+# sub "0123456789" 3 2;;
+- : string = "34"
+# sub "0123456789" 3 100;;
+Exception: Invalid_argument "String.sub".
+
+# fill;;
+- : string -> int -> int -> char -> unit = <fun>
+# let s = "0123456789";;
+val s : string = "0123456789"
+# fill s 3 5 'X';;
+- : unit = ()
+# s;;
+- : string = "012XXXXX89"
+
+# blit;;
+- : string -> int -> string -> int -> int -> unit = <fun>
+# let s = "0123456789";;
+val s : string = "0123456789"
+# blit "abcdefghijklmnopqrstuvwxyz" 2 s 3 4;;
+- : unit = ()
+# s;;
+- : string = "012cdef789"
+# 
+
+# "0123" ^ "456" ^ "789";;
+- : string = "0123456789"
+# concat;;
+- : string -> string list -> string = <fun>
+# concat "," ["a"; "bb"; "ccc"; "dddd"];;
+- : string = "a,bb,ccc,dddd"
+
+#  escaped;;
+- : string -> string = <fun>
+# escaped "\n\t\r";;
+- : string = "\\n\\t\\013"
+# print_string (escaped "\n\t\r");;
+\n\t\013- : unit = ()
+
+# index;;
+- : string -> char -> int = <fun>
+# index "0123456789876543210" '7';;
+- : int = 7
+
+# rindex;;
+- : string -> char -> int = <fun>
+# rindex "0123456789876543210" '7';;
+- : int = 11
+#  rindex "0123456789876543210" 'X';;
+Exception: Not_found.
+
+# index_from;;
+- : string -> int -> char -> int = <fun>
+# index_from "0123456789876543210" 4 '2';;
+- : int = 16
+# rindex_from;;
+- : string -> int -> char -> int = <fun>
+# rindex_from "0123456789876543210" 10 '7';;
+- : int = 7
+
+# contains;;
+- : string -> char -> bool = <fun>
+# contains "0123456789" '0';;
+- : bool = true
+# contains "0123456789" 'X';;
+- : bool = false
+
+# contains_from;;
+- : string -> int -> char -> bool = <fun>
+# contains_from "0123456789" 3 '0';;
+- : bool = false
+# contains_from "0123456789" 1 '2';;
+- : bool = true
+# contains_from "0123456789" 100 '0';;
+Exception: Invalid_argument "String.contains_from".
+
+# rcontains_from;;
+- : string -> int -> char -> bool = <fun>
+# rcontains_from "0123456789" 7 '5';;
+- : bool = true
+# rcontains_from "0123456789" 4 '5';;
+- : bool = false
+# rcontains_from "0123456789" 100 '5';;
+Exception: Invalid_argument "String.rcontains_from".
+
+# uppercase;;
+- : string -> string = <fun>
+# uppercase "abc123Žˆ";;
+- : string = "ABC123\201\200\217\192\199"
+# print_string (uppercase "abc123Žˆ");;
+ABC123ƒéôË‚- : unit = ()
+
+# lowercase;;
+- : string -> string = <fun>
+# print_string (lowercase "ABC123ƒéôË‚");;
+abc123Žˆ- : unit = ()
+
+# capitalize;;
+- : string -> string = <fun>
+# capitalize "this is a string. to be capitalized";;
+- : string = "This is a string. to be capitalized"
+# uncapitalize "This is a string.  TO BE UNCAPITALIZED";;
+- : string = "this is a string.  TO BE UNCAPITALIZED"
+
+# ^D
+%
+% ocaml
+				Objective Caml version 3.06
+
+# length "0123456789";;
+Unbound value length
+# String.length "0123456789";;
+- : int = 10
+# open String;;
+# length "0123456789";;
+- : int = 10
+# make 10 'X';;
+- : string = "XXXXXXXXXX"
+# ^D
+%
+
+# 1=1;;
+- : bool = true
+# 1=2;;
+- : bool = false
+# 1.=1.;;
+- : bool = true
+# 'A'='X';;
+- : bool = false
+# "abc"="abc";;
+- : bool = true
+# "abc" < "abd";;
+- : bool = true
+# compare 2 3;;
+- : int = -1
+# min 1 2;;
+- : int = 1
+# max 1. 2.;;
+- : float = 2.
+# true = false;;
+- : bool = false
+# true = true;;
+- : bool = true
+# 1 = 1.;;
+This expression has type float but is here used with type int
+# 1 == 1;;
+- : bool = true
+# "abc" = "abc";;
+- : bool = true
+# "abc" == "abc";;
+- : bool = false
+# let s = "abc";;
+val s : string = "abc"
+# s == s;;
+- : bool = true
+
+# (=);;
+- : 'a -> 'a -> bool = <fun>
+# (<>);;
+- : 'a -> 'a -> bool = <fun>
+# (<);;
+- : 'a -> 'a -> bool = <fun>
+# (>);;
+- : 'a -> 'a -> bool = <fun>
+# (<=);;
+- : 'a -> 'a -> bool = <fun>
+# (>=);;
+- : 'a -> 'a -> bool = <fun>
+# compare;;
+- : 'a -> 'a -> int = <fun>
+# min;;
+- : 'a -> 'a -> 'a = <fun>
+# max;;
+- : 'a -> 'a -> 'a = <fun>
+# (==);;
+- : 'a -> 'a -> bool = <fun>
+# (!=);;
+- : 'a -> 'a -> bool = <fun>
+
+# print_char 'A';;
+A- : unit = ()
+# print_string "abcdef";;
+abcdef- : unit = ()
+# print_int 12345;;
+12345- : unit = ()
+# print_float 1.5;;
+1.5- : unit = ()
+# print_string "abcde";;
+abcde- : unit = ()
+# print_newline ();;
+
+- : unit = ()
+
+# print_endline "abcde";;
+abcde
+- : unit = ()
+# print_string "abcde"; print_newline ();;
+abcde
+- : unit = ()
+
+# read_line ();;
+1234567890
+- : string = "1234567890"
+# read_int ();;
+123456789
+- : int = 123456789
+# read_int ();;
+99999999999999999999999999999999
+- : int = -1
+# read_float ();;
+3.14159
+- : float = 3.14159
+
+# print_char;;
+- : char -> unit = <fun>
+# print_string;;
+- : string -> unit = <fun>
+# print_int;;
+- : int -> unit = <fun>
+# print_float;;
+- : float -> unit = <fun>
+# print_endline;;
+- : string -> unit = <fun>
+# print_newline;;
+- : unit -> unit = <fun>
+# read_int;;
+- : unit -> int = <fun>
+# read_int;;
+- : unit -> int = <fun>
+# read_float;;
+- : unit -> float = <fun>
+# ^D
+% 
+
+% ocaml
+
+				Objective Caml version 3.06
+# let x = 10;;
+val x : int = 10
+# let incr a = x + a;;
+val incr : int -> int = <fun>
+# let x = 100;;
+val x : int = 100
+# x;;
+- : int = 100
+# incr 1;;
+- : int = 11
+# ^D
+% 
+
+% ocaml
+
+        Objective Caml version 3.06
+
+# let x = 3 in
+  x * x;;
+- : int = 9
+# x;;
+Unbound value x
+# ^D
+% 
+
+% ocaml
+
+        Objective Caml version 3.06
+
+# let x = 10;;
+val x : int = 10
+# let x = 100 in x;;
+- : int = 100
+# x;;
+- : int = 10
+# let x = 1000 in 
+  (let x = 10000 in x) + x;;
+- : int = 11000
+# ^D
+% 
+
+% ocaml
+				Objective Caml version 3.06
+
+# let rec plus x y = if x = 0 then y else 1 + (plus (x - 1) y);;
+val plus : int -> int -> int = <fun>
+# plus 10 20;;
+- : int = 30
+# plus;;
+- : int -> int -> int = <fun>
+# let rec plus' x y = if x = 0 then y else 1 + (plus' (x - 1) y) in
+	plus' 12 25;;
+	- : int = 37
+# plus' 15 25;;
+Unbound value plus'
+
+# let rec plus x y = if x = 0 then y else 1 + (plus (x - 1) y);;
+val plus : int -> int -> int = <fun>
+# let mult x y = if x = 0 then 0 else plus y (mult (x - 1) y);;
+Unbound value mult
+# let rec mult x y = if x = 0 then 0 else plus y (mult (x - 1) y);;
+val mult : int -> int -> int = <fun>
+# mult 2 5;;
+- : int = 10
+
+# let f x = 0;;
+val f : 'a -> int = <fun>
+# let f x = f x;;
+val f : 'a -> int = <fun>
+# f 17;;
+- : int = 0
+
+# let rec g x = g x;;
+val g : 'a -> 'b = <fun>
+# g 0;;
+^CInterrupted.
+# ^D
+%
+
+% ocaml
+				Objective Caml version 3.06
+
+# let rec plus x y = if x = 0 then y else 1 + (plus (x - 1) y);;
+val plus : int -> int -> int = <fun>
+# let mult x y = if x = 0 then 0 else plus y (mult (x - 1) y);;
+Unbound value mult
+# let rec mult x y = if x = 0 then 0 else plus y (mult (x - 1) y);;
+val mult : int -> int -> int = <fun>
+# mult 2 5;;
+- : int = 10
+# let cube x = let sqr x = x * x in x * sqr x;;
+val cube : int -> int = <fun>
+# cube 5;;
+- : int = 125
+# sqr 5;;
+Unbound value sqr
+# ^D
+% 
+
+% ocaml
+				Objective Caml version 3.06
+
+# let x = x in x;;
+Unbound value x
+# let x = 10;;
+val x : int = 10
+# let x = x in x;;
+- : int = 10
+# ^D
+%
+
+% ocaml
+			 Objective Caml version 3.06
+
+# let prod x y = if x = 0 then 0 else (prod (x - 1) y) + y;;
+Unbound value prod
+# let rec prod x y = if x = 0 then 0 else (prod (x - 1) y) + y;;
+val prod : int -> int -> int = <fun>
+# prod 3 4;;
+- : int = 12
+# ^D
+% 
+
+% ocaml
+				Objective Caml version 3.06
+
+# open Int32;;
+# add;;
+- : int32 -> int32 -> int32 = <fun>
+# let succ x = add x one;;
+val succ : int32 -> int32 = <fun>
+# let pred x = sub x one;;
+val pred : int32 -> int32 = <fun>
+# let add x y = if x = zero then y else succ (add (pred x) y);;
+val add : int32 -> int32 -> int32 = <fun>
+# add zero one;;
+- : int32 = <int32 1>
+# add 0 1;;
+This expression has type int but is here used with type int32
+# ^D
+%
+
+% ocaml
+			 Objective Caml version 3.06
+
+# let rec loop = loop;;
+This kind of expression is not allowed as right-hand side of `let rec'
+# let rec loop x = loop x;;
+val loop : 'a -> 'b = <fun>
+# loop ();;
+^CInterrupted.
+# ^D
+%
+
+% ocaml
+				Objective Caml version 3.06
+
+# let f x y z = x + y + z;;
+val f : int -> int -> int -> int = <fun>
+# f 10 20 30;;
+- : int = 60
+# f 10 20 - 5 30;;
+This expression has type int -> int but is here used with type int
+# f 10 (20 - 5) 30;;
+- : int = 55
+# (function x -> (x + 1)) 5;;
+- : int = 6
+# (function x -> function y -> x + y) 5 7;;
+- : int = 12
+# ^D
+%
+
+# let sqr x = x * x
+	and cube x = x * x * x;;
+val sqr : int -> int = <fun>
+val cube : int -> int = <fun>
+# sqr 10;;
+- : int = 100
+# cube 10;;
+- : int = 1000
+
+# let sqr' x = x * x
+	and cube' x = (sqr' x) * x;;
+Unbound value sqr'
+
+# let rec sqr' x = x * x
+	and cube' x = (sqr' x) * x;;
+	val sqr' : int -> int = <fun>
+val cube' : int -> int = <fun>
+# cube' 2;;
+- : int = 8
+
+% ocaml
+
+				Objective Caml version 3.06
+
+# succ;;
+- : int -> int = <fun>
+# let id x = x;;
+val id : 'a -> 'a = <fun>
+# id true;;
+- : bool = true
+# id ();;
+- : unit = ()
+# id 1;;
+- : int = 1
+# id 1.5;;
+- : float = 1.5
+# id succ;;
+- : int -> int = <fun>
+# id id;;
+- : '_a -> '_a = <fun>
+# let o f g x = (f (g x));;
+val o : ('a -> 'b) -> ('c -> 'a) -> 'c -> 'b = <fun>
+# o succ succ;;
+- : int -> int = <fun>
+# ((o succ succ) 0);;
+- : int = 2
+# (o (o succ succ) succ) 0;;
+- : int = 3
+
+% ocaml
+			 Objective Caml version 3.06
+
+# let rec sum x = if x = 0 then 0
+ else (x + sum (x - 1));;
+val sum : int -> int = <fun>
+# sum 5;;
+- : int = 15
+# let rec fact x = if x = 0 then 1
+ else (x + fact (x - 1));;
+val fact : int -> int = <fun>
+# fact 5;;
+- : int = 16
+
+# let rec iter f a x = if x = 0 then a
+ else (f x (iter f a (x - 1)));;
+val iter : (int -> 'a -> 'a) -> 'a -> int -> 'a = <fun>
+
+# iter (+) 0 5;;
+- : int = 15
+
+# let mul x y = x * y;;
+val mul : int -> int -> int = <fun>
+# iter mul 1 5;;
+- : int = 120
+
+# let div x y = y /. (float_of_int x);;
+val div : int -> float -> float = <fun>
+# (* 1/!n *)
+ let factmone x = iter div 1.0 x;;
+val factmone : int -> float = <fun>
+# factmone 2;;
+- : float = 0.5
+# factmone 5;;
+- : float = 0.00833333333333
+
+# let nconc x s = (string_of_int x) ^ s;;
+val nconc : int -> string -> string = <fun>
+# nconc 55 "ab";;
+- : string = "55ab"
+# iter;;
+- : (int -> 'a -> 'a) -> 'a -> int -> 'a = <fun>
+# iter nconc "abc" 0;;
+- : string = "abc"
+# iter nconc "abc" 1;;
+- : string = "1abc"
+# iter nconc "abc" 2;;
+- : string = "21abc"
+# iter nconc "abc" 3;;
+- : string = "321abc"
+# iter nconc "abc" 4;;
+- : string = "4321abc"
+# iter nconc "abc" 5;;
+- : string = "54321abc"
+
+# function x -> x + 1;;
+- : int -> int = <fun>
+# (function x -> x + 1) 17;;
+- : int = 18
+# fun x -> 2. *. x;;
+- : float -> float = <fun>
+# (fun x -> 2. *. x) 50.;;
+- : float = 100.
+
+# let x = 2;;
+val x : int = 2
+# match x with
+	| 0 -> 0
+	| 1 -> 2
+	| 2 -> 4
+	| 3 -> 6
+	| _ -> -1;;
+- : int = 4
+
+# match x with
+				| 0 -> 0
+				| 1 -> 2
+				| 2 -> 4
+				| 3 -> 6;;
+Warning: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+4
+- : int = 4
+
+# let x = 7;;
+val x : int = 7
+# match x with
+					| 0 -> 0
+					| 1 -> 2
+					| 2 -> 4
+					| 3 -> 6;;
+Warning: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+4
+Exception: Match_failure ("", 0, 62).
+
+# let x = 2;;
+val x : int = 2
+# match  x with
+	0 -> 0
+	| 1 | -1 -> 1
+	| 2 | -2 -> 4
+	| _ -> -1;;
+- : int = 4
+
+# let x = 2;;
+val x : int = 2
+# match x with
+	0 -> 0.
+	| x -> 1.    ^R
+	| x -> 1. /. (float_of_int x);;
+- : float = 0.5
+# 
+
+# let rec fact = function
+	0 -> 1
+	| n -> n * fact (n - 1);;
+val fact : int -> int = <fun>
+# fact 5;;
+- : int = 120
+# 
+
+# match y with
+	  'a'..'z' -> 0
+	| 'A'..'Z' -> 1
+	| '1'..'9' -> 3
+	| _        -> 4;;
+- : int = 1
+# 
+
+# let x = -2;;
+val x : int = -2
+# match x with
+  | y when y > 0 -> y  
+	| 0            -> 0
+	| y when y < 0 -> - y;;
+Warning: this pattern-matching is not exhaustive.
+Here is an example of a value that is not matched:
+1
+(However, some guarded clause may match this value.)
+- : int = 2
+
+# let x = -2;;
+val x : int = -2
+# match x with
+	| y when y > 0 -> y
+	| 0            -> 0
+	| y when y < 0 -> - y
+	| _            -> failwith "impossible";;
+- : int = 2
+
+# let rec fact = function
+	| 0 -> 1
+	| n -> n * fact (n - 1);;
+val fact : int -> int = <fun>
+
+# let rec fib = function
+	| 0 -> 1
+	| 1 -> 1
+	| n -> fib (n - 1) + fib (n - 2);;
+val fib : int -> int = <fun>
+# fib 2;;
+- : int = 2
+# fib 3;;
+- : int = 3
+# fib 4;;
+- : int = 5
+# fib 5;;
+- : int = 8
+
+# let letter = function
+	| c when c >= 'a' && c <=  'z'
+        || c >= 'A' && c <= 'Z' -> true
+	| default -> false;;
+val letter : char -> bool = <fun>
+
+# let letter = function
+	| 'a'..'z' | 'A'..'Z' -> true
+	| _ -> false;;
+val letter : char -> bool = <fun>
+
+# function x -> 2 * x;;
+- : int -> int = <fun>
+# (function x -> 2 * x) 5;;
+- : int = 10
+# function 0 -> 0 | x -> 2 * x;;
+- : int -> int = <fun>
+# (function 0 -> 0 | x -> 2 * x) 5;;
+- : int = 10
+val f : int -> int = <fun>
+
+# let f x = match x with
+	 0 -> 0 | y -> 2 * y;;
+val f : int -> int = <fun>
+# let f x = match x with
+	 0 -> 0 | x -> 2 * x;;
+# let f = function 0 -> 0 | x -> 2 * x;;
+val f : int -> int = <fun>
+# f 5;;
+- : int = 10
+
+# let x = ref 0;;
+val x : int ref = {contents = 0}
+# !x;;
+- : int = 0
+# x := !x + 1;;
+- : unit = ()
+# !x;;
+- : int = 1
+
+# let x = 1 in
+	(print_int x;
+	 (let x = 2 in
+		print_int x);
+	 print_int x);;
+121- : unit = ()
+
+# 1/0;;
+Exception: Division_by_zero.
+# try 1/0
+	with Division_by_zero -> 0;;
+- : int = 0
+# exception Positive;;
+exception Positive
+# exception Negative;;
+exception Negative
+# try 
+	 if x > 0 then raise Positive else raise Negative
+	with
+	| Positive -> 1
+	| Negative -> -1;;
+- : int = -1
+
+# exception Error;;
+exception Error
+# try 1/0 with
+	| Error -> 0;;             
+Exception: Division_by_zero.
+
+# try
+	 if x > 0 then raise (Error "positive")
+						else raise (Error "negative") 
+	with
+	| Error s -> print_endline s;;
+negative
+- : unit = ()
+
+# exception Error;;
+exception Error
+# try 1/0 with
+	| Division_by_zero -> raise Error;;
+Exception: Error.
+#try 1/0 with
+| Division_by_zero -> raise Division_by_zero;;
+Exception: Division_by_zero.
+
+
+# let x = 1;;
+val x : int = 1
+# print_int x; x+1;;
+1- : int = 2
+
+# exception Error;;
+exception Error
+# raise Error; 17;;
+Exception: Error.
+
+# if true then 1 else 2;;
+- : int = 1
+# if false then 1 else 2;;
+- : int = 2
+# if true then print_int 1;;
+1- : unit = ()
+# if true then 0;;
+This expression has type int but is here used with type unit
+# exception Error;;
+exception Error
+# if true then 0 else raise Error;;
+- : int = 0
+
+# for i = 0 to 10 do print_int i done;;
+012345678910- : unit = ()
+# for i = 10 downto 1 do  print_int i done;;
+10987654321- : unit = ()
+
+# let i = ref 10;;
+val i : int ref = {contents = 10}
+# while !i > 0 do print_int !i; i := !i - 1 done;;
+10987654321- : unit = ()
+# while true do () done;;
+^CInterrupted.
+
+# try 
+	 for i = 0 to 10 do
+		if i = 5 then raise (Exit i) else print_int i
+	 done
+	with
+	Exit i -> print_int i;;
+012345- : unit = ()
+
+% ocaml
+				Objective Caml version 3.06
+
+# let file = open_out "file.txt";;
+val file : out_channel = <abstr>
+# output_string file "abc\n";;
+- : unit = ()
+# output_string file "efg\n";;
+- : unit = ()
+# ^D
+% cat file.txt
+abc
+efg
+
+% ocaml 
+				Objective Caml version 3.06
+
+# let file = open_in "file.txt";;
+val file : in_channel = <abstr>
+# input_line file;;
+- : string = "abc"
+# let s = input_line file;;
+val s : string = "efg"
+# close_in file;;
+- : unit = ()
+# ^D      
+% cat file;;
+cat: file: No such file or directory
+% cat file.txt
+abc
+efg
+% 
+
+% ocaml
+			 Objective Caml version 3.06
+
+# Printf.fprintf stdout "(%i)-(%s)-(%c)\n" 123 "abc" 'X';;
+(123)-(abc)-(X)
+- : unit = ()
+# Printf.printf "(%i)-(%s)-(%c)\n" 123 "abc" 'X';;
+(123)-(abc)-(X)
+- : unit = ()
+
+# 1,2;;
+- : int * int = (1, 2)
+# 1,2,3;;
+- : int * int * int = (1, 2, 3)
+# (1,2),3;;
+- : (int * int) * int = ((1, 2), 3)
+# 1,(2,3);;
+- : int * (int * int) = (1, (2, 3))
+# 6, "abc", true, 1.5;;
+- : int * string * bool * float = (6, "abc", true, 1.5)
+# fst (1,2,3,4);;
+This expression has type int * int * int * int but is here used with type
+	'a * 'b
+
+# fst;;
+- : 'a * 'b -> 'a = <fun>
+# fst (1,2);;
+- : int = 1
+# snd;;
+- : 'a * 'b -> 'b = <fun>
+# snd (1,2);;
+- : int = 2
+
+# fst;;
+- : 'a * 'b -> 'a = <fun>
+# snd;;
+- : 'a * 'b -> 'b = <fun>
+
+# let pair x y = x, y;;
+val pair : 'a -> 'b -> 'a * 'b = <fun>
+# pair 5 6;;
+- : int * int = (5, 6)
+# pair 5, 6;;
+- : ('_a -> int * '_a) * int = (<fun>, 6)
+# fst pair 5 6;;
+This expression has type 'a -> 'b -> 'a * 'b but is here used with type
+	('c -> 'd -> 'e) * 'f
+# fst (pair 5 6);;
+- : int = 5
+
+# let pair5 = pair 5;;
+val pair5 : '_a -> int * '_a = <fun>
+# pair5 6;;
+- : int * int = (5, 6)
+
+# pair;;
+- : 'a -> 'b -> 'a * 'b = <fun>
+# pair pair 4 5 6;;             
+This function is applied to too many arguments
+# pair (pair 4 5) 6;;
+- : (int * int) * int = ((4, 5), 6)
+
+
+
+# let f x y z = x + y + z;;
+val f : int -> int -> int -> int = <fun>
+# f 1 2 3;;
+- : int = 6
+# let g (x,y,z) = x + y + z;;
+val g : int * int * int -> int = <fun>
+# g(1, 2, 3);;
+- : int = 6
+# 
+
+
+# ( *);;
+Warning: this is not the end of a comment.
+- : int -> int -> int = <fun>
+# ( *) 10 20;;
+Warning: this is not the end of a comment.
+- : int = 200
+# let times10 = ( *) 10;;
+Warning: this is not the end of a comment.
+val times10 : int -> int = <fun>
+# times10 times10 20;;
+This function is applied to too many arguments
+# times10 (times10 20);;
+- : int = 2000
+# 
+
+
+# let sigma x y = x + y;;
+val sigma : int -> int -> int = <fun>
+# let sigma'(x, y) = x + y;;
+val sigma' : int * int -> int = <fun>
+# sigma 10 20;;
+- : int = 30
+# sigma'(10, 20);;
+- : int = 30
+# sigma' 10, 20;;
+This expression has type int but is here used with type int * int
+# 
+
+
+# ( *);;
+Warning: this is not the end of a comment.
+- : int -> int -> int = <fun>
+# uncurry ( *);;
+Warning: this is not the end of a comment.
+- : int * int -> int = <fun>
+# (uncurry ( *)) (2, 3);;
+Warning: this is not the end of a comment.
+- : int = 6
+# let add(x, y) = x + y;;
+val add : int * int -> int = <fun>
+# curry add 4 5;;
+- : int = 9
+# 
+
+
+# [|1; 2; 3|];;
+- : int array = [|1; 2; 3|]
+# Array.make;;
+- : int -> 'a -> 'a array = <fun>
+# Array.make 10 0;;
+- : int array = [|0; 0; 0; 0; 0; 0; 0; 0; 0; 0|]
+# Array.length [|1; 2; 3|];;
+- : int = 3
+# 
+
+# [|1; 2; 3|].(0);;
+- : int = 1
+# [|1; 2; 3|].(2);;
+- : int = 3
+# [|1; 2; 3|].(10);;
+Exception: Invalid_argument "Array.get".
+# Array.get [|1; 2; 3|] 2;;
+- : int = 3
+
+# let t =  [|1; 2; 3|];;
+val t : int array = [|1; 2; 3|]
+# t.(0);;
+- : int = 1
+# t.(0) <- 10;;
+- : unit = ()
+# t.(0);;
+- : int = 10
+# t;;
+- : int array = [|10; 2; 3|]
+# 
+
+# [|1; true; 'A'|];;
+This expression has type bool but is here used with type int
+# [|1, true, 'x'|];;
+- : (int * bool * char) array = [|(1, true, 'x')|]
+# [|1, true, 'x'|].(0);;
+- : int * bool * char = (1, true, 'x')
+
+
+# t;;
+- : int array = [|10; 2; 3|]
+# for i = 0 to Array.length t - 1 do t.(i) <- t.(i)+1 done;;
+- : unit = ()
+# t;;
+- : int array = [|11; 3; 4|]
+
+# open Array;;
+# length;;
+- : 'a array -> int = <fun>
+# get;;
+- : 'a array -> int -> 'a = <fun>
+# set;;
+- : 'a array -> int -> 'a -> unit = <fun>
+# make;;
+- : int -> 'a -> 'a array = <fun>
+# create;;
+- : int -> 'a -> 'a array = <fun>
+# init;;
+- : int -> (int -> 'a) -> 'a array = <fun>
+# make_matrix;;
+- : int -> int -> 'a -> 'a array array = <fun>
+# create_matrix;;
+- : int -> int -> 'a -> 'a array array = <fun>
+# append;;
+- : 'a array -> 'a array -> 'a array = <fun>
+# concat;;
+- : 'a array list -> 'a array = <fun>
+# sub;;
+- : 'a array -> int -> int -> 'a array = <fun>
+# copy;;
+- : 'a array -> 'a array = <fun>
+# fill;;
+- : 'a array -> int -> int -> 'a -> unit = <fun>
+# blit;;
+- : 'a array -> int -> 'a array -> int -> int -> unit = <fun>
+# to_list;;
+- : 'a array -> 'a list = <fun>
+# of_list;;
+- : 'a list -> 'a array = <fun>
+# iter;;
+- : ('a -> unit) -> 'a array -> unit = <fun>
+# map;;
+- : ('a -> 'b) -> 'a array -> 'b array = <fun>
+# iteri;;
+- : (int -> 'a -> unit) -> 'a array -> unit = <fun>
+# mapi;;
+- : (int -> 'a -> 'b) -> 'a array -> 'b array = <fun>
+# fold_left;;
+- : ('a -> 'b -> 'a) -> 'a -> 'b array -> 'a = <fun>
+# fold_right;;
+- : ('a -> 'b -> 'b) -> 'a array -> 'b -> 'b = <fun>
+# sort;;
+- : ('a -> 'a -> int) -> 'a array -> unit = <fun>
+# stable_sort;;
+- : ('a -> 'a -> int) -> 'a array -> unit = <fun>
+# fast_sort;;
+- : ('a -> 'a -> int) -> 'a array -> unit = <fun>
+
+
+# [1;2;3];;
+- : int list = [1; 2; 3]
+# [1,2,3];;
+- : (int * int * int) list = [(1, 2, 3)]
+# ["a"; "bb"; "ccc"];;
+- : string list = ["a"; "bb"; "ccc"]
+# [[];[1;2];[3]];;
+- : int list list = [[]; [1; 2]; [3]]
+# [[];[]];;
+- : 'a list list = [[]; []]
+# [true;1];;
+This expression has type int but is here used with type bool
+# [1;[1]];;
+This expression has type 'a list but is here used with type int
+# 
+
+# [1;2];;
+- : int list = [1; 2]
+# [1,2];;
+- : (int * int) list = [(1, 2)]
+#
+
+# [];;
+- : 'a list = []
+# 3 :: [];;
+- : int list = [3]
+# 3 :: 4 :: [];;
+- : int list = [3; 4]
+# 3 :: 4;;
+This expression has type int but is here used with type int list
+# 
+
+# List.length [1;2;3];;
+- : int = 3
+# List.length [];;
+- : int = 0
+# 
+
+# List.hd [1;2;3];;
+- : int = 1
+# List.tl [1;2;3];;
+- : int list = [2; 3]
+# List.hd [];;
+Exception: Failure "hd".
+# List.tl [];;
+Exception: Failure "tl".
+# List.tl [0];;
+- : int list = []
+# List.tl 0::[];;
+This expression has type int but is here used with type 'a list
+# 
+
+# List.nth [1;2;3] 0;;
+- : int = 1
+# List.nth [1;2;3] 2;;
+- : int = 3
+# List.nth [1;2;3] 5;;
+Exception: Failure "nth".
+# 
+
+# List.append [1;2;3] [4;5];;
+- : int list = [1; 2; 3; 4; 5]
+# List.append [1;2;3] [];;
+- : int list = [1; 2; 3]
+# List.append [] [4;5];;
+- : int list = [4; 5]
+# 
+
+# List.rev  [1; 2; 3; 4; 5];;
+- : int list = [5; 4; 3; 2; 1]
+# List.rev List.append [1;2;3] [4;5];;
+This function is applied to too many arguments
+# List.rev (List.append [1;2;3] [4;5]);;
+- : int list = [5; 4; 3; 2; 1]
+# List.rev [];;
+- : '_a list = []
+# 
+
+
+# List.map incr [1; 2; 3; 4; 5];;
+- : int list = [2; 3; 4; 5; 6]
+# List.map ((+) 1) [1; 2; 3; 4; 5];;
+- : int list = [2; 3; 4; 5; 6]
+# List.rev_map ((+) 1) [1; 2; 3; 4; 5];;
+- : int list = [6; 5; 4; 3; 2]
+# List.rev_map ((+) 1) [];;
+- : int list = []
+
+# List.map2 ( *) [1; 2; 3; 4; 5] [2; 3; 4; 5; 6];;
+Warning: this is not the end of a comment.
+- : int list = [2; 6; 12; 20; 30]
+# List.rev_map2 ( *) [1; 2; 3; 4; 5] [2; 3; 4; 5; 6];;
+Warning: this is not the end of a comment.
+- : int list = [30; 20; 12; 6; 2]
+#  List.map2 ( *) [1; 2; 3; 4] [2; 3; 4; 5; 6];;
+Warning: this is not the end of a comment.
+Exception: Invalid_argument "List.map2".
+# 
+
+# (+);;
+- : int -> int -> int = <fun>
+# List.fold_left (+) 0 [1; 2; 3; 4; 5; 6];;
+- : int = 21
+# List.fold_left (-) 0 [1; 2; 3; 4; 5; 6];;
+- : int = -21
+# List.fold_right (-) [1; 2; 3; 4; 5; 6] 0;;
+- : int = -3
+# 
+
+# let pos x = x >= 0;;
+val pos : int -> bool = <fun>
+# List.for_all pos [1;2;3];;
+- : bool = true
+# List.for_all pos [1;-2;3];;
+- : bool = false
+# List.exists pos [-1;-2;3];;
+- : bool = true
+# List.exists pos [-1;-2;-3];;
+- : bool = false
+# 
+
+# List.for_all2 (>=) [1;2;3] [2;3;4];;
+- : bool = false
+# List.for_all2 (>=) [1;2;3] [2;1;4];;
+- : bool = false
+# List.exists2 (<) [1;2;3] [1;2;3] ;;
+- : bool = false
+# List.exists2 (<) [1;2;0] [1;2;3] ;;
+- : bool = true
+# List.exists2 (<) [1;2;0] [1;2];;
+Exception: Invalid_argument "List.exists2".
+# 
+
+# pos;;
+- : int -> bool = <fun>
+# List.find pos [-1;-2;-3];;
+Exception: Not_found.
+# List.find pos [1;2;3];;
+- : int = 1
+# List.find pos [-1;-2;3;4];;
+- : int = 3
+
+# pos;;
+- : int -> bool = <fun>
+# List.find pos [-1;-2;-3];;
+Exception: Not_found.
+# List.find pos [1;2;3];;
+- : int = 1
+# List.find pos [-1;-2;3;4];;
+- : int = 3
+# List.filter pos [-1;-2;3;4];;
+- : int list = [3; 4]
+# List.filter pos [-1;-2];;
+- : int list = []
+# 
+
+# List.partition pos [-1;-2;3;4];;
+- : int list * int list = ([3; 4], [-1; -2])
+# 
+List.assoc 2 
+
+
+
+# List.assoc 2 [0,"a"; 1,"b"; 2,"c"; 3,"d"];;
+- : string = "c"
+# List.assoc 5 [0,"a"; 1,"b"; 2,"c"; 3,"d"];;
+Exception: Not_found.
+# List.mem_assoc 2 [0,"a"; 1,"b"; 2,"c"; 3,"d"];;
+- : bool = true
+# List.mem_assoc 5 [0,"a"; 1,"b"; 2,"c"; 3,"d"];;
+- : bool = false
+# List.remove_assoc 2 [0,"a"; 1,"b"; 2,"c"; 3,"d"];;
+- : (int * string) list = [(0, "a"); (1, "b"); (3, "d")]
+# List.remove_assoc 5 [0,"a"; 1,"b"; 2,"c"; 3,"d"];;
+- : (int * string) list = [(0, "a"); (1, "b"); (2, "c"); (3, "d")]
+# List.split [0,"a"; 1,"b"; 2,"c"; 3,"d"];;
+- : int list * string list = ([0; 1; 2; 3], ["a"; "b"; "c"; "d"])
+
+# let cmp x y = if x < y then -1 else if x > y then 1 else 0;;
+val cmp : 'a -> 'a -> int = <fun>
+# List.merge cmp [1; 3; 5; 6] [2; 4; 7];;; 7];;
+Illegal character (\008)
+
+# List.merge cmp [1; 3; 5; 6] [7; 2; 4; 7];;
+- : int list = [1; 3; 5; 6; 7; 2; 4; 7]
+# 
+
+# open List;;
+# length;;
+- : 'a list -> int = <fun>
+# hd;;
+- : 'a list -> 'a = <fun>
+# tl;;
+- : 'a list -> 'a list = <fun>
+# nth;;
+- : 'a list -> int -> 'a = <fun>
+# rev;;
+- : 'a list -> 'a list = <fun>
+# append;;
+- : 'a list -> 'a list -> 'a list = <fun>
+# rev_append;;
+- : 'a list -> 'a list -> 'a list = <fun>
+# concat;;
+- : 'a list list -> 'a list = <fun>
+# flatten;;
+- : 'a list list -> 'a list = <fun>
+# iter;;
+- : ('a -> unit) -> 'a list -> unit = <fun>
+# map;;
+- : ('a -> 'b) -> 'a list -> 'b list = <fun>
+# rev_map;;
+- : ('a -> 'b) -> 'a list -> 'b list = <fun>
+# fold_left;;
+- : ('a -> 'b -> 'a) -> 'a -> 'b list -> 'a = <fun>
+# fold_right;;
+- : ('a -> 'b -> 'b) -> 'a list -> 'b -> 'b = <fun>
+# iter2;;
+- : ('a -> 'b -> unit) -> 'a list -> 'b list -> unit = <fun>
+# map2;;
+- : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list = <fun>
+# rev_map2;;
+- : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list = <fun>
+# fold_left2;;
+- : ('a -> 'b -> 'c -> 'a) -> 'a -> 'b list -> 'c list -> 'a = <fun>
+# fold_right2;;
+- : ('a -> 'b -> 'c -> 'c) -> 'a list -> 'b list -> 'c -> 'c = <fun>
+# for_all;;
+- : ('a -> bool) -> 'a list -> bool = <fun>
+# exists;;
+- : ('a -> bool) -> 'a list -> bool = <fun>
+# for_all2;;
+- : ('a -> 'b -> bool) -> 'a list -> 'b list -> bool = <fun>
+# exists2;;
+- : ('a -> 'b -> bool) -> 'a list -> 'b list -> bool = <fun>
+# mem;;
+- : 'a -> 'a list -> bool = <fun>
+# memq;;
+- : 'a -> 'a list -> bool = <fun>
+# find;;
+- : ('a -> bool) -> 'a list -> 'a = <fun>
+# filter;;
+- : ('a -> bool) -> 'a list -> 'a list = <fun>
+# find_all;;
+- : ('a -> bool) -> 'a list -> 'a list = <fun>
+# partition;;
+- : ('a -> bool) -> 'a list -> 'a list * 'a list = <fun>
+# assoc;;
+- : 'a -> ('a * 'b) list -> 'b = <fun>
+# assq;;
+- : 'a -> ('a * 'b) list -> 'b = <fun>
+# mem_assoc;;
+- : 'a -> ('a * 'b) list -> bool = <fun>
+# mem_assq;;
+- : 'a -> ('a * 'b) list -> bool = <fun>
+# remove_assoc;;
+- : 'a -> ('a * 'b) list -> ('a * 'b) list = <fun>
+# remove_assq;;
+- : 'a -> ('a * 'b) list -> ('a * 'b) list = <fun>
+# split;;
+- : ('a * 'b) list -> 'a list * 'b list = <fun>
+# combine;;
+- : 'a list -> 'b list -> ('a * 'b) list = <fun>
+# sort;;
+- : ('a -> 'a -> int) -> 'a list -> 'a list = <fun>
+# stable_sort;;
+- : ('a -> 'a -> int) -> 'a list -> 'a list = <fun>
+# fast_sort;;
+- : ('a -> 'a -> int) -> 'a list -> 'a list = <fun>
+# merge;;
+- : ('a -> 'a -> int) -> 'a list -> 'a list -> 'a list = <fun>
+# 
+
+# type boolorint = BOOL of bool | INT of int;;
+type boolorint = BOOL of bool | INT of int
+# let x = BOOL true;;
+val x : boolorint = BOOL true
+# let y = INT 10;;
+val y : boolorint = INT 10
+# let print_boolorint x = function
+  | BOOL b -> if b then print_string "true"
+              else print_string "false";
+  | INT i -> print_int i;;
+val print_boolorint : boolorint -> unit = <fun>
+# print_boolorint x;;
+true- : unit = ()
+# print_boolorint y;;
+10- : unit = ()
+
+# type case = A | B | C;;
+type case = A | B | C
+# let current_state = A;;
+val current_state : case = A
+
+
+
+# type inttree = Null | Rec of (int * inttree * inttree);;
+type inttree = Null | Rec of (int * inttree * inttree)
+# Rec (0, Null, Null);;
+- : inttree = Rec (0, Null, Null)
+# Rec (1, (Rec (0, Null, Null)), (Rec (2, Null, Null)));;
+- : inttree = Rec (1, Rec (0, Null, Null), Rec (2, Null, Null))
+
+# type 'a btree = Empty | Node of 'a * 'a btree * 'a btree;;
+type 'a btree = Empty | Node of 'a * 'a btree * 'a btree
+# let rec member x btree =
+	 match btree with
+				 Empty -> false
+	 | Node(y, left, right) ->
+					 if x = y then true else
+			 if x < y then memb  er x left else member x right;;
+val member : 'a -> 'a btree -> bool = <fun>
+# let rec insert x btree =
+	 match btree with
+				 Empty -> Node (x, Empty, Empty)
+	 | Node (y, left  , right) ->
+			 if x <= y then Node (y, insert   x left, right)
+								 else Node (y, left  , insert x right);;
+val insert : 'a -> 'a btree -> 'a btree = <fun>
+# insert 1 (insert 0 (insert 2 Empty));;
+- : int btree = Node (2, Node (0, Empty, Node (1, Empty, Empty)), Empty)
+# insert "abc" (insert "a" (insert "cde" Empty));;
+- : string btree =
+Node ("cde", Node ("a", Empty, Node ("abc", Empty, Empty)), Empty)
+# 
+
+#  List.append [0; 1; 2] [3; 4];;
+- : int list = [0; 1; 2; 3; 4]
+# let rec append x y = match x with
+    []   -> y
+	| h::t -> h::(append t y);;
+val append : 'a list -> 'a list -> 'a list = <fun>
+# append [0; 1; 2] [3; 4];;
+- : int list = [0; 1; 2; 3; 4]
+
+# List.rev [0; 1; 2; 3; 4];;
+- : int list = [4; 3; 2; 1; 0]
+# let rec rev = function
+	[] -> []
+	| h::t -> append (rev t) [h];;
+val rev : 'a list -> 'a list = <fun>
+# rev [0; 1; 2; 3; 4];;
+- : int list = [4; 3; 2; 1; 0]
+
+# let rev l =
+		let reverse x y = match x with
+      []   -> y
+		| h::t -> reverse t (h::y)
+	in reverse l [];;
+val rev : 'a list -> 'a list = <fun>
+# rev [4; 3; 2; 1; 0];;
+- : int list = [0; 1; 2; 3; 4]
+# 
+
+# let double x = 2 * x;;
+val double : int -> int = <fun>
+# List.map double [0; 1; 2; 3; 4];;
+- : int list = [0; 2; 4; 6; 8]
+# let rec map f = function
+			[]   -> []
+		| h::t -> (f h)::(map f t);;
+val map : ('a -> 'b) -> 'a list -> 'b list = <fun>
+# map double [0; 1; 2; 3; 4];;
+- : int list = [0; 2; 4; 6; 8]
+# let square l = let sq x = x * x in map sq l;;
+val square : int list -> int list = <fun>
+# square [0; 2; 4; 6; 8];;
+- : int list = [0; 4; 16; 36; 64]
+
+# let rec generate f p x =
+	if not (p x) then [] else x :: generate f p (f x);;
+val generate : ('a -> 'a) -> ('a -> bool) -> 'a -> 'a list = <fun>
+# let interval m n =
+	let succ x = x + 1
+	and p x = (x <= n) in
+	generate succ p m;;
+val interval : int -> int -> int list = <fun>
+# interval 5 10;;
+- : int list = [5; 6; 7; 8; 9; 10]
+# interval 5 0;;
+- : int list = []
+# 
+
+# let rec reduce f a = function
+	[] -> a
+	| h::t -> reduce f (f h a) t;;
+val reduce : ('a -> 'b -> 'b) -> 'b -> 'a list -> 'b = <fun>
+# let sigma = reduce (+) 0;;
+val sigma : int list -> int = <fun>
+# sigma [1;2;3;4;5];;
+- : int = 15
+# let prod = reduce ( *) 1;;
+Warning: this is not the end of a comment.
+val prod : int list -> int = <fun>
+# prod [1;2;3;4;5];;
+- : int = 120
+# 
+
+# let o f g x = (f (g x));;
+val o : ('a -> 'b) -> ('c -> 'a) -> 'c -> 'b = <fun>
+# let fact = o prod (interval 2);;
+val fact : int -> int = <fun>
+# fact 7;;
+- : int = 5040
+
+let 
+
+
+
+
+
+
+
+# let rec reduce f a = function
+				[] -> a
+				| h::t ->     reduce f (f h a) t;;
+val reduce : ('a -> 'b -> 'b) -> 'b -> 'a list -> 'b = <fun>
+# let partition p =
+	 let aiguiller x (pos, neg) =
+		if p x then (x::pos), neg else pos, (x::neg)
+		 in reduce aiguiller ([],[]);;
+val partition : ('a -> bool) -> 'a list -> 'a list * 'a list = <fun>
+# let p x = x <= 5 in
+	 partition p [1; 10; 2; 9; 3; 8; 4; 7; 5; 6];;
+- : int list * int list = ([5; 4; 3; 2; 1], [6; 7; 8; 9; 10])
+
+
+# let quicksort le l =
+	 let rec sort = function
+	 [] -> []
+	| h::t ->
+	 let p x = (le x h) in
+		let (left, right) = partition p t in
+		 append (sort left) (h :: (sort right))
+	in sort l;;
+val quicksort : ('a -> 'a -> bool) -> 'a list -> 'a list = <fun>
+#  quicksort (<) [1; 10; 2; 9; 3; 8; 4; 7; 5; 6];;
+- : int list = [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]
+# 
+
+# let o f g x = (f (g x));;
+val o : ('a -> 'b) -> ('c -> 'a) -> 'c -> 'b = <fun>
+# let succ x = x + 1;;
+val succ : int -> int = <fun>
+# o succ succ;;
+- : int -> int = <fun>
+# (o succ succ) 0;;
+- : int = 2
+# not;;
+- : bool -> bool = <fun>
+# o not not;;
+- : bool -> bool = <fun>
+# (o not not) true;;
+- : bool = true
+# let inv x = 1. /. x;;
+val inv : float -> float = <fun>
+# (o inv inv);;
+- : float -> float = <fun>
+# (o inv inv) 3.;;
+- : float = 3.
+# 
+
+# let z = function x -> 0 in
+	let t = function x -> true in
+	let rec o = function f -> function g -> function x -> (f (g x))
+	in (((o z) t) ((o t) z));;
+- : int = 0
+# let z = function x -> 0 in
+	let t = function x -> true in
+	let rec o = function f -> function g -> function x -> (f (g x))
+	in (((o t) z) ((o z) t));;
+- : bool = true
+
+# let rec z = function x -> 0
+  and t = function x -> true
+  and o = function f -> function g -> functio  n   x -> (f (g x))
+  in (((o z) t) ((o t) z));;
+- : int = 0
+# let rec z = function x -> 0
+  and t = function x ->   true
+  and o = function f -> function g -> function   x -> (f (g x))
+  in (((o z) t) ((o t) z));;  
+- : int = 0
+
+# let rec z = function x -> 0
+	and t = function x -> trueon g -> funct  ^R
+	and o = function f -> function g -> function x -> (f (g x))
+	and a = (((o z) t) ((o t) z))
+	and b = (((o t) z) ((o z) t))))
+	in ();;
+This expression has type bool -> bool but is here used with type bool -> int
+
+# let rec f = function x -> (x f) in f;;
+This expression has type ('a -> 'b) -> 'c but is here used with type 'a
+
+115/1049

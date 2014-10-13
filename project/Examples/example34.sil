@@ -1,0 +1,9 @@
+% example34.sil %
+x:=?;
+y:=?;
+if (x=1) & (y=2) then
+  skip
+else
+  x:=1;
+  y:=2
+fi;;

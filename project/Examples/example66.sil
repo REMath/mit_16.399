@@ -1,0 +1,13 @@
+% example66.sil %
+i := n;
+while (i >= 0) do
+  k := k - 1;
+  j := 0;
+  while (j <= i - 1) do
+    l := l - 1;
+    j := j + 1
+  od;
+  while (l <> 0) do skip od;
+  i := i - 1
+od;
+while (k <> 0) do skip od;;

@@ -1,0 +1,7 @@
+% example37.sil %
+x:=10;
+y:=100;
+while (x <> 0) do
+  x := x - 1;
+  y := y + 10
+od;;

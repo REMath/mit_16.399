@@ -1,0 +1,8 @@
+% example25.sil %
+x := 0;
+y := ?;
+if (x + y) = 0 then
+  z := x + y
+else
+  z := 0
+fi;;

@@ -1,0 +1,5 @@
+% example47.sil %
+X := Y;
+while (X + Y + Z > 0)  do
+  skip
+od;;

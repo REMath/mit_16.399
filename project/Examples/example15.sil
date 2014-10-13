@@ -1,0 +1,9 @@
+% example15.sil %
+x := 0;
+y := ?;
+z := ?;
+if ((x = y) & (y = z)) then
+  r := z
+else
+  r := 0
+fi;;

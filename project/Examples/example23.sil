@@ -1,0 +1,3 @@
+% example23.sil %
+x := 0;
+if (x < x) then x := 1 else x := 0 fi;;

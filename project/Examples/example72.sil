@@ -1,0 +1,7 @@
+% example72.sil %
+x := 0;
+while (x < 10) do
+  x := x + 1;
+  n := n - 1
+od;
+while (n <> 0) do skip od;;

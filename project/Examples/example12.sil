@@ -1,0 +1,3 @@
+% example12.sil %
+if (x < (-1073741823 - 2)) then x := 1 else x := 0 fi;
+y := ?; if (y > 0) then z := y else z := -z fi;;

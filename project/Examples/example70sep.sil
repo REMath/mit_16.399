@@ -1,0 +1,8 @@
+% example70sep.sil %
+x := x0; y := y0;
+while x <> y do
+  m := m - 1;
+  x := x - 1;
+  y := y + 1
+od;
+while (m <> 0) do skip od;;

@@ -1,0 +1,5 @@
+% example26.sil %
+i := n;
+while (i > 0) do
+  i := i + 1
+od;;

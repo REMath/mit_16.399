@@ -1,0 +1,2 @@
+% example05.sil %
+if false then x := 1 else x := 0 fi;;

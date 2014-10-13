@@ -1,0 +1,5 @@
+% example57.sil %
+while (x >= 0) do
+  while (x <> x0) do skip od;  
+  x := -2*x + 10
+od;;

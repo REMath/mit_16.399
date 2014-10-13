@@ -1,0 +1,2 @@
+% example61.sil %
+while (n <> 0) do skip od;;

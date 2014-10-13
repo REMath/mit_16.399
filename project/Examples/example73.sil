@@ -1,0 +1,8 @@
+% example73.sil %
+x := ?;
+while (m >= n) | (m < 0) do skip od; n:=m;
+while (x > 0) do
+  x := x - 1;
+  while (m >= n) | (m < 0) do skip od; n:=m
+od;
+while (n < 0) do skip od;;

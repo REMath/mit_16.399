@@ -1,0 +1,24 @@
+               ************************************************
+               ************************************************
+               **           STATIC PROGRAM ANALYZERS         **
+               **                  P. COUSOT                 **
+               **        http://www.dmi.ens.fr/~cousot       **
+               **              cousot@di.ens.fr              **
+               **        http://www.mit.edu/~cousot/         **
+               **              cousot@mit.edu                ** 
+               ************************************************
+               ************************************************
+
+*************************************************************************
+*** Warranty Disclaimer  ************************************************
+*************************************************************************
+	  P. Cousot disclaims all warranties with regard to this software,
+including all implied warranties of merchantability and fitness.  In no
+event shall P. Cousot be liable for any special, indirect or consequential
+damages or any damages whatsoever resulting from loss of use, data or
+profits, whether in an action of contract, negligence or other tortuous
+action, arising out of or in connection with the use or performance of this
+software.
+*************************************************************************
+Copyrights © P. Cousot 2004-05. All rights reserved.
+*************************************************************************

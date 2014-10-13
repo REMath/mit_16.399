@@ -1,0 +1,12 @@
+% example42.sil %
+B:=?;
+X:=2;
+I:=0;
+while (I<10) do
+  if B <> 0 then
+    X := X+2
+  else
+    X:=X-3
+  fi;
+  I:=I+1
+od;;

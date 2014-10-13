@@ -1,0 +1,5 @@
+% example43.sil %
+Y:=?;
+while ((Y<-1) | (Y>1))  do
+  Y:=?
+od;;

@@ -1,0 +1,143 @@
+% example13.sil %
+x := -536870912 * 2;
+y := 536870912 * 2;
+z := (-1073741823 - 1) * 1;
+t := (-1073741823 - 1) * 1073741823;;
+
+Remove instanciated files
+Tracing mode off
+"Non-relational" static analysis
+Forward analysis of boolean expressions
+Forward analysis of assignments
+
+"Parity" static analysis
+% example13.sil %
+x := -536870912 * 2;
+y := 536870912 * 2;
+z := (-1073741823 - 1) * 1;
+t := (-1073741823 - 1) * 1073741823;;
+{ x:T; y:T; z:T; t:T }
+0: 
+  x := (-536870912 * 2);
+1: 
+  y := (536870912 * 2);
+2: 
+  z := ((-1073741823 - 1) * 1);
+3: 
+  t := ((-1073741823 - 1) * 1073741823)
+4: 
+{ x:e; y:e; z:e; t:e }
+
+"Initialization and simple sign" static analysis
+% example13.sil %
+x := -536870912 * 2;
+y := 536870912 * 2;
+z := (-1073741823 - 1) * 1;
+t := (-1073741823 - 1) * 1073741823;;
+{ x:ERR; y:ERR; z:ERR; t:ERR }
+0: 
+  x := (-536870912 * 2);
+1: 
+  y := (536870912 * 2);
+2: 
+  z := ((-1073741823 - 1) * 1);
+3: 
+  t := ((-1073741823 - 1) * 1073741823)
+4: 
+{ x:NEG; y:POS; z:NEG; t:NEG }
+
+"Interval" static analysis
+% example13.sil %
+x := -536870912 * 2;
+y := 536870912 * 2;
+z := (-1073741823 - 1) * 1;
+t := (-1073741823 - 1) * 1073741823;;
+{ x:[]; y:[]; z:[]; t:[] }
+0: 
+  x := (-536870912 * 2);
+1: 
+  y := (536870912 * 2);
+2: 
+  z := ((-1073741823 - 1) * 1);
+3: 
+  t := ((-1073741823 - 1) * 1073741823)
+4: 
+{ x:[min_int,min_int]; y:[max_int,max_int]; z:[min_int,min_int]; t:[min_int,min_int] }
+
+The overflow of y is inevitable but the analysis is approximate sinve
+it truncate overflows to max_int whence returns [max_int,max_int]!
+
+Reduced "parity" and "Initialization and simple sign" static analysis
+% example13.sil %
+x := -536870912 * 2;
+y := 536870912 * 2;
+z := (-1073741823 - 1) * 1;
+t := (-1073741823 - 1) * 1073741823;;
+{ x:(T, ERR); y:(T, ERR); z:(T, ERR); t:(T, ERR) }
+0: 
+  x := (-536870912 * 2);
+1: 
+  y := (536870912 * 2);
+2: 
+  z := ((-1073741823 - 1) * 1);
+3: 
+  t := ((-1073741823 - 1) * 1073741823)
+4: 
+{ x:(e, NEG); y:(e, POS); z:(e, NEG); t:(e, NEG) }
+
+Reduced "parity" and "interval" static analysis
+% example13.sil %
+x := -536870912 * 2;
+y := 536870912 * 2;
+z := (-1073741823 - 1) * 1;
+t := (-1073741823 - 1) * 1073741823;;
+{ x:(T, []); y:(T, []); z:(T, []); t:(T, []) }
+0: 
+  x := (-536870912 * 2);
+1: 
+  y := (536870912 * 2);
+2: 
+  z := ((-1073741823 - 1) * 1);
+3: 
+  t := ((-1073741823 - 1) * 1073741823)
+4: 
+{ x:(e, [min_int,min_int]); y:(e, []); z:(e, [min_int,min_int]); t:(e, [min_int,min_int]) }
+
+Reduced "initialization and simple sign" and "interval" static analysis
+% example13.sil %
+x := -536870912 * 2;
+y := 536870912 * 2;
+z := (-1073741823 - 1) * 1;
+t := (-1073741823 - 1) * 1073741823;;
+{ x:(ERR, []); y:(ERR, []); z:(ERR, []); t:(ERR, []) }
+0: 
+  x := (-536870912 * 2);
+1: 
+  y := (536870912 * 2);
+2: 
+  z := ((-1073741823 - 1) * 1);
+3: 
+  t := ((-1073741823 - 1) * 1073741823)
+4: 
+{ x:(NEG, [min_int,min_int]); y:(POS, [max_int,max_int]); z:(NEG, [min_int,min_int]); 
+  t:(NEG, [min_int,min_int]) }
+
+Reduced "parity", "initialization and simple sign" and "interval" static analysis
+% example13.sil %
+x := -536870912 * 2;
+y := 536870912 * 2;
+z := (-1073741823 - 1) * 1;
+t := (-1073741823 - 1) * 1073741823;;
+{ x:(T,ERR,[]); y:(T,ERR,[]); z:(T,ERR,[]); t:(T,ERR,[]) }
+0: 
+  x := (-536870912 * 2);
+1: 
+  y := (536870912 * 2);
+2: 
+  z := ((-1073741823 - 1) * 1);
+3: 
+  t := ((-1073741823 - 1) * 1073741823)
+4: 
+{ x:(e,NEG,[min_int,min_int]); y:(e,POS,[]); z:(e,NEG,[min_int,min_int]); 
+  t:(e,NEG,[min_int,min_int]) }
+

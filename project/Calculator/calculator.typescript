@@ -1,0 +1,177 @@
+Script started on Sat Feb 26 14:52:00 2005
+% make
+
+ls 
+README			calculator.typescript	calculatorYACC.mly
+calculator.ml		calculatorLEX.mll	makefile
+# Lexer specification:
+cat calculatorLEX.mll
+(* File calculatorLEX.mll *)
+{
+open CalculatorYACC;; (* Type token defined in CalculatorYACC.mli *)
+exception Eof;;
+}
+rule token = parse
+    [' ' '\t'] { token lexbuf } (* skip blanks and tabs *)
+  | ['\n' ]    { EOL } (* end of line *)
+  | (['a'-'z'] | ['A'-'Z'])(['a'-'z'] | ['A'-'Z'] | ['0'-'9'])* as idt
+               { IDENT idt }
+  | ['0'-'9']+ as num
+               { NUM (int_of_string num) }
+  | ';'        { SEMICOLON }
+  | ':' '='    { ASSIGN }
+  | '+'        { PLUS }
+  | '-'        { MINUS }
+  | '*'        { TIMES }
+  | '/'        { DIV }
+  | '('        { LPAREN }
+  | ')'        { RPAREN }
+  | eof        { raise Eof } (* end of file *)
+# Lexer creation:
+ocamllex calculatorLEX.mll
+15 states, 407 transitions, table size 1718 bytes
+ls
+README			calculatorLEX.ml	makefile
+calculator.ml		calculatorLEX.mll
+calculator.typescript	calculatorYACC.mly
+# Parser specification:
+cat calculatorYACC.mly
+/* File calculatorYACC.mly */
+
+%{ (* header *)
+  
+type symbTable = (string * int) list ;;
+
+let sb = ref([] : symbTable) ;;
+
+let getvalue x =
+   if (List.mem_assoc x !sb) then 
+     (List.assoc x !sb)
+   else
+     0;;
+
+let rec except x l = match l with
+  []   -> []
+| h::t -> if (h = x) then t
+            else h::(except x t)
+
+let setvalue x v =
+  (print_string (x ^ " = "); print_int (v);
+   print_string ";\n"; flush stdout;
+   if (List.mem_assoc x !sb) then
+     sb := (x, v) :: (except (x, (List.assoc x !sb)) !sb)
+   else
+     sb := (x, v) :: !sb 
+  );;
+
+%} /* declarations */
+
+%token EOL SEMICOLON ASSIGN PLUS /* lexer tokens */
+%token MINUS TIMES DIV LPAREN RPAREN
+%token < string > IDENT
+%token < int > NUM
+%start prog                   /* the entry point */
+%type <unit> prog  
+%type <int> list
+%type <int> cmd
+%type <int> assign
+%type <int> expr
+%left PLUS MINUS            /* lowest precedence */
+%left TIMES DIV             /* medium precedence */
+%nonassoc UMINUS           /* highest precedence */
+
+%% /* rules */
+
+prog :
+    list EOL  { print_int $1 ; print_newline(); flush stdout; () }
+	
+list :
+    cmd SEMICOLON list  { $3 }
+  | cmd                 { $1 }
+  
+cmd :
+    assign  { $1 }
+  | expr    { $1 }
+  
+assign :
+    IDENT ASSIGN expr  { (setvalue $1 $3) ; $3 }
+	
+expr :
+    expr PLUS expr           { $1 + $3 }
+  | expr MINUS expr          { $1 - $3 }
+  | expr TIMES expr          { $1 * $3 }
+  | expr DIV expr            { $1 / $3 }
+  | MINUS expr %prec UMINUS  { - $2 }
+  | LPAREN expr RPAREN       { $2 }
+  | IDENT                    { (getvalue $1) }
+  | NUM                      { $1 }
+  
+%% (* trailer *)
+# Parser creation:
+ocamlyacc calculatorYACC.mly
+ls
+README			calculatorLEX.ml	calculatorYACC.mli
+calculator.ml		calculatorLEX.mll	calculatorYACC.mly
+calculator.typescript	calculatorYACC.ml	makefile
+# Types of lexem returned values:
+cat calculatorYACC.mli
+type token =
+  | EOL
+  | SEMICOLON
+  | ASSIGN
+  | PLUS
+  | MINUS
+  | TIMES
+  | DIV
+  | LPAREN
+  | RPAREN
+  | IDENT of ( string )
+  | NUM of ( int )
+
+val prog :
+  (Lexing.lexbuf  -> token) -> Lexing.lexbuf -> unit
+# Compilation of the lexer and parser:
+ocamlc -c calculatorYACC.mli
+ocamlc -c calculatorLEX.ml
+ocamlc -c calculatorYACC.ml
+# Specification of the calculator
+cat calculator.ml 
+(* File calculator.ml *)
+open Parsing;;
+try
+  let lexbuf = Lexing.from_channel stdin in
+  while true do
+    try
+      CalculatorYACC.prog CalculatorLEX.token lexbuf
+    with Parse_error ->
+      (print_string "Syntax error ..." ; print_newline ()) ;
+    clear_parser ()
+  done
+with CalculatorLEX.Eof ->
+  ()
+;;
+ocamlc -c calculator.ml
+# Linking and code generation for the lexer, 
+# parser and calculator:
+ocamlc -o calculator calculatorLEX.cmo calculatorYACC.cmo calculator.cmo
+ls
+README			calculatorLEX.cmi	calculatorYACC.ml
+calculator		calculatorLEX.cmo	calculatorYACC.mli
+calculator.cmi		calculatorLEX.ml	calculatorYACC.mly
+calculator.cmo		calculatorLEX.mll	makefile
+calculator.ml		calculatorYACC.cmi
+calculator.typescript	calculatorYACC.cmo
+# Using the calculator:
+echo "X:=1; Y:=2; Z:= 3; (X+Y)*Z+4" | ./calculator
+X = 1;
+Y = 2;
+Z = 3;
+13
+echo "X:=1; Y:=2; *X; X" | ./calculator
+X = 1;
+Y = 2;
+Syntax error ...
+1
+% ^Dexit
+
+Script done on Sat Feb 26 14:52:12 2005

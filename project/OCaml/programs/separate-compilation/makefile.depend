@@ -1,0 +1,10 @@
+b.cmi: a.cmi 
+c.cmi: a.cmi 
+b.cmo: a.cmi b.cmi 
+b.cmx: a.cmi b.cmi 
+c.cmo: a.cmi c.cmi 
+c.cmx: a.cmi c.cmi 
+d.cmo: b.cmi c.cmi 
+d.cmx: b.cmx c.cmx 
+e.cmo: d.cmo 
+e.cmx: d.cmx 

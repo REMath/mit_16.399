@@ -1,0 +1,12 @@
+% example12-1.sil %
+n := 1;
+x := 1;
+while (x < n) do
+	x := x + 1;
+	a := ?;
+  y := 1;
+	while (y < n) do
+		y := y + 1;
+		b := ?
+	od
+od;;
